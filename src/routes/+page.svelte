@@ -1,37 +1,34 @@
 <script>
+  import { goto } from '$app/navigation';
   import { windowSize } from '../utils';
 
-  let width = $state(0);
+  let bmgWidth = $state(0);
 
   $effect(() => {
-    const onResize = () => {
-      const { x: wx } = windowSize();
-      width = Math.min(wx * 0.9, 360);
-    };
+    setTimeout(() => {
+      goto('/start', { replaceState: true });
+    }, 2000);
 
-    onResize();
-
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    let { x: wx, y: wy } = windowSize();
+    bmgWidth = Math.min(300, Math.min(wx, wy) * 0.6);
   });
 </script>
 
 <div class="app">
-  <img src="../src/Images/Title.webp" alt="" {width} />
-  <img src="../src/Images/Intro.webp" alt="" {width} />
+  <img src="src/Images/BMG.webp" alt="" width={bmgWidth} />
 </div>
 
 <style>
   :global(body) {
     margin: 0;
+    background: #3B3732;
   }
 
   .app {
     display: grid;
-    background: #403c38;
-    background-image: url("../src/Images/Stone Wall.webp");
-    background-size: 150px;
     height: 100vh;
+    background: #8A0000;
     place-content: center;
+    color: white;
   }
 </style>
