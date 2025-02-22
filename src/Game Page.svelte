@@ -12,6 +12,6 @@
         display: grid;
         background-image: url('src/Images/Stone Wall.webp');
         background-size: 150px;
-        place-content: center;
+        place-content: end center;
     }
 </style>

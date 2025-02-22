@@ -23,6 +23,5 @@
         display: grid;
         grid-auto-flow: column;
         background: #000000c0;
-        border-radius: 10px;
     }
 </style>

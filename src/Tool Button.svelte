@@ -1,5 +1,5 @@
 <script>
-    const { src, width = 50, onClick } = $props();
+    const { src, width = 40, onClick } = $props();
 
     let scale = $state(1);
 
