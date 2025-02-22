@@ -21,6 +21,6 @@
     background: #8a0000;
     place-content: center;
     color: white;
-    z-index: 1;
+    z-index: 3;
   }
 </style>

@@ -1,14 +1,36 @@
 <script>
-  const { src, width = 50 } = $props();
+    const { src, width = 50, onClick } = $props();
+
+    let scale = $state(1);
+
+    $effect(() => {
+        const onTransitionEnd = (e) => {
+            if (e.target.id !== src) {
+                return;
+            }
+
+            if (scale < 1) {
+                scale = 1;
+            } else {
+                setTimeout(onClick);
+            }
+        };
+
+        window.addEventListener('transitionend', onTransitionEnd);
+        return () => window.removeEventListener('transitionend', onTransitionEnd);
+    });
+
+    const onPointerDown = () => (scale = 0.7);
 </script>
 
-<div class="button">
-  <img {src} alt="" {width} />
-</div>
+<button id={src} class="button" onpointerdown={onPointerDown} style="transform: scale({scale})">
+    <img {src} alt="" {width} />
+</button>
 
 <style>
-  .button {
-    border: none;
-    transition: transform 0.1s;
-  }
+    .button {
+        border: none;
+        background: none;
+        transition: transform 0.1s;
+    }
 </style>
