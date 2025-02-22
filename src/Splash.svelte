@@ -19,6 +19,7 @@
     grid-area: 1/1;
     display: grid;
     background: #8a0000;
+    background-image: radial-gradient(transparent, black 100%);
     place-content: center;
     color: white;
     z-index: 3;
