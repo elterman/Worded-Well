@@ -2,5 +2,6 @@
 import { START_PAGE } from './const';
 
 export const _state = $state({
-    page: START_PAGE
+    sounds: true,
+    page: START_PAGE,
 });

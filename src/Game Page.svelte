@@ -1,18 +1,14 @@
 <script>
   import { START_PAGE } from './const';
   import { _state } from './shared.svelte';
+  import Toolbar from './Toolbar.svelte';
 
-  //   import '/static/index.css';
+  const onBack = () => (_state.page = START_PAGE);
 </script>
 
 <div class="game-page">
-  <button
-    onclick={() => {
-      _state.page = START_PAGE;
-    }}
-  >
-    GAME PAGE
-  </button>
+  <button onclick={onBack} style="font-family: Fredoka">GAME PAGE</button>
+  <Toolbar />
 </div>
 
 <style>
@@ -22,6 +18,5 @@
     background-image: url('src/Images/Stone Wall.webp');
     background-size: 150px;
     place-content: center;
-    font-family: Exo2;
   }
 </style>
