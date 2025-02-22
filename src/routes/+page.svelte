@@ -1,34 +1,34 @@
 <script>
-  import { goto } from '$app/navigation';
-  import { windowSize } from '../utils';
+  import { START_PAGE } from '../const';
+  import { _state } from '../shared.svelte';
+  import Splash from '../Splash.svelte';
+  import StartPage from '../Start Page.svelte';
+  import GamePage from '../Game Page.svelte';
 
-  let bmgWidth = $state(0);
-
-  $effect(() => {
-    setTimeout(() => {
-      goto('/start', { replaceState: true });
-    }, 2000);
-
-    let { x: wx, y: wy } = windowSize();
-    bmgWidth = Math.min(300, Math.min(wx, wy) * 0.6);
-  });
+  let splash = $state(true);
+  setTimeout(() => (splash = false), 2000);
 </script>
 
 <div class="app">
-  <img src="src/Images/BMG.webp" alt="" width={bmgWidth} />
+  <GamePage />
+
+  {#if _state.page === START_PAGE}
+    <StartPage />
+  {/if}
+
+  {#if splash}
+    <Splash />
+  {/if}
 </div>
 
 <style>
   :global(body) {
     margin: 0;
-    background: #3B3732;
+    background: #3b3732;
   }
 
   .app {
     display: grid;
     height: 100vh;
-    background: #8A0000;
-    place-content: center;
-    color: white;
   }
 </style>
