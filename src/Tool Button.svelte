@@ -1,5 +1,5 @@
 <script>
-    const { src, width = 40, onClick } = $props();
+    const { src, width = 40, onClick, style } = $props();
 
     let scale = $state(1);
 
@@ -24,13 +24,16 @@
 </script>
 
 <button id={src} class="button" onpointerdown={onPointerDown} style="transform: scale({scale})">
-    <img {src} alt="" {width} />
+    <img {src} alt="" {width} {style} />
 </button>
 
 <style>
     .button {
+        place-self: center;
+        display: grid;
         border: none;
         background: none;
+        cursor: pointer;
         transition: transform 0.1s;
     }
 </style>
