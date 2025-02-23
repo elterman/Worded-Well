@@ -1,28 +1,34 @@
 <script>
     import { BACKSPACE } from './const';
     import KeyboardButton from './Keyboard Button.svelte';
-    import { _state } from './shared.svelte';
+    import { clientRect } from './utils';
+
+    let gap = $state(0);
+
+    $effect(() => {
+        const wx = clientRect('.game-page').width;
+        const margins = 12;
+
+        gap = (wx - margins) / 11 * 0.1;
+    });
 </script>
 
-<div class="keyboard" style={`transform: scaleX(${_state.kbScale})`}>
-    <div class="kb-row">
+<div class="keyboard">
+    <div class="kb-row" style='gap: {gap}px'>
         {#each 'QWERTYUIOP' as ch (ch)}
             <KeyboardButton {ch} />
         {/each}
     </div>
-    <div class="kb-row">
+    <div class="kb-row" style='gap: {gap}px'>
         {#each 'ASDFGHJKL' as ch (ch)}
             <KeyboardButton {ch} />
         {/each}
     </div>
-    <div class="kb-row" style={{ transform: 'translateX(10px)' }}>
-        {#each `ZXCVBNM${BACKSPACE}` as ch (ch)}
+    <div class="kb-row" style='gap: {gap}px'>
+        {#each `~ZXCVBNM${BACKSPACE}` as ch (ch)}
             <KeyboardButton {ch} />
         {/each}
     </div>
-    <!-- <div class="kb-row">
-        <KeyboardButton ch={RETURN} />
-    </div> -->
 </div>
 
 <style>
@@ -43,6 +49,6 @@
         display: grid;
         grid-auto-flow: column;
         place-content: center;
-        gap: 4.44px;
+        /* gap: 4.44px; */
     }
 </style>

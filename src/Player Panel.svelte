@@ -2,7 +2,7 @@
     import { clientRect } from './utils';
 
     let width = $state(0);
-    $effect(() => (width = clientRect('.app').width));
+    $effect(() => (width = clientRect('.game-page').width));
 </script>
 
 <div class="player-panel" style="width: {width}px">PLAYER PANEL</div>

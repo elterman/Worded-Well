@@ -2,10 +2,10 @@
     import { clientRect } from './utils';
 
     let width = $state(0);
-    $effect(() => (width = clientRect('.app').width));
+    $effect(() => (width = clientRect('.game-page').width));
 </script>
 
-<div class="well" style="width: {300}px">
+<div class="well" style="width: {width * 0.7}px">
     <div class="background"></div>
     <div class="overlay"></div>
 </div>
