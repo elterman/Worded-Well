@@ -4,7 +4,7 @@
 </script>
 
 <div class="input" style="transform: scale({1})">
-    {#each _state.input as ch (ch)}
+    {#each _state.input as ch, i (i)}
         <Letter {ch} />
     {/each}
 </div>

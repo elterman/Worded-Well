@@ -1,5 +1,6 @@
 <script>
     import { BACKSPACE, ESC, RETURN } from './const';
+    import { _state } from './shared.svelte';
     import { clientRect } from './utils';
 
     const { ch } = $props();
@@ -22,9 +23,19 @@
             width = (wx - margins) / 11;
         }
     });
+
+    const onClick = () => {
+        if (esc) {
+            _state.input = [];
+        } else if (bs) {
+            _state.input.pop();
+        } else {
+            _state.input.push(ch);
+        }
+    };
 </script>
 
-<div class={classes} style="width: {width}px">
+<button class={classes} style="width: {width}px" onpointerdown={onClick}>
     <span class='kb-button-content' style="font-size: {fsz}px;">
         {#if bs}
             <img src="src/Images/Erase.webp" alt="erase" width={27} />
@@ -35,7 +46,7 @@
             {label}
         {/if}
     </span>
-</div>
+</button>
 
 <style>
     .kb-button {
