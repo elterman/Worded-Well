@@ -1,10 +1,20 @@
 export const windowSize = () => {
-    const w = window,
-        d = document,
+    const d = document,
         e = d.documentElement,
         g = d.getElementsByTagName('body')[0],
-        x = w.innerWidth || e.clientWidth || g.clientWidth,
-        y = w.innerHeight || e.clientHeight || g.clientHeight;
+        x = e.clientWidth || g.clientWidth,
+        y = e.clientHeight || g.clientHeight;
 
     return { x, y };
+};
+
+export const clientRect = selector => {
+    const ob = document.querySelector(selector);
+    const r = ob?.getBoundingClientRect();
+
+    return r;
+};
+
+export const focusOnApp = () => {
+    document.querySelector('.app')?.focus();
 };

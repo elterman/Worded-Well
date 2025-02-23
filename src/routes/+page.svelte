@@ -39,8 +39,15 @@
         src: url('../Fonts/Fredoka.ttf');
     }
 
+    @font-face {
+        font-family: Roboto;
+        src: url('../Fonts/Roboto-Regular.ttf');
+    }
+
     .app {
         display: grid;
         height: 100vh;
-    }
+        background-image: url('src/Images/Stone Wall.webp');
+        background-size: 150px, 150px;
+}
 </style>
