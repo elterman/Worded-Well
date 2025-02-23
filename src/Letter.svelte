@@ -7,15 +7,15 @@
 <style>
     .letter {
         display: grid;
-        border-radius: 10px;
+        border-radius: 3px;
         color: black;
         place-content: center;
         font-family: Roboto;
-        font-size: 64px;
+        font-size: 20px;
         font-weight: bold;
-        width: 100px;
+        width: 30px;
         aspect-ratio: 1;
-        box-shadow: 10px 10px 10px black;
+        box-shadow: 2px 2px 3px black;
         background: radial-gradient(#FFFFFFC0, #FFFFFFC0 100%);
     }
 </style>

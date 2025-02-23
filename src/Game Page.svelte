@@ -21,7 +21,7 @@
         place-self: center;
         grid-area: 1/1;
         place-content: center;
-        height: calc(min(100vh - 20px, 800px));
+        height: calc(min(100vh - 20px, 780px));
         width: calc(min(100vw, 430px));
         display: grid;
         grid: auto auto 1fr auto auto auto / auto;

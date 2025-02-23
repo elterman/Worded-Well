@@ -7,7 +7,7 @@
 </script>
 
 <div class="input-container" style="width: {width * 0.7}px">
-    <div class="input" style="transform: scale(0.3)">
+    <div class="input">
         <Letter ch="W" />
         <Letter ch="E" />
         <Letter ch="A" />
@@ -30,6 +30,6 @@
     .input {
         display: grid;
         grid-auto-flow: column;
-        gap: 10px;
+        gap: 4px;
     }
 </style>
