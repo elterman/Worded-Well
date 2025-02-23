@@ -13,7 +13,7 @@
         place-self: center;
         display: grid;
         grid-auto-flow: column;
-        height: 60px;
+        height: 50px;
         color: white;
         font-family: Fredoka;
         place-content: center;
