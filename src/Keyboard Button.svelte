@@ -4,7 +4,6 @@
     import { clientRect } from './utils';
 
     const { ch } = $props();
-    $inspect(ch);
 
     const cr = ch === RETURN;
     const bs = ch === BACKSPACE;
@@ -36,7 +35,7 @@
 </script>
 
 <button class={classes} style="width: {width}px" onpointerdown={onClick}>
-    <span class='kb-button-content' style="font-size: {fsz}px;">
+    <span class="kb-button-content" style="font-size: {fsz}px;">
         {#if bs}
             <img src="src/Images/Erase.webp" alt="erase" width={27} />
         {:else if esc}
