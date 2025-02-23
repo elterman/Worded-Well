@@ -1,5 +1,5 @@
 <script>
-    import { BACKSPACE, RETURN } from './const';
+    import { BACKSPACE, ESC, RETURN } from './const';
     import { clientRect } from './utils';
 
     const { ch } = $props();
@@ -7,11 +7,12 @@
 
     const cr = ch === RETURN;
     const bs = ch === BACKSPACE;
-    const clear = ch === '~';
+    const esc = ch === ESC;
     const label = cr ? 'ENTER' : ch;
     const classes = `kb-button ${bs ? 'kb-backspace' : ''} ${cr ? 'kb-return' : ''}`;
+    const fsz = esc ? 10 : 18;
 
-    let width = $state(cr ? 100 : bs ? 50 : clear ? 50 : 0);
+    let width = $state(cr ? 100 : bs ? 50 : esc ? 50 : 0);
 
     $effect(() => {
         if (width === 0) {
@@ -24,11 +25,12 @@
 </script>
 
 <div class={classes} style="width: {width}px">
-    <span style="display: grid">
+    <span class='kb-button-content' style="font-size: {fsz}px;">
         {#if bs}
             <img src="src/Images/Erase.webp" alt="erase" width={27} />
-        {:else if clear}
-            <img src="src/Images/Clear All.webp" alt="clear all" width={40} />
+        {:else if esc}
+            <div>CLEAR</div>
+            <div>ALL</div>
         {:else}
             {label}
         {/if}
@@ -40,10 +42,12 @@
         display: grid;
         place-content: center;
         place-items: center;
-        /* width: 36px; */
         height: 44px;
-        font-size: 18px;
+        font-family: Roboto;
+        font-weight: bold;
         background: #000000c0;
+        color: white;
+        border: none;
         border-radius: 4px;
         cursor: pointer;
         box-sizing: border-box;
@@ -52,6 +56,11 @@
 
     .kb-button:hover {
         background: #000000a0;
+    }
+
+    .kb-button-content {
+        display: grid;
+        place-items: center;
     }
 
     .kb-backspace {

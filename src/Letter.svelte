@@ -17,5 +17,8 @@
         aspect-ratio: 1;
         box-shadow: 2px 2px 3px black;
         background: radial-gradient(#FFFFFFC0, #FFFFFFC0 100%);
+        border: 2px solid;
+        border-color: white silver silver white;
+        box-sizing: border-box;
     }
 </style>

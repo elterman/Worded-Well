@@ -1,15 +1,12 @@
 <script>
     import Letter from './Letter.svelte';
+    import { _state } from './shared.svelte';
 </script>
 
-<div class="input" style='transform: scale({1})'>
-    <Letter ch="W" />
-    <Letter ch="E" />
-    <Letter ch="A" />
-    <Letter ch="T" />
-    <Letter ch="H" />
-    <Letter ch="E" />
-    <Letter ch="R" />
+<div class="input" style="transform: scale({1})">
+    {#each _state.input as ch (ch)}
+        <Letter {ch} />
+    {/each}
 </div>
 
 <style>

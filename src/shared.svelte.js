@@ -4,4 +4,5 @@ import { START_PAGE } from './const';
 export const _state = $state({
     sounds: true,
     page: START_PAGE,
+    input: [],
 });
