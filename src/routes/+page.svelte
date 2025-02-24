@@ -76,7 +76,7 @@
         display: grid;
         height: 100vh;
         background-image: url('src/Images/Stone Wall.webp');
-        background-size: 150px, 150px;
+        background-size: 150px;
         user-select: none;
     }
 </style>

@@ -1,14 +1,7 @@
 <script>
-    import { clientRect } from './utils';
-
-    let width = $state(0);
-    $effect(() => (width = clientRect('.game-page').width));
 </script>
 
-<div class="well" style="width: {width * 0.7}px">
-    <div class="background"></div>
-    <div class="overlay"></div>
-</div>
+<div class="well"></div>
 
 <style>
     .well {
@@ -16,10 +9,7 @@
         display: grid;
         place-self: center;
         height: 100%;
-    }
-
-    .overlay {
-        grid-area: 1/1;
+        width: 290px;
         background-image: linear-gradient(
             to right,
             #000000d0,
@@ -29,11 +19,5 @@
             #000000b0 75%,
             #000000d0
         );
-    }
-
-    .background {
-        grid-area: 1/1;
-        background-image: url('src/Images/Stone Wall.webp');
-        background-size: 25%;
     }
 </style>

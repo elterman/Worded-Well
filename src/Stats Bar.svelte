@@ -11,14 +11,20 @@
         grid-area: 1/1;
         display: grid;
         grid-auto-flow: column;
-        padding: 2px 20px;
-        border-radius: 15px;
+        padding: 4px 0 5px;
         font-family: Fredoka;
         place-content: center;
-        box-shadow: 2px 2px 3px black;
-        background: radial-gradient(#ffffffc0, #ffffffc0 100%);
-        border: 2px solid;
-        border-color: white silver silver white;
-        box-sizing: border-box;
+        color: white;
+        width: 290px;
+
+        background-image: linear-gradient(
+            to right,
+            #000000d0,
+            #000000b0 25%,
+            #000000a0,
+            #000000a0,
+            #000000b0 75%,
+            #000000d0
+        );
     }
 </style>

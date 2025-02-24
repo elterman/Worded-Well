@@ -43,6 +43,10 @@
         box-sizing: border-box;
     }
 
+    .button:hover {
+        background: #ffffffe0;
+    }
+
     .button:focus-visible {
         outline: none;
     }
