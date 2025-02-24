@@ -25,7 +25,8 @@
         display: grid;
         grid-auto-flow: column;
         place-content: center;
-        border-radius: 5px;
-        background: #000000c0;
+        gap: 5px;
+        /* border-radius: 5px; */
+        /* background: #000000c0; */
     }
 </style>

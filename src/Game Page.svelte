@@ -1,7 +1,7 @@
 <script>
-    import Input from './Input.svelte';
+    import InputPanel from './Input Panel.svelte';
     import Keyboard from './Keyboard.svelte';
-    import PlayerPanel from './Player Panel.svelte';
+    import ScorePanel from './Score Panel.svelte';
     import StatsBar from './Stats Bar.svelte';
     import Toolbar from './Toolbar.svelte';
     import Well from './Well.svelte';
@@ -9,9 +9,9 @@
 
 <div class="game-page">
     <StatsBar />
-    <PlayerPanel />
+    <ScorePanel />
     <Well/>
-    <Input/>
+    <InputPanel/>
     <Keyboard />
     <Toolbar />
 </div>

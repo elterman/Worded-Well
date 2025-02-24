@@ -1,8 +1,7 @@
 <script>
-    const { src, width = 40, onClick } = $props();
+    const { src, width, onClick, style } = $props();
 
     let scale = $state(1);
-    const style = `width: ${width}px; height: ${width}px;`;
 
     $effect(() => {
         const onTransitionEnd = (e) => {
@@ -24,23 +23,18 @@
     const onPointerDown = () => (scale = 0.7);
 </script>
 
-<button id={src} class="button" tabindex={-1} onpointerdown={onPointerDown} style="{style} transform: scale({scale})">
-    <img {src} alt="" {width} />
+<button id={src} class="button" tabindex={-1} onpointerdown={onPointerDown} style="transform: scale({scale})">
+    <img {src} alt="" {width} {style}/>
 </button>
 
 <style>
     .button {
         place-self: center;
+        background: none;
+        border: none;
         display: grid;
-        place-content: center;
         cursor: pointer;
         transition: transform 0.1s;
-        border-radius: 5px;
-        box-shadow: 2px 2px 3px black;
-        background: radial-gradient(#ffffffc0, #ffffffc0 100%);
-        border: 2px solid;
-        border-color: white silver silver white;
-        box-sizing: border-box;
     }
 
     .button:focus-visible {

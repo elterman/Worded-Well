@@ -3,7 +3,7 @@
     import { GAME_PAGE } from './const';
     import { _state } from './shared.svelte';
     import { windowSize } from './utils';
-    import ToolButton from './Tool Button.svelte';
+    import Button from './Button.svelte';
 
     let width = $state(0);
 
@@ -25,7 +25,7 @@
 <div class="start-page" in:fade={{ duration: 100 }} out:fade={{ duration: 200 }}>
     <img class="shadow" src="src/Images/Title.webp" alt="" {width} />
     <img src="src/Images/Intro.webp" alt="" {width} />
-    <ToolButton src="src/Images/Play.webp" width={60} onClick={() => (_state.page = GAME_PAGE)} {style} />
+    <Button src="src/Images/Play.webp" width={60} onClick={() => (_state.page = GAME_PAGE)} {style}/>
 </div>
 
 <style>

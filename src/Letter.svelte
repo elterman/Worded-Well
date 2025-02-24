@@ -1,7 +1,7 @@
 <script>
     import { fade, fly } from 'svelte/transition';
 
-    const { ch } = $props();
+    const { ch, stackIndex } = $props();
 </script>
 
 <div class="letter" in:fly={{ y: 30, duration: 100 }} out:fade={{ duration: 100 }}>{ch}</div>

@@ -3,14 +3,14 @@
     import { _state } from './shared.svelte';
 </script>
 
-<div class="input" style="transform: scale({1})">
+<div class="input-panel" style="transform: scale({1})">
     {#each _state.input as ch, i (i)}
         <Letter {ch} />
     {/each}
 </div>
 
 <style>
-    .input {
+    .input-panel {
         grid-area: 4/1;
         display: grid;
         place-self: center;

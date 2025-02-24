@@ -34,7 +34,7 @@
     };
 </script>
 
-<button class={classes} style="width: {width}px" onpointerdown={onClick}>
+<button class={classes} tabindex={-1} style="width: {width}px" onpointerdown={onClick}>
     <span class="kb-button-content" style="font-size: {fsz}px;">
         {#if bs}
             <img src="src/Images/Erase.webp" alt="erase" width={27} />
@@ -55,17 +55,22 @@
         height: 44px;
         font-family: Roboto;
         font-weight: bold;
-        background: #000000c0;
-        color: white;
-        border: none;
         border-radius: 4px;
         cursor: pointer;
+        box-shadow: 2px 2px 3px black;
+        background: radial-gradient(#ffffffc0, #ffffffc0 100%);
+        color: #522d18;
+        border: 2px solid;
+        border-color: white silver silver white;
         box-sizing: border-box;
-        box-shadow: 1px 1px 1px black;
     }
 
     .kb-button:hover {
-        background: #000000a0;
+        background: #ffffffe0;
+    }
+
+    .kb-button:focus-visible {
+        outline: none;
     }
 
     .kb-button-content {

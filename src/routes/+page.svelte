@@ -1,5 +1,5 @@
 <script>
-    import { START_PAGE } from '../const';
+    import { GAME_PAGE, START_PAGE } from '../const';
     import GamePage from '../Game Page.svelte';
     import { _state } from '../shared.svelte';
     import Splash from '../Splash.svelte';
@@ -11,6 +11,10 @@
         window.addEventListener('contextmenu', disable);
 
         const onKeyDown = (e) => {
+            if (_state.page !== GAME_PAGE) {
+                return;
+            }
+
             if (e.altKey) {
                 return;
             }
@@ -38,7 +42,7 @@
     setTimeout(() => (splash = false), 2000);
 </script>
 
-<div class="app">
+<div class="app" tabIndex={-1}>
     <GamePage />
 
     {#if _state.page === START_PAGE}
@@ -55,6 +59,7 @@
         margin: 0;
         background: #3b3732;
         overflow: hidden;
+        color: #522d18;
     }
 
     @font-face {
@@ -72,5 +77,6 @@
         height: 100vh;
         background-image: url('src/Images/Stone Wall.webp');
         background-size: 150px, 150px;
+        user-select: none;
     }
 </style>
