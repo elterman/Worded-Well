@@ -18,3 +18,5 @@ export const clientRect = selector => {
 export const focusOnApp = () => {
     document.querySelector('.app')?.focus();
 };
+
+export const isAlpha = (char) => /^[a-z]$/i.test(char);

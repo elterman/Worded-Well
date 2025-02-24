@@ -1,14 +1,37 @@
 <script>
     import { START_PAGE } from '../const';
+    import GamePage from '../Game Page.svelte';
     import { _state } from '../shared.svelte';
     import Splash from '../Splash.svelte';
     import StartPage from '../Start Page.svelte';
-    import GamePage from '../Game Page.svelte';
+    import { isAlpha } from '../utils';
 
     $effect(() => {
         const disable = (e) => e.preventDefault();
         window.addEventListener('contextmenu', disable);
-        return () => window.removeEventListener('contextmenu', disable);
+
+        const onKeyDown = (e) => {
+            if (e.altKey) {
+                return;
+            }
+
+            const ch = e.key.toUpperCase();
+
+            if (ch === 'ESCAPE') {
+                _state.input = [];
+            } else if (ch === 'BACKSPACE') {
+                _state.input.pop();
+            } else if (isAlpha(ch)) {
+                _state.input.push(ch);
+            }
+        };
+
+        window.addEventListener('keydown', onKeyDown);
+
+        return () => {
+            window.removeEventListener('contextmenu', disable);
+            window.removeEventListener('keydown', onKeyDown);
+        };
     });
 
     let splash = $state(true);
@@ -49,5 +72,5 @@
         height: 100vh;
         background-image: url('src/Images/Stone Wall.webp');
         background-size: 150px, 150px;
-}
+    }
 </style>
