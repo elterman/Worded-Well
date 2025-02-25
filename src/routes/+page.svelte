@@ -15,7 +15,7 @@
                 return;
             }
 
-            if (e.altKey) {
+            if (e.altKey || e.shiftKey || e.ctrlKey) {
                 return;
             }
 

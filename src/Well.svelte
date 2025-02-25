@@ -7,7 +7,7 @@
 
     $effect(() =>
         setTimeout(() => {
-            _state.letter_box_size = clientRect('.well').height / 14;
+            _state.letter_box_size = (clientRect('.well').height - 4) / 14;
             range
              = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
         }),
@@ -41,5 +41,6 @@
         overflow: hidden;
         border: 2px solid;
         border-color: transparent #ffffffb0 #ffffffb0;
+        box-sizing: border-box;
     }
 </style>
