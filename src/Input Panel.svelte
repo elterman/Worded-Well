@@ -5,7 +5,7 @@
 
 <div class="input-panel" style="transform: scale({1})">
     {#each _state.input as ch, i (i)}
-        <Letter {ch} />
+        <Letter {ch} input/>
     {/each}
 </div>
 

@@ -1,5 +1,5 @@
 <script>
-    import InputPanel from './Input Panel.svelte';
+    import WordPanel from './Input Panel.svelte';
     import Keyboard from './Keyboard.svelte';
     import ScorePanel from './Score Panel.svelte';
     import StatsBar from './Stats Bar.svelte';
@@ -11,7 +11,7 @@
     <StatsBar />
     <ScorePanel />
     <Well/>
-    <InputPanel/>
+    <WordPanel input/>
     <Keyboard />
     <Toolbar />
 </div>
