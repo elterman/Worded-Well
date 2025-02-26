@@ -13,7 +13,7 @@
         display: grid;
         grid-auto-flow: column;
         padding: 4px 0 5px;
-        font-family: Fredoka;
+        font-family: Poppins;
         place-content: center;
         color: white;
         width: 290px;

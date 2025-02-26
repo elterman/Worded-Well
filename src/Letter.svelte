@@ -5,7 +5,7 @@
     const { ch, input } = $props();
 
     const sz = _state.letter_box_size;
-    const fsz = Math.min(20, 0.67 * sz);
+    const fsz = Math.min(20, 0.65 * sz);
 </script>
 
 <div
@@ -23,7 +23,7 @@
         border-radius: 3px;
         color: black;
         place-content: center;
-        font-family: Roboto;
+        font-family: Poppins;
         font-weight: bold;
         box-shadow: 2px 2px 3px black;
         background: radial-gradient(#ffffffc0, #ffffffc0 100%);

@@ -68,6 +68,11 @@
     }
 
     @font-face {
+        font-family: Poppins;
+        src: url('../Fonts/Poppins-Regular.ttf');
+    }
+
+    @font-face {
         font-family: Roboto;
         src: url('../Fonts/Roboto-Regular.ttf');
     }
