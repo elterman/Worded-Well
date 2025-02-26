@@ -1,7 +1,7 @@
 <script>
     import WordPanel from './Input Panel.svelte';
     import Keyboard from './Keyboard.svelte';
-    import PromptButton from './Prompt Button.svelte';
+    import Prompts from './Prompts.svelte';
     import ScorePanel from './Score Panel.svelte';
     import StatsBar from './Stats Bar.svelte';
     import Toolbar from './Toolbar.svelte';
@@ -11,9 +11,9 @@
 <div class="game-page">
     <StatsBar />
     <ScorePanel />
-    <Well/>
-    <!-- <PromptButton text='Play again?'/> -->
-    <WordPanel input/>
+    <Well />
+    <Prompts />
+    <WordPanel input />
     <Keyboard />
     <Toolbar />
 </div>

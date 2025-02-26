@@ -1,20 +1,18 @@
 <script>
     import { X } from './const';
 
-    const { text } = $props();
-    const width = text === X ? '36px' : 'unset';
+    const { label } = $props();
+    const width = label === X ? '36px' : 'unset';
 </script>
 
-<button class="button" style='width: {width}'>{text}</button>
+<button class="button" style='width: {width}'>{label}</button>
 
 <style>
     .button {
-        grid-area: 3/1;
-        place-self: center;
         display: grid;
         place-content: center;
-        font-family: Fredoka;
-        font-size: 18px;
+        font-family: Poppins;
+        font-size: 17px;
         box-shadow: 0 0 5px black;
         background: radial-gradient(#ffffffe8, #ffffffe8 100%);
         border-style: solid;

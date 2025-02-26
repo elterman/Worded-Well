@@ -4,3 +4,7 @@ export const RETURN = '\u21B5';
 export const BACKSPACE = '\u232B';
 export const ESC = '\u001B';
 export const X = '✖';
+export const PROMPT_PLAY = 'Play';
+export const PROMPT_PLAY_AGAIN = 'Play again?';
+export const PROMPT_RESET_STATS = 'Reset Stats?';
+export const PROMPT_SURRENDER = 'Surrender?';
