@@ -1,7 +1,7 @@
 <script>
     import WordPanel from './Input Panel.svelte';
     import Keyboard from './Keyboard.svelte';
-    import Prompt from './Prompt.svelte';
+    import PromptButton from './Prompt Button.svelte';
     import ScorePanel from './Score Panel.svelte';
     import StatsBar from './Stats Bar.svelte';
     import Toolbar from './Toolbar.svelte';
@@ -12,7 +12,7 @@
     <StatsBar />
     <ScorePanel />
     <Well/>
-    <!-- <Prompt/> -->
+    <!-- <PromptButton text='Play again?'/> -->
     <WordPanel input/>
     <Keyboard />
     <Toolbar />

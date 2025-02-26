@@ -8,10 +8,8 @@
     $effect(() =>
         setTimeout(() => {
             _state.letter_box_size = (clientRect('.well').height - 4) / 14;
-            range
-             = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+            range = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
         }),
-
     );
 </script>
 
