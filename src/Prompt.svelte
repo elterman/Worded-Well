@@ -6,7 +6,7 @@
 
 <div class="prompt">
     {#each ops as op, i (i)}
-        <PromptButton label={op} />
+        <PromptButton {op} />
     {/each}
 </div>
 

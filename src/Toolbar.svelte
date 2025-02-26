@@ -5,7 +5,7 @@
     import SoundOn from './Images/Sound On.webp';
     import Surrender from './Images/Surrender.webp';
     import ToolButton from './Tool Button.svelte';
-    import { PROMPT_SURRENDER, START_PAGE } from './const';
+    import { PROMPT_RESET_STATS, PROMPT_SURRENDER, START_PAGE } from './const';
     import { _state } from './shared.svelte';
 
     const onBack = () => (_state.page = START_PAGE);
@@ -13,12 +13,16 @@
     const onSurrender = () => {
         _state.prompt = PROMPT_SURRENDER;
     };
+
+    const onResetStats = () => {
+        _state.prompt = PROMPT_RESET_STATS;
+    };
 </script>
 
 <div class="toolbar">
     <ToolButton src={Back} onClick={onBack} />
     <ToolButton src={Surrender} onClick={onSurrender} />
-    <ToolButton src={ResetStats} />
+    <ToolButton src={ResetStats} onClick={onResetStats}/>
     <ToolButton src={_state.sounds ? SoundOn : SoundOff} />
 </div>
 

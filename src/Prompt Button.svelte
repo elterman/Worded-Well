@@ -1,11 +1,11 @@
 <script>
     import { X } from './const';
 
-    const { label } = $props();
-    const width = label === X ? '36px' : 'unset';
+    const { op } = $props();
+    const width = op.label === X ? '36px' : 'auto';
 </script>
 
-<button class="button" style='width: {width}'>{label}</button>
+<button class="button" style="width: {width}" onclick={op.onClick}>{op.label}</button>
 
 <style>
     .button {
