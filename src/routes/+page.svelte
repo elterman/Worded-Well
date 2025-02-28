@@ -65,12 +65,26 @@
             #000000b0 75%,
             #000000d0
         );
+
+        --button-background: radial-gradient(#ffffffd0, #ffffffd0 100%);
     }
 
     :global(body) {
         margin: 0;
         background: #3b3732;
         overflow: hidden;
+        color: #522d18;
+    }
+
+    :global(.button-base) {
+        background: var(--button-background);
+        border: 2px solid;
+        border-color: white silver silver white;
+        box-sizing: border-box;
+        cursor: pointer;
+        display: grid;
+        place-content: center;
+        transition: transform 0.1s;
         color: #522d18;
     }
 
@@ -93,7 +107,7 @@
         display: grid;
         height: 100vh;
         background-image: url('$lib/images/Stone Wall.webp');
-        background-size: 150px;
+        background-size: 250px;
         user-select: none;
     }
 </style>

@@ -27,27 +27,18 @@
     });
 </script>
 
-<button id={op.label} class="button" {style} onpointerdown={() => (scale = 0.8)}>
+<button id={op.label} class="button-base button" {style} onpointerdown={() => (scale = 0.8)}>
     {op.label}
 </button>
 
 <style>
     .button {
-        display: grid;
-        place-content: center;
         font-family: Poppins;
         font-size: 17px;
         box-shadow: 0 0 5px black;
-        background: radial-gradient(#ffffffe8, #ffffffe8 100%);
-        border-style: solid;
-        border-color: white silver silver white;
-        box-sizing: border-box;
-        color: #522d18;
         height: 36px;
         border-radius: 18px;
         padding: 0 10px 1px;
-        cursor: pointer;
-        transition: transform 0.1s;
     }
 
     .button:hover {

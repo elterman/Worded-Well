@@ -10,7 +10,7 @@
     const bs = ch === BACKSPACE;
     const esc = ch === ESC;
     const label = cr ? 'ENTER' : ch;
-    const classes = `kb-button ${bs ? 'kb-backspace' : ''} ${cr ? 'kb-return' : ''}`;
+    const classes = `button-base button ${bs ? 'backspace' : ''} ${cr ? 'return' : ''}`;
     const fsz = esc ? 10 : 18;
 
     let width = $state(cr ? 100 : bs ? 50 : esc ? 50 : 0);
@@ -36,7 +36,7 @@
 </script>
 
 <button class={classes} tabindex={-1} style="width: {width}px" onpointerdown={onClick}>
-    <span class="kb-button-content" style="font-size: {fsz}px;">
+    <span class="button-content" style="font-size: {fsz}px;">
         {#if bs}
             <img src={Erase} alt="erase" width={27} />
         {:else if esc}
@@ -49,41 +49,33 @@
 </button>
 
 <style>
-    .kb-button {
-        display: grid;
-        place-content: center;
+    .button {
         place-items: center;
         height: 44px;
         font-family: Roboto;
         font-weight: bold;
         border-radius: 4px;
-        cursor: pointer;
         box-shadow: 2px 2px 3px black;
-        background: radial-gradient(#ffffffc0, #ffffffc0 100%);
-        color: #522d18;
-        border: 2px solid;
-        border-color: white silver silver white;
-        box-sizing: border-box;
     }
 
-    .kb-button:hover {
-        background: #ffffffe0;
+    .button:hover {
+        background: #ffffffe8;
     }
 
-    .kb-button:focus-visible {
+    .button:focus-visible {
         outline: none;
     }
 
-    .kb-button-content {
+    .button-content {
         display: grid;
         place-items: center;
     }
 
-    .kb-backspace {
+    .backspace {
         width: 60px;
     }
 
-    .kb-return {
+    .return {
         width: 100px;
         font-size: 16px;
     }

@@ -2,7 +2,8 @@
     const { src, width = 40, disabled, onClick } = $props();
 
     let scale = $state(1);
-    const style = `width: ${width}px; height: ${width}px;`;
+    const classes = $derived(['button-base button', { disabled }]);
+    const style = $derived(`width: ${width}px; height: ${width}px; transform: scale(${scale})`);
 
     $effect(() => {
         const onTransitionEnd = (e) => {
@@ -22,50 +23,30 @@
     });
 
     const onPointerDown = () => (scale = 0.7);
-
-    const btnClass = ['button', { disabled }];
 </script>
 
-<button
-    id={src}
-    class={btnClass}
-    tabindex={-1}
-    onpointerdown={onPointerDown}
-    style="{style} transform: scale({scale})"
-    {disabled}
->
+<button id={src} class={classes} tabindex={-1} onpointerdown={onPointerDown} {style}>
     <img class={disabled ? 'img-disabled' : ''} {src} alt="" {width} />
 </button>
 
 <style>
-    :root {
-        --background: radial-gradient(#ffffffc0, #ffffffc0 100%);
-    }
-
     .button {
         place-self: center;
-        display: grid;
-        place-content: center;
-        cursor: pointer;
-        transition: transform 0.1s;
         border-radius: 5px;
         box-shadow: 2px 2px 3px black;
-        background: var(--background);
-        border: 2px solid;
-        border-color: white silver silver white;
-        box-sizing: border-box;
     }
 
     .button:hover {
-        background: #ffffffe0;
+        background: #ffffffe8;
     }
 
     .disabled {
         cursor: initial;
+        pointer-events: none;
     }
 
     .disabled:hover {
-        background: var(--background);
+        background: var(--button-background);
     }
 
     .button:focus-visible {

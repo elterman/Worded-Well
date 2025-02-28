@@ -37,7 +37,7 @@
         display: grid;
         gap: 50px;
         background-image: url('$lib/images/Stone Wall.webp');
-        background-size: 150px;
+        background-size: 250px;
         place-content: center;
         z-index: 2;
     }
