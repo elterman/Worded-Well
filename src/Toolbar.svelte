@@ -33,7 +33,7 @@
 
 <div class="toolbar">
     <ToolButton src={Back} onClick={onBack} />
-    <ToolButton src={Surrender} onClick={onSurrender} />
+    <ToolButton src={Surrender} onClick={onSurrender} disabled={_state.over || !_state.game_on}/>
     <ToolButton src={ResetStats} onClick={onResetStats} />
     <ToolButton src={_state.sounds ? SoundOn : SoundOff} />
 </div>

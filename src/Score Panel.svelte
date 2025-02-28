@@ -17,15 +17,6 @@
         place-content: center;
         color: white;
         width: 290px;
-
-        background-image: linear-gradient(
-            to right,
-            #000000d0,
-            #000000b0 25%,
-            #000000a0,
-            #000000a0,
-            #000000b0 75%,
-            #000000d0
-        );
+        background-image: var(--background-image);
     }
 </style>

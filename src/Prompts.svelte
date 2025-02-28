@@ -29,21 +29,17 @@
             return;
         }
 
+        let id = null;
+
         if (!_state.game_on) {
-            _prompt.id = PROMPT_PLAY;
-            _prompt.opacity = 1;
-
-            return;
+            id = PROMPT_PLAY;
+        } else if (_state.over) {
+            id = PROMPT_PLAY_AGAIN;
         }
 
-        if (_state.over) {
-            _prompt.id = PROMPT_PLAY_AGAIN;
+        if ((_prompt.id = id)) {
             _prompt.opacity = 1;
-
-            return;
         }
-
-        _prompt.id = null;
     };
 </script>
 

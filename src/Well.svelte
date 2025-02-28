@@ -15,7 +15,7 @@
 
 <div class="well">
     {#each range as i}
-        <WordPanel chars={_state.input} />
+        <!-- <WordPanel chars={_state.input} /> -->
     {/each}
 </div>
 
@@ -27,15 +27,7 @@
         place-content: end center;
         height: 100%;
         width: 290px;
-        background-image: linear-gradient(
-            to right,
-            #000000d0,
-            #000000b0 25%,
-            #000000a0,
-            #000000a0,
-            #000000b0 75%,
-            #000000d0
-        );
+        background-image: var(--background-image);
         overflow: hidden;
         /* border: 2px solid;
         border-color: transparent #ffffffb0 #ffffffb0; */
