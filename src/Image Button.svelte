@@ -29,12 +29,13 @@
 
 <style>
     .button {
-        place-self: center;
         background: none;
         border: none;
         display: grid;
+        place-content: center;
         cursor: pointer;
         transition: transform 0.1s;
+        box-sizing: border-box;
     }
 
     .button:focus-visible {
