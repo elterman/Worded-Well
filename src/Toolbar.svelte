@@ -1,9 +1,9 @@
 <script>
-    import Back from './Images/Back.webp';
-    import ResetStats from './Images/Reset Stats.webp';
-    import SoundOff from './Images/Sound Off.webp';
-    import SoundOn from './Images/Sound On.webp';
-    import Surrender from './Images/Surrender.webp';
+    import Back from '$lib/images/Back.webp';
+    import ResetStats from '$lib/images/Reset Stats.webp';
+    import SoundOff from '$lib/images/Sound Off.webp';
+    import SoundOn from '$lib/images/Sound On.webp';
+    import Surrender from '$lib/images/Surrender.webp';
     import ToolButton from './Tool Button.svelte';
     import { PROMPT_RESET_STATS, PROMPT_SURRENDER, START_PAGE } from './const';
     import { _prompt, _state } from './shared.svelte';

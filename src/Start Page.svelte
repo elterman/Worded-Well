@@ -1,9 +1,12 @@
 <script>
+    import Intro from '$lib/images/Intro.webp';
+    import Play from '$lib/images/Play.webp';
+    import Title from '$lib/images/Title.webp';
     import { fade } from 'svelte/transition';
+    import Button from './Button.svelte';
     import { GAME_PAGE } from './const';
     import { _state } from './shared.svelte';
     import { windowSize } from './utils';
-    import Button from './Button.svelte';
 
     let width = $state(0);
 
@@ -23,9 +26,9 @@
 </script>
 
 <div class="start-page" in:fade={{ duration: 100 }} out:fade={{ duration: 200 }}>
-    <img class="shadow" src="src/Images/Title.webp" alt="" {width} />
-    <img src="src/Images/Intro.webp" alt="" {width} />
-    <Button src="src/Images/Play.webp" width={60} onClick={() => (_state.page = GAME_PAGE)} {style}/>
+    <img class="shadow" src={Title} alt="" {width} />
+    <img src={Intro} alt="" {width} />
+    <Button src={Play} width={60} onClick={() => (_state.page = GAME_PAGE)} {style} />
 </div>
 
 <style>
@@ -33,7 +36,7 @@
         grid-area: 1/1;
         display: grid;
         gap: 50px;
-        background-image: url('src/Images/Stone Wall.webp');
+        background-image: url('$lib/images/Stone Wall.webp');
         background-size: 150px;
         place-content: center;
         z-index: 2;

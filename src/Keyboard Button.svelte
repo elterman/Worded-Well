@@ -2,6 +2,7 @@
     import { BACKSPACE, ESC, RETURN } from './const';
     import { _state } from './shared.svelte';
     import { clientRect } from './utils';
+    import Erase from '$lib/images/Erase.webp';
 
     const { ch } = $props();
 
@@ -37,7 +38,7 @@
 <button class={classes} tabindex={-1} style="width: {width}px" onpointerdown={onClick}>
     <span class="kb-button-content" style="font-size: {fsz}px;">
         {#if bs}
-            <img src="src/Images/Erase.webp" alt="erase" width={27} />
+            <img src={Erase} alt="erase" width={27} />
         {:else if esc}
             <div>CLEAR</div>
             <div>ALL</div>

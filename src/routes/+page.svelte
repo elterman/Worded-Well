@@ -80,7 +80,7 @@
     .app {
         display: grid;
         height: 100vh;
-        background-image: url('src/Images/Stone Wall.webp');
+        background-image: url('$lib/images/Stone Wall.webp');
         background-size: 150px;
         user-select: none;
     }
