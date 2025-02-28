@@ -7,4 +7,5 @@ export const _state = $state({
     input: [],
     letter_box_size: 0,
     prompt: null,
+    show_prompt: false,
 });

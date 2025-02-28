@@ -12,10 +12,12 @@
 
     const onSurrender = () => {
         _state.prompt = PROMPT_SURRENDER;
+        _state.show_prompt = true;
     };
 
     const onResetStats = () => {
         _state.prompt = PROMPT_RESET_STATS;
+        _state.show_prompt = true;
     };
 </script>
 
