@@ -36,10 +36,6 @@
         box-shadow: 2px 2px 3px black;
     }
 
-    .button:hover {
-        background: #ffffffe8;
-    }
-
     .disabled {
         cursor: initial;
         pointer-events: none;

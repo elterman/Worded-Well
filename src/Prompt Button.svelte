@@ -39,9 +39,6 @@
         height: 36px;
         border-radius: 18px;
         padding: 0 10px 1px;
-    }
-
-    .button:hover {
-        background: white;
+        border-width: 3px;
     }
 </style>

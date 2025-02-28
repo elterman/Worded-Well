@@ -15,7 +15,7 @@
 
 <div class="well">
     {#each range as i}
-        <!-- <WordPanel chars={_state.input} /> -->
+        <WordPanel chars={_state.input} />
     {/each}
 </div>
 

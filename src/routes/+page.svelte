@@ -88,6 +88,10 @@
         color: #522d18;
     }
 
+    :global(.button-base:hover) {
+        background: #ffffffe8;
+    }
+
     @font-face {
         font-family: Fredoka;
         src: url('$lib/fonts/Fredoka.ttf');
