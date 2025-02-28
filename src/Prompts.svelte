@@ -1,7 +1,9 @@
 <script>
+    import { scale } from 'svelte/transition';
     import { PROMPT_PLAY, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
     import Prompt from './Prompt.svelte';
     import { _state } from './shared.svelte';
+    import { quadInOut } from 'svelte/easing';
 
     const prompt = $derived(_state.prompt);
 
@@ -11,15 +13,13 @@
 
     const onPlay = () => {};
 
-    const onSurrender = () => {
-    };
+    const onSurrender = () => {};
 
-    const onResetStats = () => {
-    };
+    const onResetStats = () => {};
 </script>
 
 {#if prompt}
-    <div class="prompts">
+    <div class="prompts" transition:scale={{ duration: 150, easing: quadInOut }}>
         {#if prompt === PROMPT_PLAY}
             <Prompt ops={[{ label: prompt, onClick: onPlay }]} />
         {:else if prompt === PROMPT_SURRENDER}
