@@ -1,12 +1,13 @@
 /* eslint-disable no-undef */
-import { START_PAGE } from './const';
+import { PROMPT_PLAY, START_PAGE } from './const';
 
 export const _state = $state({
     sounds: true,
     page: START_PAGE,
-    over: true,
+    game_on: false,
+    over: false,
     input: [],
     letter_box_size: 0,
 });
 
-export const _prompt = $state({ id: null, opacity: 0 });
+export const _prompt = $state({ id: PROMPT_PLAY, opacity: 1 });

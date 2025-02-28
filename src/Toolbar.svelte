@@ -11,11 +11,21 @@
     const onBack = () => (_state.page = START_PAGE);
 
     const onSurrender = () => {
+        if (_prompt.id == PROMPT_SURRENDER) {
+            _prompt.opacity = 0;
+            return;
+        }
+
         _prompt.id = PROMPT_SURRENDER;
         _prompt.opacity = 1;
     };
 
     const onResetStats = () => {
+        if (_prompt.id == PROMPT_RESET_STATS) {
+            _prompt.opacity = 0;
+            return;
+        }
+
         _prompt.id = PROMPT_RESET_STATS;
         _prompt.opacity = 1;
     };
@@ -24,7 +34,7 @@
 <div class="toolbar">
     <ToolButton src={Back} onClick={onBack} />
     <ToolButton src={Surrender} onClick={onSurrender} />
-    <ToolButton src={ResetStats} onClick={onResetStats}/>
+    <ToolButton src={ResetStats} onClick={onResetStats} />
     <ToolButton src={_state.sounds ? SoundOn : SoundOff} />
 </div>
 

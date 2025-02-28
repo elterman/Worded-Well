@@ -6,18 +6,33 @@
 
     const id = $derived(_prompt.id);
 
-    const onCancel = () => {
-        _prompt.opacity = 0;
+    const onCancel = () => {};
+
+    const onPlay = () => {
+        _state.over = false;
+        _state.game_on = true;
     };
 
-    const onPlay = () => {};
+    const onSurrender = () => {
+        _state.over = true;
 
-    const onSurrender = () => {};
+        setTimeout(() => {
+            _prompt.id = PROMPT_PLAY_AGAIN;
+            _prompt.opacity = 1;
+        }, 500);
+    };
 
     const onResetStats = () => {};
 
     const onAnimationComplete = () => {
         if (_prompt.opacity > 0) {
+            return;
+        }
+
+        if (!_state.game_on) {
+            _prompt.id = PROMPT_PLAY;
+            _prompt.opacity = 1;
+
             return;
         }
 
@@ -28,7 +43,7 @@
             return;
         }
 
-        _prompt.id =  null;
+        _prompt.id = null;
     };
 </script>
 

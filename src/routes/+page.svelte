@@ -64,17 +64,17 @@
 
     @font-face {
         font-family: Fredoka;
-        src: url('../Fonts/Fredoka.ttf');
+        src: url('$lib/fonts/Fredoka.ttf');
     }
 
     @font-face {
         font-family: Poppins;
-        src: url('../Fonts/Poppins-Regular.ttf');
+        src: url('$lib/fonts/Poppins-Regular.ttf');
     }
 
     @font-face {
         font-family: Roboto;
-        src: url('../Fonts/Roboto-Regular.ttf');
+        src: url('$lib/fonts/Roboto-Regular.ttf');
     }
 
     .app {

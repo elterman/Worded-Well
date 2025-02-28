@@ -19,12 +19,10 @@
         window.addEventListener('transitionend', onTransitionEnd);
         return () => window.removeEventListener('transitionend', onTransitionEnd);
     });
-
-    const onPointerDown = () => (scale = 0.7);
 </script>
 
-<button id={src} class="button" tabindex={-1} onpointerdown={onPointerDown} style="transform: scale({scale})">
-    <img {src} alt="" {width} {style}/>
+<button id={src} class="button" tabindex={-1} onpointerdown={() => (scale = 0.7)} style="transform: scale({scale})">
+    <img {src} alt="" {width} {style} />
 </button>
 
 <style>
