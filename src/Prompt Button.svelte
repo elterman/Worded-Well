@@ -23,7 +23,7 @@
         border-radius: 18px;
         padding: 0 10px 1px;
         cursor: pointer;
-    }
+ }
 
     .button:hover {
         background: white;

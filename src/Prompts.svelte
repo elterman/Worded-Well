@@ -1,19 +1,13 @@
 <script>
-    import { PROMPT_PLAY, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
+    import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
     import Prompt from './Prompt.svelte';
-    import { _state } from './shared.svelte';
+    import { _prompt, _state } from './shared.svelte';
     import { Motion } from 'svelte-motion';
 
-    const prompt = $derived(_state.prompt);
-
-    const onAnimationComplete = () => {
-        if (!_state.show_prompt) {
-            _state.prompt = null;
-        }
-    };
+    const id = $derived(_prompt.id);
 
     const onCancel = () => {
-        _state.show_prompt = false;
+        _prompt.opacity = 0;
     };
 
     const onPlay = () => {};
@@ -21,29 +15,46 @@
     const onSurrender = () => {};
 
     const onResetStats = () => {};
+
+    const onAnimationComplete = () => {
+        if (_prompt.opacity > 0) {
+            return;
+        }
+
+        if (_state.over) {
+            _prompt.id = PROMPT_PLAY_AGAIN;
+            _prompt.opacity = 1;
+
+            return;
+        }
+
+        _prompt.id =  null;
+    };
 </script>
 
-{#if prompt}
+{#if id}
     <Motion
-        animate={{ opacity: _state.show_prompt ? 1 : 0, transform: `scale(${_state.show_prompt ? 1 : 0})` }}
+        animate={{ opacity: _prompt.opacity, transform: `scale(${_prompt.opacity})` }}
         transition={{ type: 'spring', damping: 15 }}
         {onAnimationComplete}
         let:motion
     >
         <div class="prompts" use:motion>
-            {#if prompt === PROMPT_PLAY}
-                <Prompt ops={[{ label: prompt, onClick: onPlay }]} />
-            {:else if prompt === PROMPT_SURRENDER}
+            {#if id === PROMPT_PLAY}
+                <Prompt ops={[{ label: PROMPT_PLAY, onClick: onPlay }]} />
+            {:else if id === PROMPT_PLAY_AGAIN}
+                <Prompt ops={[{ label: PROMPT_PLAY_AGAIN, onClick: onPlay }]} />
+            {:else if id === PROMPT_SURRENDER}
                 <Prompt
                     ops={[
-                        { label: prompt, onClick: onSurrender },
+                        { label: PROMPT_SURRENDER, onClick: onSurrender },
                         { label: X, onClick: onCancel },
                     ]}
                 />
-            {:else if prompt === PROMPT_RESET_STATS}
+            {:else if id === PROMPT_RESET_STATS}
                 <Prompt
                     ops={[
-                        { label: prompt, onClick: onResetStats },
+                        { label: PROMPT_RESET_STATS, onClick: onResetStats },
                         { label: X, onClick: onCancel },
                     ]}
                 />

@@ -6,18 +6,18 @@
     import Surrender from './Images/Surrender.webp';
     import ToolButton from './Tool Button.svelte';
     import { PROMPT_RESET_STATS, PROMPT_SURRENDER, START_PAGE } from './const';
-    import { _state } from './shared.svelte';
+    import { _prompt, _state } from './shared.svelte';
 
     const onBack = () => (_state.page = START_PAGE);
 
     const onSurrender = () => {
-        _state.prompt = PROMPT_SURRENDER;
-        _state.show_prompt = true;
+        _prompt.id = PROMPT_SURRENDER;
+        _prompt.opacity = 1;
     };
 
     const onResetStats = () => {
-        _state.prompt = PROMPT_RESET_STATS;
-        _state.show_prompt = true;
+        _prompt.id = PROMPT_RESET_STATS;
+        _prompt.opacity = 1;
     };
 </script>
 

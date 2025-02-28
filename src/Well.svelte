@@ -37,8 +37,8 @@
             #000000d0
         );
         overflow: hidden;
-        border: 2px solid;
-        border-color: transparent #ffffffb0 #ffffffb0;
+        /* border: 2px solid;
+        border-color: transparent #ffffffb0 #ffffffb0; */
         box-sizing: border-box;
     }
 </style>
