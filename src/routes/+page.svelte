@@ -43,6 +43,7 @@
 </script>
 
 <div class="app" tabIndex={-1}>
+    <div class="vignette"></div>
     <GamePage />
 
     {#if _sob.page === START_PAGE}
@@ -58,12 +59,12 @@
     :root {
         --background-gradient: linear-gradient(
             to right,
-            #000000d0,
-            #000000b0 25%,
-            #000000a0,
-            #000000a0,
-            #000000b0 75%,
-            #000000d0
+            #000000b8,
+            #00000098 25%,
+            #00000088,
+            #00000088,
+            #00000098 75%,
+            #000000b8
         );
     }
 
@@ -109,5 +110,10 @@
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         user-select: none;
+    }
+
+    .vignette {
+        grid-area: 1/1;
+        background-image: radial-gradient(transparent, black 150%);
     }
 </style>

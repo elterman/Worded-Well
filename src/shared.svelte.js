@@ -10,6 +10,8 @@ export const _sob = $state({
     letter_box_size: 0,
     task_pool: [],
     task: null,
+    ticks: 0,
+    max_travel_ms: 14000,
 });
 
 export const _prompt = $state({
@@ -20,5 +22,4 @@ export const _prompt = $state({
 export const _stack = $state({
     tasks: [],
     top: () => _stack.tasks.at(-1),
-    max_time: 14000,
 });

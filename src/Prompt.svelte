@@ -2,7 +2,7 @@
     import { dict } from '$lib/dict';
     import { shuffle } from 'lodash-es';
     import { Motion } from 'svelte-motion';
-    import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
+    import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, TICK_MS, X } from './const';
     import PromptPanel from './Prompt Panel.svelte';
     import { _prompt, _sob } from './shared.svelte';
 
@@ -16,6 +16,11 @@
 
         _sob.task_pool = shuffle(dict.map((w) => [w, shuffle(w).join('')]));
         _sob.task = _sob.task_pool.pop();
+        _sob.ticks = 0;
+
+        const id = setInterval(() => {
+            _sob.ticks += 1;
+        }, TICK_MS);
     };
 
     const onSurrender = () => {

@@ -1,22 +1,33 @@
 <script>
-    import { fly } from 'svelte/transition';
-    import { STACK_CAPACITY } from './const';
-    import { _stack, _sob } from './shared.svelte';
+    import { STACK_CAPACITY, TICK_MS } from './const';
+    import { _sob, _stack } from './shared.svelte';
     import { clientRect } from './utils';
     import WordPanel from './Word Panel.svelte';
 
     $effect(() =>
         setTimeout(() => {
-            _sob.letter_box_size = (clientRect('.well').height - 4) / STACK_CAPACITY;
+            _sob.letter_box_size = clientRect('.well').height / STACK_CAPACITY;
         }),
     );
 
-    $effect(() => {});
+    const drop = $derived.by(() => {
+        if (!_sob.letter_box_size) {
+            return 0;
+        }
+
+        const rowPx = _sob.letter_box_size;
+        const totalTicks = _sob.max_travel_ms / TICK_MS;
+        const stackPx = _stack.tasks.length * rowPx;
+        const travelPx = clientRect('.well').height - rowPx - stackPx;
+        const deltaPx = travelPx / totalTicks;
+        const px = _sob.ticks * deltaPx;
+        return px - rowPx;
+    });
 </script>
 
 <div class="well">
     {#if _sob.task}
-        <div class="task" in:fly={{ y: -_sob.letter_box_size }}>
+        <div class="task" style="transform: translateY({drop}px); transition: transform {TICK_MS}ms;">
             <WordPanel chars={[..._sob.task[1]]} />
         </div>
     {/if}
