@@ -1,10 +1,10 @@
 <script>
     import Letter from './Letter.svelte';
-    import { _state } from './shared.svelte';
+    import { _sob } from './shared.svelte';
 </script>
 
-<div class="input-panel" style="transform: scale({1})">
-    {#each _state.input as ch, i (i)}
+<div class="input-panel">
+    {#each _sob.input as ch, i (i)}
         <Letter {ch} input/>
     {/each}
 </div>

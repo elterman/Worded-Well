@@ -16,7 +16,7 @@
         font-family: Poppins;
         place-content: center;
         color: white;
-        width: 290px;
+        width: 200px;
         background-image: var(--background-gradient);
     }
 </style>

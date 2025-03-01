@@ -1,19 +1,19 @@
 <script>
-    import { BACKSPACE, ESC, RETURN } from './const';
-    import { _state } from './shared.svelte';
-    import { clientRect } from './utils';
+    import { BACKSPACE, ESC, RETURN, SPACE } from './const';
+    import { _sob } from './shared.svelte';
+    import { clientRect, isMobile } from './utils';
     import Erase from '$lib/images/Erase.webp';
 
     const { ch } = $props();
 
     const cr = ch === RETURN;
     const bs = ch === BACKSPACE;
-    const esc = ch === ESC;
+    const space = ch === SPACE;
     const label = cr ? 'ENTER' : ch;
     const classes = `button-base button ${bs ? 'backspace' : ''} ${cr ? 'return' : ''}`;
-    const fsz = esc ? 10 : 18;
+    const fsz = space ? 10 : 18;
 
-    let width = $state(cr ? 100 : bs ? 50 : esc ? 50 : 0);
+    let width = $state(cr ? 100 : bs ? 50 : space ? 50 : 0);
 
     $effect(() => {
         if (width === 0) {
@@ -25,12 +25,12 @@
     });
 
     const onClick = () => {
-        if (esc) {
-            _state.input = [];
+        if (space) {
+            _sob.input = [];
         } else if (bs) {
-            _state.input.pop();
+            _sob.input.pop();
         } else {
-            _state.input.push(ch);
+            _sob.input.push(ch);
         }
     };
 </script>
@@ -39,9 +39,9 @@
     <span class="button-content" style="font-size: {fsz}px;">
         {#if bs}
             <img src={Erase} alt="erase" width={27} />
-        {:else if esc}
+        {:else if space}
             <div>CLEAR</div>
-            <div>ALL</div>
+            <div>{isMobile() ? 'ALL' : '(SPACE)'}</div>
         {:else}
             {label}
         {/if}
@@ -65,6 +65,10 @@
     .button-content {
         display: grid;
         place-items: center;
+    }
+
+    .button:hover {
+        color: firebrick;
     }
 
     .backspace {

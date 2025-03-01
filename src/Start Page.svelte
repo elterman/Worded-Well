@@ -5,7 +5,7 @@
     import { fade } from 'svelte/transition';
     import ImageButton from './Image Button.svelte';
     import { GAME_PAGE } from './const';
-    import { _state } from './shared.svelte';
+    import { _sob } from './shared.svelte';
     import { windowSize } from './utils';
 
     let width = $state(0);
@@ -28,7 +28,7 @@
 <div class="start-page" in:fade={{ duration: 100 }} out:fade={{ duration: 200 }}>
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
-    <ImageButton src={Play} width={60} onClick={() => (_state.page = GAME_PAGE)} {style} />
+    <ImageButton src={Play} width={60} onClick={() => (_sob.page = GAME_PAGE)} {style} />
 </div>
 
 <style>

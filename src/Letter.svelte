@@ -1,15 +1,15 @@
 <script>
     import { fade, fly } from 'svelte/transition';
-    import { _state } from './shared.svelte';
+    import { _sob } from './shared.svelte';
 
-    const { ch, input } = $props();
+    const { ch } = $props();
 
-    const sz = _state.letter_box_size;
+    const sz = _sob.letter_box_size;
     const fsz = Math.min(20, 0.65 * sz);
 </script>
 
 <div
-    class="letter"
+    class="button-base letter"
     style="width: {sz}px; height: {sz}px; font-size: {fsz}px; border-width: {0.1 * fsz}px"
     in:fly={{ y: 30, duration: 100 }}
     out:fade={{ duration: 100 }}
@@ -22,13 +22,10 @@
         display: grid;
         border-radius: 3px;
         color: black;
-        place-content: center;
         font-family: Poppins;
         font-weight: bold;
         box-shadow: 2px 2px 3px black;
-        background: radial-gradient(#ffffffc0, #ffffffc0 100%);
-        border-style: solid;
-        border-color: white silver silver white;
-        box-sizing: border-box;
+        cursor: initial;
+        pointer-events: none;
     }
 </style>

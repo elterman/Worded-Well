@@ -1,24 +1,25 @@
 <script>
+    import { dict } from '$lib/dict';
     import { shuffle } from 'lodash-es';
     import { Motion } from 'svelte-motion';
     import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { _prompt, _state } from './shared.svelte';
-    import { dict } from '$lib/dict';
+    import { _prompt, _sob } from './shared.svelte';
 
     const id = $derived(_prompt.id);
 
     const onCancel = () => {};
 
     const onPlay = () => {
-        _state.pool = shuffle(dict.map(w => [w, shuffle(w).join('')]));
+        _sob.over = false;
+        _sob.game_on = true;
 
-        _state.over = false;
-        _state.game_on = true;
+        _sob.task_pool = shuffle(dict.map((w) => [w, shuffle(w).join('')]));
+        _sob.task = _sob.task_pool.pop();
     };
 
     const onSurrender = () => {
-        _state.over = true;
+        _sob.over = true;
 
         setTimeout(() => {
             _prompt.id = PROMPT_PLAY_AGAIN;
@@ -35,9 +36,9 @@
 
         let id = null;
 
-        if (!_state.game_on) {
+        if (!_sob.game_on) {
             id = PROMPT_PLAY;
-        } else if (_state.over) {
+        } else if (_sob.over) {
             id = PROMPT_PLAY_AGAIN;
         }
 

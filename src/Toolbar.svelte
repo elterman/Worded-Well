@@ -6,9 +6,9 @@
     import Surrender from '$lib/images/Surrender.webp';
     import ToolButton from './Tool Button.svelte';
     import { PROMPT_RESET_STATS, PROMPT_SURRENDER, START_PAGE } from './const';
-    import { _prompt, _state } from './shared.svelte';
+    import { _prompt, _sob } from './shared.svelte';
 
-    const onBack = () => (_state.page = START_PAGE);
+    const onBack = () => (_sob.page = START_PAGE);
 
     const onSurrender = () => {
         if (_prompt.id == PROMPT_SURRENDER) {
@@ -33,9 +33,9 @@
 
 <div class="toolbar">
     <ToolButton src={Back} onClick={onBack} />
-    <ToolButton src={Surrender} onClick={onSurrender} disabled={_state.over || !_state.game_on}/>
+    <ToolButton src={Surrender} onClick={onSurrender} disabled={_sob.over || !_sob.game_on}/>
     <ToolButton src={ResetStats} onClick={onResetStats} />
-    <ToolButton src={_state.sounds ? SoundOn : SoundOff} />
+    <ToolButton src={_sob.sounds ? SoundOn : SoundOff} />
 </div>
 
 <style>

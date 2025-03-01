@@ -13,10 +13,10 @@
         grid-auto-flow: column;
         padding: 4px 0 5px;
         font-family: Poppins;
-        font-size: 14px;
+        font-size: 10px;
         place-content: center;
         color: white;
-        width: 290px;
+        width: 200px;
         background-image: var(--background-gradient);
     }
 </style>

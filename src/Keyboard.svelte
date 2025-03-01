@@ -1,5 +1,5 @@
 <script>
-    import { BACKSPACE, ESC } from './const';
+    import { BACKSPACE, SPACE } from './const';
     import KeyboardButton from './Keyboard Button.svelte';
     import { clientRect } from './utils';
 
@@ -25,7 +25,7 @@
         {/each}
     </div>
     <div class="kb-row" style='gap: {gap}px'>
-        {#each `${ESC}ZXCVBNM${BACKSPACE}` as ch (ch)}
+        {#each `${SPACE}ZXCVBNM${BACKSPACE}` as ch (ch)}
             <KeyboardButton {ch} />
         {/each}
     </div>

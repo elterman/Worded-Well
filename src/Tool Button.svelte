@@ -41,10 +41,6 @@
         pointer-events: none;
     }
 
-    .disabled:hover {
-        background: var(--button-background);
-    }
-
     .button:focus-visible {
         outline: none;
     }
