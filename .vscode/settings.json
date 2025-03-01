@@ -6,9 +6,9 @@
     "terminal.background": "#F8F8F8"
   },
   "workbench.colorCustomizations": /*dark*/ {
-    "titleBar.activeBackground": "#6C4930",
-    "titleBar.inactiveBackground": "#6C4930",
-    "tab.inactiveBackground": "#6C4930A0",
+    "titleBar.activeBackground": "#522d18",
+    "titleBar.inactiveBackground": "#522d18",
+    "tab.inactiveBackground": "#522d18A0",
     "tab.inactiveForeground": "#FFFFFFD0",
     "tab.activeBackground": "#000",
     "sideBar.background": "#203040",
