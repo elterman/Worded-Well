@@ -2,7 +2,7 @@
     import { fade, fly } from 'svelte/transition';
     import { _sob } from './shared.svelte';
 
-    const { ch } = $props();
+    const { ch, input } = $props();
 
     const sz = _sob.letter_box_size;
     const fsz = Math.min(20, 0.65 * sz);
@@ -11,8 +11,8 @@
 <div
     class="button-base letter"
     style="width: {sz}px; height: {sz}px; font-size: {fsz}px; border-width: {0.1 * fsz}px"
-    in:fly={{ y: 30, duration: 100 }}
-    out:fade={{ duration: 100 }}
+    in:fly={{ y: input ? 30 : 0, duration: input ? 100 : 0 }}
+    out:fade={{ duration: input ? 100 : 0 }}
 >
     {ch}
 </div>

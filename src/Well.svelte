@@ -25,12 +25,18 @@
         const deltaPx = (travelPx / travelMs) * TICK_MS;
         const px = _sob.ticks * deltaPx - rowPx;
 
-        if (px + rowPx >= height) {
+        if (px + rowPx >= travelPx) {
+            clearInterval(_sob.timer_id);
+
             setTimeout(() => {
-                _stack.tasks.push(_sob.task);
+                _stack.tasks.unshift(_sob.task);
                 _sob.task = null;
                 _sob.ticks = 0;
-                clearInterval(_sob.timer_id);
+                _sob.task = _sob.task_pool.pop();
+
+                setTimeout(() => {
+                    _sob.timer_id = setInterval(() => (_sob.ticks += 1), TICK_MS);
+                }, 500);
             });
         }
 
@@ -40,12 +46,12 @@
 
 <div class="well">
     {#if _sob.task}
-        <div class="task" style="transform: translateY({drop}px); transition: transform {TICK_MS}ms;">
+        <div class="task" style="transform: translateY({drop}px); transition: {_sob.ticks ? TICK_MS : 0}ms;">
             <WordPanel chars={[..._sob.task[1]]} />
         </div>
     {/if}
     <div class="stack">
-        {#each [..._stack.tasks].reverse() as word}
+        {#each [..._stack.tasks] as word, i (i)}
             <WordPanel chars={[...word[1]]} />
         {/each}
     </div>

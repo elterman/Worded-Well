@@ -20,10 +20,7 @@
         _sob.ticks = 0;
 
         clearInterval(_sob.timer_id);
-        
-        _sob.timer_id = setInterval(() => {
-            _sob.ticks += 1;
-        }, TICK_MS);
+        _sob.timer_id = setInterval(() => (_sob.ticks += 1), TICK_MS);
     };
 
     const onSurrender = () => {
