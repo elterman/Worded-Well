@@ -1,18 +1,19 @@
 <script>
     import WordPanel from './Input Panel.svelte';
     import Keyboard from './Keyboard.svelte';
-    import Prompts from './Prompts.svelte';
+    import Prompt from './Prompt.svelte';
     import ScorePanel from './Score Panel.svelte';
     import StatsBar from './Stats Bar.svelte';
     import Toolbar from './Toolbar.svelte';
     import Well from './Well.svelte';
+
 </script>
 
 <div class="game-page">
     <StatsBar />
     <ScorePanel />
     <Well />
-    <Prompts />
+    <Prompt />
     <WordPanel input />
     <Keyboard />
     <Toolbar />

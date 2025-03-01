@@ -17,6 +17,6 @@
         place-content: center;
         color: white;
         width: 290px;
-        background-image: var(--background-image);
+        background-image: var(--background-gradient);
     }
 </style>

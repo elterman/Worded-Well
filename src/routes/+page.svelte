@@ -56,7 +56,7 @@
 
 <style>
     :root {
-        --background-image: linear-gradient(
+        --background-gradient: linear-gradient(
             to right,
             #000000d0,
             #000000b0 25%,

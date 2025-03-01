@@ -8,6 +8,8 @@ export const _state = $state({
     over: false,
     input: [],
     letter_box_size: 0,
+    pool: [],
+    stack: [],
 });
 
 export const _prompt = $state({ id: PROMPT_PLAY, opacity: 1 });
