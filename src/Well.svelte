@@ -4,9 +4,12 @@
     import { clientRect } from './utils';
     import WordPanel from './Word Panel.svelte';
 
+    let height = 0;
+
     $effect(() =>
         setTimeout(() => {
-            _sob.letter_box_size = clientRect('.well').height / STACK_CAPACITY;
+            height = clientRect('.well').height;
+            _sob.letter_box_size = height / STACK_CAPACITY;
         }),
     );
 
@@ -16,12 +19,22 @@
         }
 
         const rowPx = _sob.letter_box_size;
-        const totalTicks = _sob.max_travel_ms / TICK_MS;
         const stackPx = _stack.tasks.length * rowPx;
-        const travelPx = clientRect('.well').height - rowPx - stackPx;
-        const deltaPx = travelPx / totalTicks;
-        const px = _sob.ticks * deltaPx;
-        return px - rowPx;
+        const travelPx = height - stackPx;
+        const travelMs = _sob.max_travel_ms * (travelPx / height);
+        const deltaPx = (travelPx / travelMs) * TICK_MS;
+        const px = _sob.ticks * deltaPx - rowPx;
+
+        if (px + rowPx >= height) {
+            setTimeout(() => {
+                _stack.tasks.push(_sob.task);
+                _sob.task = null;
+                _sob.ticks = 0;
+                clearInterval(_sob.timer_id);
+            });
+        }
+
+        return px;
     });
 </script>
 

@@ -11,6 +11,7 @@ export const _sob = $state({
     task_pool: [],
     task: null,
     ticks: 0,
+    timer_id: null,
     max_travel_ms: 14000,
 });
 

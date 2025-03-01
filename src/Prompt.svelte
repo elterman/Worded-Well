@@ -4,7 +4,7 @@
     import { Motion } from 'svelte-motion';
     import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, TICK_MS, X } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { _prompt, _sob } from './shared.svelte';
+    import { _prompt, _sob, _stack } from './shared.svelte';
 
     const id = $derived(_prompt.id);
 
@@ -14,11 +14,14 @@
         _sob.over = false;
         _sob.game_on = true;
 
+        _stack.tasks = [];
         _sob.task_pool = shuffle(dict.map((w) => [w, shuffle(w).join('')]));
         _sob.task = _sob.task_pool.pop();
         _sob.ticks = 0;
 
-        const id = setInterval(() => {
+        clearInterval(_sob.timer_id);
+        
+        _sob.timer_id = setInterval(() => {
             _sob.ticks += 1;
         }, TICK_MS);
     };
