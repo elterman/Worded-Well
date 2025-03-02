@@ -1,6 +1,6 @@
 <script>
-    import { STACK_CAPACITY, TICK_MS } from './const';
-    import { _sob, _stack } from './shared.svelte';
+    import { PROMPT_PLAY_AGAIN, STACK_CAPACITY, TICK_MS } from './const';
+    import { _prompt, _sob, _stack } from './shared.svelte';
     import { clientRect } from './utils';
     import WordPanel from './Word Panel.svelte';
 
@@ -21,6 +21,24 @@
         const rowPx = _sob.letter_box_size;
         const stackPx = _stack.tasks.length * rowPx;
         const travelPx = height - stackPx;
+
+        if (travelPx <= 0) {
+            clearInterval(_sob.timer_id);
+
+            setTimeout(() => {
+                _sob.over = true;
+                _sob.game_on = false;
+
+                _prompt.id = PROMPT_PLAY_AGAIN;
+                _prompt.opacity = 1;
+
+                _sob.task = null;
+                _sob.ticks = 0;
+            });
+
+            return;
+        }
+
         const travelMs = _sob.max_travel_ms * (travelPx / height);
         const deltaPx = (travelPx / travelMs) * TICK_MS;
         const px = _sob.ticks * deltaPx - rowPx;
@@ -30,7 +48,6 @@
 
             setTimeout(() => {
                 _stack.tasks.unshift(_sob.task);
-                _sob.task = null;
                 _sob.ticks = 0;
                 _sob.task = _sob.task_pool.pop();
 
