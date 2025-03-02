@@ -1,8 +1,8 @@
 <script>
-    import { BACKSPACE, ESC, RETURN, SPACE } from './const';
-    import { _sob } from './shared.svelte';
-    import { clientRect, isMobile } from './utils';
     import Erase from '$lib/images/Erase.webp';
+    import { BACKSPACE, RETURN, SPACE } from './const';
+    import { _sob, onCharIniput } from './shared.svelte';
+    import { clientRect, isMobile } from './utils';
 
     const { ch } = $props();
 
@@ -24,18 +24,18 @@
         }
     });
 
-    const onClick = () => {
+    const onPointerDown = () => {
         if (space) {
             _sob.input = [];
         } else if (bs) {
             _sob.input.pop();
         } else {
-            _sob.input.push(ch);
+            onCharIniput(ch);
         }
     };
 </script>
 
-<button class={classes} tabindex={-1} style="width: {width}px" onpointerdown={onClick}>
+<button class={classes} tabindex={-1} style="width: {width}px" onpointerdown={onPointerDown}>
     <span class="button-content" style="font-size: {fsz}px;">
         {#if bs}
             <img src={Erase} alt="erase" width={27} />

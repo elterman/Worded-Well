@@ -1,6 +1,6 @@
 <script>
     import { PROMPT_PLAY_AGAIN, STACK_CAPACITY, TICK_MS } from './const';
-    import { _prompt, _sob, _stack } from './shared.svelte';
+    import { _prompt, _sob, _stack, nextTask } from './shared.svelte';
     import { clientRect } from './utils';
     import WordPanel from './Word Panel.svelte';
 
@@ -44,17 +44,7 @@
         const px = _sob.ticks * deltaPx - rowPx;
 
         if (px + rowPx >= travelPx) {
-            clearInterval(_sob.timer_id);
-
-            setTimeout(() => {
-                _stack.tasks.unshift(_sob.task);
-                _sob.ticks = 0;
-                _sob.task = _sob.task_pool.pop();
-
-                setTimeout(() => {
-                    _sob.timer_id = setInterval(() => (_sob.ticks += 1), TICK_MS);
-                }, 500);
-            });
+            nextTask();
         }
 
         return px;

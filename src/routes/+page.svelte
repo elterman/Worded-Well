@@ -1,7 +1,7 @@
 <script>
     import { GAME_PAGE, SPACE, START_PAGE } from '../const';
     import GamePage from '../Game Page.svelte';
-    import { _sob } from '../shared.svelte';
+    import { _sob, onCharIniput } from '../shared.svelte';
     import Splash from '../Splash.svelte';
     import StartPage from '../Start Page.svelte';
     import { isAlpha } from '../utils';
@@ -26,7 +26,7 @@
             } else if (ch === 'BACKSPACE') {
                 _sob.input.pop();
             } else if (isAlpha(ch)) {
-                _sob.input.push(ch);
+                onCharIniput(ch);
             }
         };
 
