@@ -56,13 +56,13 @@ export const onCharIniput = (ch) => {
         }, 500);
     };
 
-    if (_sob.task && _sob.task[0] === word) {
+    if (_sob.task?.solution === word) {
         clearInput();
         nextTask(true);
         return;
     }
 
-    if (_stack.tasks.length && _stack.top()[0] === word) {
+    if (_stack.top()?.solution === word) {
         clearInput();
 
         _stack.tasks.shift(_sob.task);

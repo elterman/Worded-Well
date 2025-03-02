@@ -15,7 +15,7 @@
         _sob.game_on = true;
 
         _stack.tasks = [];
-        _sob.task_pool = shuffle(dict.map((w) => [w, shuffle(w).join('')]));
+        _sob.task_pool = shuffle(dict.map((w) => ({ problem: shuffle(w).join(''), solution: w })));
         _sob.task = _sob.task_pool.pop();
         _sob.ticks = 0;
 

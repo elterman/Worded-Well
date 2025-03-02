@@ -54,12 +54,12 @@
 <div class="well">
     {#if _sob.task}
         <div class="task" style="transform: translateY({drop}px); transition: {_sob.ticks ? TICK_MS : 0}ms;">
-            <WordPanel chars={[..._sob.task[1]]} />
+            <WordPanel chars={[..._sob.task.problem]} />
         </div>
     {/if}
     <div class="stack">
-        {#each [..._stack.tasks] as word, i (i)}
-            <WordPanel chars={[...word[1]]} />
+        {#each [..._stack.tasks] as task, i (i)}
+            <WordPanel chars={[...task.problem]} />
         {/each}
     </div>
 </div>

@@ -27,7 +27,7 @@
     });
 </script>
 
-<button id={op.label} class="button-base button" {style} onpointerdown={() => (scale = 0.8)}>
+<button id={op.label} class="button-base button" {style} tabindex={-1} onpointerdown={() => (scale = 0.8)}>
     {op.label}
 </button>
 
