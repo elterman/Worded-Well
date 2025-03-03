@@ -1,8 +1,8 @@
 <script>
-    import { PROMPT_PLAY_AGAIN, STACK_CAPACITY, TICK_MS } from './const';
-    import { _prompt, _sob, _stack, nextTask } from './shared.svelte';
+    import { STACK_CAPACITY, TICK_MS } from './const';
+    import { _sob, _stack, calcDrop } from './shared.svelte';
+    import TaskPanel from './Task Panel.svelte';
     import { clientRect } from './utils';
-    import WordPanel from './Word Panel.svelte';
 
     let height = 0;
 
@@ -13,53 +13,18 @@
         }),
     );
 
-    const drop = $derived.by(() => {
-        if (!_sob.letter_box_size) {
-            return 0;
-        }
-
-        const rowPx = _sob.letter_box_size;
-        const stackPx = _stack.tasks.length * rowPx;
-        const travelPx = height - stackPx;
-
-        if (travelPx <= 0) {
-            clearInterval(_sob.timer_id);
-
-            setTimeout(() => {
-                _sob.over = true;
-                _sob.game_on = false;
-
-                _prompt.id = PROMPT_PLAY_AGAIN;
-                _prompt.opacity = 1;
-
-                _sob.task = null;
-                _sob.ticks = 0;
-            });
-
-            return;
-        }
-
-        const travelMs = _sob.max_travel_ms * (travelPx / height);
-        const deltaPx = (travelPx / travelMs) * TICK_MS;
-        const px = _sob.ticks * deltaPx - rowPx;
-
-        if (px + rowPx >= travelPx) {
-            nextTask();
-        }
-
-        return px;
-    });
+    const drop = $derived.by(calcDrop);
 </script>
 
 <div class="well">
     {#if _sob.task}
-        <div class="task" style="transform: translateY({drop}px); transition: {_sob.ticks ? TICK_MS : 0}ms;">
-            <WordPanel chars={[..._sob.task.problem]} />
+        <div class="task" style="transform: translateY({drop}px); transition: {_sob.ticks ? TICK_MS : 0}ms">
+            <TaskPanel task={_sob.task} />
         </div>
     {/if}
     <div class="stack">
-        {#each [..._stack.tasks] as task, i (i)}
-            <WordPanel chars={[...task.problem]} />
+        {#each [..._stack.tasks] as task, index (task.solution)}
+            <TaskPanel {task} {index} />
         {/each}
     </div>
 </div>

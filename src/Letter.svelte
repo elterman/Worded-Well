@@ -9,8 +9,8 @@
 </script>
 
 <div
-    class="button-base letter"
-    style="width: {sz}px; height: {sz}px; font-size: {fsz}px; border-width: {0.1 * fsz}px"
+    class={['button-base letter', { input }]}
+    style="width: {sz}px; height: {sz}px; font-size: {fsz}px; border-width: {0.1 * fsz}px;"
     in:fly={{ y: input ? 30 : 0, duration: input ? 100 : 0 }}
     out:fade={{ duration: input ? (_sob.solved ? 500 : 100) : 0 }}
 >
@@ -24,8 +24,11 @@
         color: black;
         font-family: Poppins;
         font-weight: bold;
-        box-shadow: 2px 2px 3px black;
         cursor: initial;
         pointer-events: none;
+    }
+
+    .input {
+        box-shadow: 2px 2px 3px black;
     }
 </style>

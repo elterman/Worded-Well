@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import { PROMPT_PLAY, START_PAGE, TICK_MS } from './const';
+import { clientRect } from './utils';
 
 export const _sob = $state({
     sounds: true,
@@ -11,7 +12,7 @@ export const _sob = $state({
     task_pool: [],
     task: null,
     ticks: 0,
-    timer_id: null,
+    timer: null,
     max_travel_ms: 14000,
     solved: false
 });
@@ -26,21 +27,67 @@ export const _stack = $state({
     top: () => _stack.tasks.at(0),
 });
 
-export const nextTask = (solved) => {
-    clearInterval(_sob.timer_id);
+export const calcDrop = (props = {}) => {
+    const { onOver, onDropped } = props;
 
-    setTimeout(() => {
-        if (!solved) {
-            _stack.tasks.unshift(_sob.task);
-        }
+    if (!_sob.letter_box_size) {
+        return 0;
+    }
+    const height = clientRect('.well').height;
 
-        _sob.ticks = 0;
-        _sob.task = _sob.task_pool.pop();
+    const rowPx = _sob.letter_box_size;
+    const stackPx = _stack.tasks.length * rowPx;
+    const travelPx = height - stackPx;
 
-        setTimeout(() => {
-            _sob.timer_id = setInterval(() => (_sob.ticks += 1), TICK_MS);
-        }, 500);
-    });
+    if (onOver && travelPx <= 0) {
+        onOver();
+        return;
+    }
+
+    const travelMs = _sob.max_travel_ms * (travelPx / height);
+    const deltaPx = (travelPx / travelMs) * TICK_MS;
+    const px = _sob.ticks * deltaPx - rowPx;
+
+    if (onDropped && px + rowPx >= travelPx) {
+        onDropped();
+    }
+
+    return px;
+};
+
+export const startTimer = () => {
+    _sob.timer = setInterval(() => {
+        _sob.ticks += 1;
+
+        const onOver = () => {
+            killTimer();
+
+            _sob.over = true;
+            _sob.game_on = false;
+
+            _prompt.id = PROMPT_PLAY_AGAIN;
+            _prompt.opacity = 1;
+
+            _sob.task = null;
+            _sob.ticks = 0;
+        };
+
+        calcDrop({ onOver, onDropped: nextTask });
+    }, TICK_MS);
+};
+
+export const killTimer = () => {
+    clearInterval(_sob.timer);
+    _sob.timer = null;
+};
+
+export const nextTask = () => {
+    killTimer();
+
+    _sob.ticks = 0;
+    _sob.task = _sob.task_pool.pop();
+
+    startTimer();
 };
 
 export const onCharIniput = (ch) => {
@@ -57,14 +104,11 @@ export const onCharIniput = (ch) => {
     };
 
     if (_sob.task?.solution === word) {
+        killTimer();
+        _sob.task.solved = true;
         clearInput();
-        nextTask(true);
-        return;
-    }
-
-    if (_stack.top()?.solution === word) {
+    } else if (_stack.top()?.solution === word) {
         clearInput();
-
         _stack.tasks.shift(_sob.task);
     }
 };
