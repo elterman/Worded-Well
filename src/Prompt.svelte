@@ -20,7 +20,7 @@
         _sob.ticks = 0;
 
         killTimer();
-        startTimer();
+        setTimeout(startTimer, 500);
     };
 
     const onSurrender = () => {
