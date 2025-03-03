@@ -1,14 +1,13 @@
 <script>
     import { fade } from 'svelte/transition';
     import Letter from './Letter.svelte';
-    import { _stack, nextTask } from './shared.svelte';
+    import { nextTask } from './shared.svelte';
 
     let { task, index = 0 } = $props();
 
     $effect(() => {
         const onTransitionEnd = (e) => {
             if (e.propertyName === 'opacity' && e.target.id === task.problem && task.solved) {
-                _stack.tasks.unshift(task);
                 nextTask(true);
             }
         };
@@ -24,7 +23,7 @@
     style="z-index: {index}; opacity: {task?.solved ? 0 : 1}"
     out:fade={{ duration: 500 }}
 >
-    {#each task.solution as ch, i (i)}
+    {#each task.problem as ch, i (i)}
         <Letter {ch} />
     {/each}
 </div>

@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-import { PROMPT_PLAY, START_PAGE, TICK_MS } from './const';
+import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, START_PAGE, TICK_MS } from './const';
 import { clientRect } from './utils';
 
 export const _sob = $state({
@@ -72,7 +71,12 @@ export const startTimer = () => {
             _sob.ticks = 0;
         };
 
-        calcDrop({ onOver, onDropped: nextTask });
+        const onDropped = () => {
+            _stack.tasks.unshift(_sob.task);
+            nextTask();
+        };
+
+        calcDrop({ onOver, onDropped });
     }, TICK_MS);
 };
 
