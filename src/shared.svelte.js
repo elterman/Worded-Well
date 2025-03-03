@@ -1,4 +1,4 @@
-import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, START_PAGE, TICK_MS } from './const';
+import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
 import { clientRect } from './utils';
 
 export const _sob = $state({
@@ -27,7 +27,7 @@ export const _stack = $state({
 });
 
 export const calcDrop = (props = {}) => {
-    const { onOver, onDropped } = props;
+    const { onDropped } = props;
 
     if (!_sob.letter_box_size) {
         return 0;
@@ -38,9 +38,8 @@ export const calcDrop = (props = {}) => {
     const stackPx = _stack.tasks.length * rowPx;
     const travelPx = height - stackPx;
 
-    if (onOver && travelPx <= 0) {
-        onOver();
-        return;
+    if (travelPx <= 0) {
+        return 0;
     }
 
     const travelMs = _sob.max_travel_ms * (travelPx / height);
@@ -58,7 +57,14 @@ export const startTimer = () => {
     _sob.timer = setInterval(() => {
         _sob.ticks += 1;
 
-        const onOver = () => {
+        const onDropped = () => {
+            _stack.tasks.unshift(_sob.task);
+
+            if (_stack.tasks.length < STACK_CAPACITY) {
+                nextTask();
+                return;
+            }
+
             killTimer();
 
             _sob.over = true;
@@ -69,14 +75,10 @@ export const startTimer = () => {
 
             _sob.task = null;
             _sob.ticks = 0;
+
         };
 
-        const onDropped = () => {
-            _stack.tasks.unshift(_sob.task);
-            nextTask();
-        };
-
-        calcDrop({ onOver, onDropped });
+        calcDrop({ onDropped });
     }, TICK_MS);
 };
 
