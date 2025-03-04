@@ -4,7 +4,7 @@
     import { Motion } from 'svelte-motion';
     import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { _prompt, _sob, _stack, killTimer, startTimer } from './shared.svelte';
+    import { _prompt, _sob, _stack, calcDrop, killTimer, startTimer } from './shared.svelte';
 
     const id = $derived(_prompt.id);
 
@@ -14,17 +14,35 @@
         _sob.over = false;
         _sob.game_on = true;
 
-        _stack.tasks = [];
-        _sob.task_pool = shuffle(dict.map((w) => ({ problem: shuffle(w).join(''), solution: w })));
+        const scramble = (word) => {
+            let problem = word;
+
+            do {
+                problem = shuffle(word);
+            } while (problem === word);
+
+            return problem;
+        };
+
+        _sob.task_pool = shuffle(dict.map((word) => ({ problem: scramble(word).join(''), solution: word })));
         _sob.task = _sob.task_pool.pop();
         _sob.ticks = 0;
+        _stack.tasks = [];
 
         killTimer();
         setTimeout(startTimer, 500);
     };
 
     const onSurrender = () => {
+        killTimer();
+
+        _sob.surrender_drop = calcDrop({ surrendering: true }) - calcDrop();
+        _stack.tasks.unshift(_sob.task);
+
+        _sob.game_on = false;
         _sob.over = true;
+        _sob.task = null;
+        _sob.ticks = 0;
 
         setTimeout(() => {
             _prompt.id = PROMPT_PLAY_AGAIN;

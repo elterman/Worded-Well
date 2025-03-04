@@ -8,6 +8,6 @@ export const X = '✖';
 export const PROMPT_PLAY = 'Play';
 export const PROMPT_PLAY_AGAIN = 'Play again?';
 export const PROMPT_RESET_STATS = 'Reset Stats?';
-export const PROMPT_SURRENDER = 'Surrender?';
+export const PROMPT_SURRENDER = 'Start over?';
 export const STACK_CAPACITY = 14;
 export const TICK_MS = 20;

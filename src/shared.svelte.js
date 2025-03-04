@@ -27,7 +27,7 @@ export const _stack = $state({
 });
 
 export const calcDrop = (props = {}) => {
-    const { onDropped } = props;
+    const { surrendering, onHitBottom } = props;
 
     if (!_sob.letter_box_size) {
         return 0;
@@ -42,12 +42,16 @@ export const calcDrop = (props = {}) => {
         return 0;
     }
 
+    if (surrendering) {
+        return travelPx - rowPx;
+    }
+
     const travelMs = _sob.max_travel_ms * (travelPx / height);
     const deltaPx = (travelPx / travelMs) * TICK_MS;
     const px = _sob.ticks * deltaPx - rowPx;
 
-    if (onDropped && px + rowPx >= travelPx) {
-        onDropped();
+    if (onHitBottom && px + rowPx >= travelPx) {
+        onHitBottom();
     }
 
     return px;
@@ -57,7 +61,7 @@ export const startTimer = () => {
     _sob.timer = setInterval(() => {
         _sob.ticks += 1;
 
-        const onDropped = () => {
+        const onHitBottom = () => {
             _stack.tasks.unshift(_sob.task);
 
             if (_stack.tasks.length < STACK_CAPACITY) {
@@ -78,7 +82,7 @@ export const startTimer = () => {
 
         };
 
-        calcDrop({ onDropped });
+        calcDrop({ onHitBottom });
     }, TICK_MS);
 };
 
@@ -115,6 +119,6 @@ export const onCharIniput = (ch) => {
         clearInput();
     } else if (_stack.top()?.solution === word) {
         clearInput();
-        _stack.tasks.shift(_sob.task);
+        _stack.tasks.shift();
     }
 };
