@@ -8,8 +8,6 @@
 
     const id = $derived(_prompt.id);
 
-    const onCancel = () => {};
-
     const onPlay = () => {
         _sob.over = false;
         _sob.game_on = true;
@@ -74,19 +72,9 @@
             {:else if id === PROMPT_PLAY_AGAIN}
                 <PromptPanel ops={[{ label: PROMPT_PLAY_AGAIN, onClick: onPlay }]} />
             {:else if id === PROMPT_SURRENDER}
-                <PromptPanel
-                    ops={[
-                        { label: PROMPT_SURRENDER, onClick: onSurrender },
-                        { label: X, onClick: onCancel },
-                    ]}
-                />
+                <PromptPanel ops={[{ label: PROMPT_SURRENDER, onClick: onSurrender }, { label: X }]} />
             {:else if id === PROMPT_RESET_STATS}
-                <PromptPanel
-                    ops={[
-                        { label: PROMPT_RESET_STATS, onClick: onResetStats },
-                        { label: X, onClick: onCancel },
-                    ]}
-                />
+                <PromptPanel ops={[{ label: PROMPT_RESET_STATS, onClick: onResetStats }, { label: X }]} />
             {/if}
         </div>
     </Motion>
@@ -94,7 +82,7 @@
 
 <style>
     .prompt {
-        grid-area: 3/1;
+        grid-area: 4/1;
         place-self: center;
         transform: scale(0);
     }

@@ -6,7 +6,6 @@
     import StatsBar from './Stats Bar.svelte';
     import Toolbar from './Toolbar.svelte';
     import Well from './Well.svelte';
-
 </script>
 
 <div class="game-page">

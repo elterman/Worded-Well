@@ -1,5 +1,5 @@
 <script>
-    import { BACKSPACE, GAME_PAGE, SPACE, START_PAGE } from '../const';
+    import { BACKSPACE, ESC, GAME_PAGE, RETURN, SPACE, START_PAGE } from '../const';
     import GamePage from '../Game Page.svelte';
     import { _sob, onKeyInput } from '../shared.svelte';
     import Splash from '../Splash.svelte';
@@ -23,9 +23,13 @@
 
             if (ch === 'BACKSPACE') {
                 ch = BACKSPACE;
+            } else if (ch === 'ESCAPE') {
+                ch = ESC;
+            } else if (ch === 'ENTER') {
+                ch = RETURN;
             }
 
-            if (isAlpha(ch) || ch === SPACE || ch === BACKSPACE) {
+            if (isAlpha(ch) || ch === SPACE || ch === BACKSPACE || ch === ESC) {
                 onKeyInput(ch);
             }
         };

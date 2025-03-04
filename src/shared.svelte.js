@@ -1,4 +1,4 @@
-import { BACKSPACE, PROMPT_PLAY, PROMPT_PLAY_AGAIN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
+import { BACKSPACE, ESC, PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
 import { clientRect } from './utils';
 
 export const _sob = $state({
@@ -60,7 +60,6 @@ export const calcDrop = (props = {}) => {
 export const onOver = () => {
     killTimer();
 
-    _sob.game_on = false;
     _sob.over = true;
     _sob.task = null;
     _sob.ticks = 0;
@@ -104,6 +103,19 @@ export const nextTask = () => {
 };
 
 export const onKeyInput = (ch) => {
+    if (ch === ESC) {
+        if (_prompt.id === PROMPT_SURRENDER || _prompt.id === PROMPT_RESET_STATS) {
+            _prompt.opacity = 0;
+        }
+        
+        return;
+    }
+
+    if (ch === RETURN) {
+        // TODO
+        return;
+    }
+
     if (_sob.over || !_sob.game_on) {
         return;
     }
