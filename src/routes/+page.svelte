@@ -1,7 +1,7 @@
 <script>
-    import { GAME_PAGE, SPACE, START_PAGE } from '../const';
+    import { BACKSPACE, GAME_PAGE, SPACE, START_PAGE } from '../const';
     import GamePage from '../Game Page.svelte';
-    import { _sob, onCharIniput } from '../shared.svelte';
+    import { _sob, onKeyInput } from '../shared.svelte';
     import Splash from '../Splash.svelte';
     import StartPage from '../Start Page.svelte';
     import { isAlpha } from '../utils';
@@ -19,14 +19,14 @@
                 return;
             }
 
-            const ch = e.key.toUpperCase();
+            let ch = e.key.toUpperCase();
 
-            if (ch === SPACE) {
-                _sob.input = [];
-            } else if (ch === 'BACKSPACE') {
-                _sob.input.pop();
-            } else if (isAlpha(ch)) {
-                onCharIniput(ch);
+            if (ch === 'BACKSPACE') {
+                ch = BACKSPACE;
+            }
+
+            if (isAlpha(ch) || ch === SPACE || ch === BACKSPACE) {
+                onKeyInput(ch);
             }
         };
 

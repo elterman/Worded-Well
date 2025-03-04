@@ -29,13 +29,17 @@
         _prompt.id = PROMPT_RESET_STATS;
         _prompt.opacity = 1;
     };
+
+    const onSounds = () => {
+        _sob.sounds =!_sob.sounds;
+    };
 </script>
 
 <div class="toolbar">
     <ToolButton src={Back} onClick={onBack} />
     <ToolButton src={Restart} onClick={onSurrender} disabled={_sob.over || !_sob.game_on}/>
     <ToolButton src={ResetStats} onClick={onResetStats} />
-    <ToolButton src={_sob.sounds ? SoundOn : SoundOff} />
+    <ToolButton src={_sob.sounds ? SoundOn : SoundOff} onClick={onSounds}/>
 </div>
 
 <style>

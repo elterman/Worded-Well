@@ -1,19 +1,17 @@
 <script>
     import Erase from '$lib/images/Erase.webp';
-    import { BACKSPACE, RETURN, SPACE } from './const';
-    import { _sob, onCharIniput } from './shared.svelte';
+    import { BACKSPACE, SPACE } from './const';
+    import { onKeyInput } from './shared.svelte';
     import { clientRect, isMobile } from './utils';
 
     const { ch } = $props();
 
-    const cr = ch === RETURN;
     const bs = ch === BACKSPACE;
     const space = ch === SPACE;
-    const label = cr ? 'ENTER' : ch;
-    const classes = `button-base button ${bs ? 'backspace' : ''} ${cr ? 'return' : ''}`;
+    const classes = `button-base button ${bs ? 'backspace' : ''}`;
     const fsz = space ? 10 : 18;
 
-    let width = $state(cr ? 100 : bs ? 50 : space ? 50 : 0);
+    let width = $state(bs ? 50 : space ? 50 : 0);
 
     $effect(() => {
         if (width === 0) {
@@ -23,19 +21,9 @@
             width = (wx - margins) / 11;
         }
     });
-
-    const onPointerDown = () => {
-        if (space) {
-            _sob.input = [];
-        } else if (bs) {
-            _sob.input.pop();
-        } else {
-            onCharIniput(ch);
-        }
-    };
 </script>
 
-<button class={classes} tabindex={-1} style="width: {width}px" onpointerdown={onPointerDown}>
+<button class={classes} tabindex={-1} style="width: {width}px" onpointerdown={() => onKeyInput(ch)}>
     <span class="button-content" style="font-size: {fsz}px;">
         {#if bs}
             <img src={Erase} alt="erase" width={27} />
@@ -43,7 +31,7 @@
             <div>CLEAR</div>
             <div>{isMobile() ? 'ALL' : '(SPACE)'}</div>
         {:else}
-            {label}
+            {ch}
         {/if}
     </span>
 </button>
@@ -73,10 +61,5 @@
 
     .backspace {
         width: 60px;
-    }
-
-    .return {
-        width: 100px;
-        font-size: 16px;
     }
 </style>

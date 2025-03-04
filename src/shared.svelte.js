@@ -1,4 +1,4 @@
-import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
+import { BACKSPACE, PROMPT_PLAY, PROMPT_PLAY_AGAIN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
 import { clientRect } from './utils';
 
 export const _sob = $state({
@@ -103,7 +103,29 @@ export const nextTask = () => {
     startTimer();
 };
 
-export const onCharIniput = (ch) => {
+export const onKeyInput = (ch) => {
+    if (_sob.over || !_sob.game_on) {
+        return;
+    }
+
+    if (ch === SPACE) {
+        _sob.input = [];
+        return;
+    }
+
+    if (ch === BACKSPACE) {
+        _sob.input.pop();
+        return;
+    }
+
+    if (_sob.solved) {
+        _sob.input = [];
+    }
+
+    if (_sob.input.length === 5) {
+        return;
+    }
+
     _sob.input.push(ch);
     const word = _sob.input.join('');
 
