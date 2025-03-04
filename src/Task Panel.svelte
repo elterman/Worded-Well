@@ -32,7 +32,7 @@
     id={task.problem}
     style="z-index: {index || 0}; opacity: {task?.solved ? 0 : 1}"
     in:drop={{ y: dropHeight < 0 ? 0 : -dropHeight, duration: dropHeight < 0 ? 0 : 500 }}
-    out:fade={{ duration: _sob.timer === null ? 0 : 500 }}
+    out:fade={{ duration: _sob.timer === null ? 0 : 300 }}
 >
     {#each task.problem as ch, i (i)}
         <Letter {ch} />
@@ -44,6 +44,6 @@
         display: grid;
         place-content: center;
         grid-auto-flow: column;
-        transition: opacity 1500ms;
+        transition: opacity 500ms;
     }
 </style>

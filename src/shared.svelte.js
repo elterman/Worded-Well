@@ -57,6 +57,20 @@ export const calcDrop = (props = {}) => {
     return px;
 };
 
+export const onOver = () => {
+    killTimer();
+
+    _sob.game_on = false;
+    _sob.over = true;
+    _sob.task = null;
+    _sob.ticks = 0;
+
+    setTimeout(() => {
+        _prompt.id = PROMPT_PLAY_AGAIN;
+        _prompt.opacity = 1;
+    }, 500);
+};
+
 export const startTimer = () => {
     _sob.timer = setInterval(() => {
         _sob.ticks += 1;
@@ -66,20 +80,9 @@ export const startTimer = () => {
 
             if (_stack.tasks.length < STACK_CAPACITY) {
                 nextTask();
-                return;
+            } else {
+                onOver();
             }
-
-            killTimer();
-
-            _sob.over = true;
-            _sob.game_on = false;
-
-            _prompt.id = PROMPT_PLAY_AGAIN;
-            _prompt.opacity = 1;
-
-            _sob.task = null;
-            _sob.ticks = 0;
-
         };
 
         calcDrop({ onHitBottom });
@@ -109,8 +112,8 @@ export const onCharIniput = (ch) => {
 
         setTimeout(() => {
             _sob.input = [];
-            setTimeout(() => _sob.solved = false, 500);
-        }, 500);
+            setTimeout(() => _sob.solved = false, 300);
+        }, 300);
     };
 
     if (_sob.task?.solution === word) {

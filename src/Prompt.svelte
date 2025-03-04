@@ -4,7 +4,7 @@
     import { Motion } from 'svelte-motion';
     import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { _prompt, _sob, _stack, calcDrop, killTimer, startTimer } from './shared.svelte';
+    import { _prompt, _sob, _stack, calcDrop, killTimer, onOver, startTimer } from './shared.svelte';
 
     const id = $derived(_prompt.id);
 
@@ -30,24 +30,14 @@
         _stack.tasks = [];
 
         killTimer();
-        setTimeout(startTimer, 500);
+        setTimeout(startTimer, 300);
     };
 
     const onSurrender = () => {
-        killTimer();
-
         _sob.surrender_drop = calcDrop({ surrendering: true }) - calcDrop();
         _stack.tasks.unshift(_sob.task);
 
-        _sob.game_on = false;
-        _sob.over = true;
-        _sob.task = null;
-        _sob.ticks = 0;
-
-        setTimeout(() => {
-            _prompt.id = PROMPT_PLAY_AGAIN;
-            _prompt.opacity = 1;
-        }, 500);
+        onOver();
     };
 
     const onResetStats = () => {};
