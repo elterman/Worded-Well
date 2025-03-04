@@ -2,6 +2,7 @@
     import { fade } from 'svelte/transition';
     import Letter from './Letter.svelte';
     import { _sob, nextTask } from './shared.svelte';
+    import { quadIn } from 'svelte/easing';
 
     let { task, index = null } = $props();
 
@@ -18,25 +19,11 @@
         return () => window.removeEventListener('transitionend', onTransitionEnd);
     });
 
-    const drop = (node, { duration, x = 0, y = 0 } = {}) => {
+    const drop = (node, { duration, easing = quadIn, y = 0 } = {}) => {
         const style = getComputedStyle(node);
         const transform = style.transform === 'none' ? '' : style.transform;
 
-        const split_css_unit = (value) => {
-            const split = typeof value === 'string' && value.match(/^\s*(-?[\d.]+)([^\s]*)\s*$/);
-            return split ? [parseFloat(split[1]), split[2] || 'px'] : [/** @type {number} */ (value), 'px'];
-        };
-
-        const [x_value, x_unit] = split_css_unit(x);
-        const [y_value, y_unit] = split_css_unit(y);
-
-        console.log({ x_value, x_unit, y_value, y_unit });
-
-        return {
-            duration,
-            css: (t) => `
-			transform: ${transform} translate(${(1 - t) * x_value}${x_unit}, ${(1 - t) * y_value}${y_unit})`,
-        };
+        return { duration, easing, css: (t) => `transform: ${transform} translateY(${(1 - t) * y}px)` };
     };
 </script>
 
