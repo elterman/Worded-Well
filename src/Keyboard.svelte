@@ -47,6 +47,5 @@
         display: grid;
         grid-auto-flow: column;
         place-content: center;
-        /* gap: 4.44px; */
     }
 </style>

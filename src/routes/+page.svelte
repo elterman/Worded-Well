@@ -72,30 +72,32 @@
         );
     }
 
-    :global(body) {
-        margin: 0;
-        overflow: hidden;
-    }
+    :global {
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
 
-    :global(.button-base) {
-        background: radial-gradient(#ffffffe8, #ffffffe8 100%);
-        border: 2px solid;
-        border-color: white silver silver white;
-        box-sizing: border-box;
-        cursor: pointer;
-        display: grid;
-        place-content: center;
-        transition: transform 0.1s;
-        color: #522d18;
-    }
+        .button-base {
+            background: radial-gradient(#ffffffe8, #ffffffe8 100%);
+            border: 2px solid;
+            border-color: white silver silver white;
+            box-sizing: border-box;
+            cursor: pointer;
+            display: grid;
+            place-content: center;
+            transition: transform 0.1s;
+            color: #522d18;
+        }
 
-    :global(.button-base:hover) {
-        background: #fffffff8;
+        .button-base:hover {
+            background: #fffffff8;
+        }
     }
 
     @font-face {
-        font-family: Fredoka;
-        src: url('$lib/fonts/Fredoka.ttf');
+        font-family: Amnestia;
+        src: url('$lib/fonts/Amnestia.ttf');
     }
 
     @font-face {

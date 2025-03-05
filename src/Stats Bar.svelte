@@ -1,8 +1,9 @@
 <script>
+    const sample = 'plays  99    ave  9999    best  9999';
 </script>
 
 <div class="stats-bar">
-    {'plays  99    ave  9999    best  9999'}
+    {sample}
 </div>
 
 <style>
@@ -11,8 +12,8 @@
         grid-area: 1/1;
         display: grid;
         grid-auto-flow: column;
-        padding: 4px 0 5px;
-        font-family: Poppins;
+        padding: 8px 0 5px;
+        font-family: Amnestia;
         font-size: 10px;
         place-content: center;
         color: white;

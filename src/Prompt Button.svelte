@@ -33,15 +33,21 @@
 
 <style>
     .button {
-        font-family: Poppins;
+        font-family: Amnestia;
         font-size: 17px;
         box-shadow: 0 0 5px black;
         height: 36px;
         border-radius: 18px;
-        padding: 0 10px 1px;
-        border-width: 3px;
-        filter:drop-shadow(0 0 3px black);
-        text-shadow: 1px 1px white;
-        color: black;
+        padding: 4px 10px 0px;
+        border-width: 1px;
+        filter:drop-shadow(0 0 1px black);
+        color: white;
+        text-shadow: 1px 1px black;
+        background: radial-gradient(#ff8c00, #4c2c06 100%);
     }
-</style>
+
+    .button:hover {
+        background: radial-gradient(#ff8c00c0, #4c2c06 100%);
+        filter:drop-shadow(0 0 3px black);
+    }
+    </style>

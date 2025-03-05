@@ -1,7 +1,4 @@
 <script>
-    // import { clientRect } from './utils';
-    // let width = $state(0);
-    // $effect(() => (width = clientRect('.game-page').width));
 </script>
 
 <div class="score-panel">123456</div>
@@ -12,8 +9,8 @@
         place-self: center;
         display: grid;
         grid-auto-flow: column;
-        padding: 4px 0 5px;
-        font-family: Poppins;
+        padding: 7px 0 4px;
+        font-family: Amnestia;
         place-content: center;
         color: white;
         width: 200px;
