@@ -10,7 +10,6 @@
 
     const onPlay = () => {
         _sob.over = false;
-        _sob.game_on = true;
 
         const scramble = (word) => {
             let problem = word;
@@ -28,7 +27,11 @@
         _stack.tasks = [];
 
         killTimer();
-        setTimeout(startTimer, 300);
+
+        setTimeout(() => {
+            startTimer();
+            _sob.game_on = true;
+        }, 300);
     };
 
     const onSurrender = () => {
@@ -66,7 +69,7 @@
         {onAnimationComplete}
         let:motion
     >
-        <div class="prompt" use:motion>
+        <div class="prompt {_sob.game_on ? '' : 'area'}" use:motion>
             {#if id === PROMPT_PLAY}
                 <PromptPanel ops={[{ label: PROMPT_PLAY, onClick: onPlay }]} />
             {:else if id === PROMPT_PLAY_AGAIN}
@@ -86,5 +89,9 @@
         place-self: center;
         transform: scale(0);
         z-index: 1;
+    }
+
+    .area {
+        grid-area: 3/1;
     }
 </style>

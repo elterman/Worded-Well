@@ -5,8 +5,8 @@
     const { op } = $props();
 
     let scale = $state(1);
-    const width = op.label === X ? '36px' : 'auto';
-    const style = $derived(`width: ${width}; transform: scale(${scale})`);
+    const x = $derived(op.label === X);
+    const style = $derived(`transform: scale(${scale})`);
 
     $effect(() => {
         const onTransitionEnd = (e) => {
@@ -27,7 +27,7 @@
     });
 </script>
 
-<button id={op.label} class="button-base button" {style} tabindex={-1} onpointerdown={() => (scale = 0.8)}>
+<button id={op.label} class={['button-base button', { x }]} {style} tabindex={-1} onpointerdown={() => (scale = 0.8)}>
     {op.label}
 </button>
 
@@ -38,16 +38,21 @@
         box-shadow: 0 0 5px black;
         height: 36px;
         border-radius: 18px;
-        padding: 4px 10px 0px;
+        padding: 4px 15px 0px;
         border-width: 1px;
-        filter:drop-shadow(0 0 1px black);
+        filter: drop-shadow(0 0 1px black);
         color: white;
         text-shadow: 1px 1px black;
-        background: radial-gradient(#ff8c00, #4c2c06 100%);
+        background: radial-gradient(#ff8c00c0, #4c2c06 100%);
     }
 
     .button:hover {
-        background: radial-gradient(#ff8c00c0, #4c2c06 100%);
-        filter:drop-shadow(0 0 3px black);
+        background: radial-gradient(#ff8c00, #4c2c06 100%);
+        filter: drop-shadow(0 0 3px black);
     }
-    </style>
+
+    .x {
+        width: 36px;
+        padding: 0;
+    }
+</style>

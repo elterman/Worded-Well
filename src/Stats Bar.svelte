@@ -17,7 +17,9 @@
         font-size: 10px;
         place-content: center;
         color: white;
+        text-shadow: 1px 1px black;
         width: 200px;
         background-image: var(--background-gradient);
+        background: radial-gradient(#ff8c00c0, #4c2c06 80%);
     }
 </style>
