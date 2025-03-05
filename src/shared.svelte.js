@@ -59,6 +59,7 @@ export const calcDrop = (props = {}) => {
 
 export const onOver = () => {
     killTimer();
+    clearInput();
 
     _sob.over = true;
     _sob.task = null;
@@ -102,12 +103,24 @@ export const nextTask = () => {
     startTimer();
 };
 
+const clearInput = () => {
+    _sob.solved = true;
+
+    setTimeout(() => {
+        _sob.input = [];
+        setTimeout(() => _sob.solved = false, 300);
+    }, 300);
+};
+
 export const onKeyInput = (ch) => {
-    if (ch === ESC) {
+    const unprompt = () => {
         if (_prompt.id === PROMPT_SURRENDER || _prompt.id === PROMPT_RESET_STATS) {
             _prompt.opacity = 0;
         }
-        
+    };
+
+    if (ch === ESC) {
+        unprompt();
         return;
     }
 
@@ -119,6 +132,8 @@ export const onKeyInput = (ch) => {
     if (_sob.over || !_sob.game_on) {
         return;
     }
+
+    unprompt();
 
     if (ch === SPACE) {
         _sob.input = [];
@@ -140,15 +155,6 @@ export const onKeyInput = (ch) => {
 
     _sob.input.push(ch);
     const word = _sob.input.join('');
-
-    const clearInput = () => {
-        _sob.solved = true;
-
-        setTimeout(() => {
-            _sob.input = [];
-            setTimeout(() => _sob.solved = false, 300);
-        }, 300);
-    };
 
     if (_sob.task?.solution === word) {
         killTimer();

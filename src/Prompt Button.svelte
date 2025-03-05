@@ -40,5 +40,8 @@
         border-radius: 18px;
         padding: 0 10px 1px;
         border-width: 3px;
+        filter:drop-shadow(0 0 3px black);
+        text-shadow: 1px 1px white;
+        color: black;
     }
 </style>

@@ -85,5 +85,6 @@
         grid-area: 4/1;
         place-self: center;
         transform: scale(0);
+        z-index: 1;
     }
 </style>

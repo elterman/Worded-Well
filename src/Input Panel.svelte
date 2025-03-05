@@ -1,9 +1,9 @@
 <script>
     import Letter from './Letter.svelte';
-    import { _sob } from './shared.svelte';
+    import { _prompt, _sob } from './shared.svelte';
 </script>
 
-<div class="input-panel">
+<div class="input-panel  {_prompt.opacity ? 'hidden' : ''}">
     {#each _sob.input as ch, i (i)}
         <Letter {ch} input/>
     {/each}
@@ -18,5 +18,10 @@
         height: 40px;
         grid-auto-flow: column;
         gap: 4px;
+        transition: opacity 0.3s;
+    }
+
+    .hidden {
+        opacity: 0;
     }
 </style>
