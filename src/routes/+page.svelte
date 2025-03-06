@@ -70,7 +70,7 @@
             #00000098 75%,
             #000000b8
         );
-        --orange-gradient: linear-gradient(to right, #4c2c06 -20%, #4c2c06c0, #ff8c00b0, #4c2c06c0, #4c2c06 120%);
+        --orange-gradient: linear-gradient(to right, #4c2c06 -70%, #4c2c06c0, #ff8c00b0, #4c2c06c0, #4c2c06 170%);
     }
 
     :global {
@@ -80,7 +80,7 @@
         }
 
         .button-base {
-            background: radial-gradient(#ffffffe8, #ffffffe8 100%);
+            background: #ffffffe8;
             border: 2px solid;
             border-color: white silver silver white;
             box-sizing: border-box;
