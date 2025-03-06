@@ -1,22 +1,14 @@
 <script>
     import Erase from '$lib/images/Erase.webp';
     import { BACKSPACE, SPACE } from './const';
-    import { _sob, onKeyInput } from './shared.svelte';
+    import { keyDisabled, onKeyInput } from './shared.svelte';
     import { clientRect, isMobile } from './utils';
 
     const { ch } = $props();
 
-    const disabled = $derived.by(() => {
-        if (!_sob.ticks) {
-            return true;
-        }
-
-        return false;
-    });
-
     const bs = ch === BACKSPACE;
     const space = ch === SPACE;
-    const classes = `button-base button ${bs ? 'backspace' : ''}`;
+    const classes = $derived(`button-base button ${bs ? 'backspace' : ''} ${keyDisabled(ch) ? 'disabled' : ''}`);
     const fsz = space ? 10 : 18;
 
     let width = $state(bs ? 50 : space ? 50 : 0);
@@ -31,10 +23,10 @@
     });
 </script>
 
-<button class={[classes, { disabled }]} tabindex={-1} style='width: {width}px' onpointerdown={() => onKeyInput(ch)}>
-    <span class='content' style='font-size: {fsz}px;'>
+<button class={classes} tabindex={-1} style="width: {width}px" onpointerdown={() => onKeyInput(ch)}>
+    <span class="content" style="font-size: {fsz}px;">
         {#if bs}
-            <img src={Erase} alt='erase' width={27} />
+            <img src={Erase} alt="erase" width={27} />
         {:else if space}
             <div>CLEAR</div>
             <div>{isMobile() ? 'ALL' : '(SPACE)'}</div>

@@ -115,6 +115,23 @@ const clearInput = () => {
     }, 300);
 };
 
+export const keyDisabled = (ch) => {
+    if (!_sob.ticks) {
+        return true;
+    }
+
+    const chars = [..._sob.task.word];
+
+    if (_stack.tasks.length) {
+        chars.push(..._stack.tasks[0].word);
+    }
+    if (!chars.includes(ch)) {
+        return true;
+    }
+
+    return false;
+};
+
 export const onKeyInput = (ch) => {
     const unprompt = () => {
         if (_prompt.id === PROMPT_SURRENDER || _prompt.id === PROMPT_RESET_STATS) {
@@ -132,10 +149,6 @@ export const onKeyInput = (ch) => {
         return;
     }
 
-    if (!_sob.ticks) {
-        return;
-    }
-
     unprompt();
 
     if (ch === SPACE) {
@@ -145,6 +158,10 @@ export const onKeyInput = (ch) => {
 
     if (ch === BACKSPACE) {
         _sob.input.pop();
+        return;
+    }
+
+    if (keyDisabled(ch)) {
         return;
     }
 
