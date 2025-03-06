@@ -169,7 +169,9 @@ export const onKeyInput = (ch) => {
         _sob.input = [];
     }
 
-    if (_sob.input.length === 5) {
+    const count = Math.max(_sob.task.word.length, (_stack.tasks.at(0)?.word.length || 0));
+
+    if (_sob.input.length === count) {
         return;
     }
 
