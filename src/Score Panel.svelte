@@ -9,13 +9,13 @@
         place-self: center;
         display: grid;
         grid-auto-flow: column;
-        padding: 7px 0 4px;
+        padding: 5px 0 2px;
         font-family: Amnestia;
+        font-size: 20px;
         place-content: center;
-        color: white;
-        text-shadow: 1px 1px black;
+        color: #000000a0;
         width: 200px;
-        background-image: var(--background-gradient);
-        background: linear-gradient(to right, #4c2c06, #4c2c06c0, #ff8c00c0, #4c2c06c0, #4c2c06);
+        background: var(--orange-gradient);
+        filter: drop-shadow(0 2px 2px black);
     }
 </style>
