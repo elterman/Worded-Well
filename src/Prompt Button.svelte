@@ -37,7 +37,7 @@
         font-size: 17px;
         box-shadow: 0 0 5px black;
         height: 36px;
-        border-radius: 18px;
+        border-radius: 50vh;
         padding: 4px 15px 0px;
         border-width: 1px;
         filter: drop-shadow(0 0 1px black);
@@ -52,7 +52,7 @@
     }
 
     .x {
-        width: 36px;
+        aspect-ratio: 1;
         padding: 0;
     }
 </style>

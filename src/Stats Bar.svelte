@@ -21,5 +21,6 @@
         width: 200px;
         background-image: var(--background-gradient);
         background: radial-gradient(#ff8c00c0, #4c2c06 80%);
+        background: linear-gradient(to right, #4c2c06, #4c2c06c0, #ff8c00c0, #4c2c06c0, #4c2c06);
     }
 </style>
