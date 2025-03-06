@@ -23,7 +23,7 @@
         </div>
     {/if}
     <div class="stack">
-        {#each [..._stack.tasks] as task, index (task.solution)}
+        {#each [..._stack.tasks] as task, index (task.word)}
             <TaskPanel {task} {index} />
         {/each}
     </div>
@@ -43,6 +43,7 @@
     .task {
         grid-area: 1/1;
         place-self: start center;
+        z-index: 1;
     }
 
     .stack {

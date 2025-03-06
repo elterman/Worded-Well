@@ -4,39 +4,33 @@
     import { Motion } from 'svelte-motion';
     import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { _prompt, _sob, _stack, calcDrop, killTimer, onOver, startTimer } from './shared.svelte';
+    import { _prompt, _sob, _stack, addToStack, calcDrop, nextTask, onOver } from './shared.svelte';
 
     const id = $derived(_prompt.id);
 
     const onPlay = () => {
         _sob.over = false;
 
-        const scramble = (word) => {
-            let problem = word;
+        const encode = (word) => {
+            const solution = [...word].map((_, i) => i);
+            let cipher;
 
             do {
-                problem = shuffle(word);
-            } while (problem === word);
+                cipher = shuffle(solution);
+            } while (cipher.join('') === solution.join(''));
 
-            return problem;
+            return cipher;
         };
 
-        _sob.task_pool = shuffle(dict.map((word) => ({ problem: scramble(word).join(''), solution: word })));
-        _sob.task = _sob.task_pool.pop();
-        _sob.ticks = 0;
+        _sob.task_pool = shuffle(dict.map((word) => ({ word, cipher: encode(word) })));
         _stack.tasks = [];
 
-        killTimer();
-
-        setTimeout(() => {
-            startTimer();
-            _sob.game_on = true;
-        }, 300);
+        nextTask({ delay: 300 });
     };
 
     const onSurrender = () => {
         _sob.surrender_drop = calcDrop({ surrendering: true }) - calcDrop();
-        _stack.tasks.unshift(_sob.task);
+        addToStack();
 
         onOver();
     };

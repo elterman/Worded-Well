@@ -12,7 +12,7 @@
     class={['button-base letter', { input }]}
     style="width: {sz}px; height: {sz}px; font-size: {fsz}px; border-width: {0.1 * fsz}px;"
     in:fly={{ y: input ? 30 : 0, duration: input ? 100 : 0 }}
-    out:fade={{ duration: input ? (_sob.solved ? 300 : 100) : 0 }}
+    out:fade={{ duration: input ? (_sob.input_solved ? 300 : 100) : 0 }}
 >
     {ch}
 </div>

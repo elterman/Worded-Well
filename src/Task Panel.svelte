@@ -10,7 +10,7 @@
 
     $effect(() => {
         const onTransitionEnd = (e) => {
-            if (e.propertyName === 'opacity' && e.target.id === task.problem && task.solved) {
+            if (e.propertyName === 'opacity' && e.target.id === task.word && task.solved) {
                 nextTask(true);
             }
         };
@@ -23,19 +23,25 @@
         const style = getComputedStyle(node);
         const transform = style.transform === 'none' ? '' : style.transform;
 
-        return { duration, easing, css: (t) => `transform: ${transform} translateY(${(1 - t) * y}px)` };
+        return {
+            duration,
+            easing,
+            css: (t) => {
+                return `transform: ${transform} translateY(${(1 - t) * (y || 0)}px)`;
+            },
+        };
     };
 </script>
 
 <div
     class="task-panel"
-    id={task.problem}
+    id={task.word}
     style="z-index: {index || 0}; opacity: {task?.solved ? 0 : 1}"
     in:drop={{ y: dropHeight < 0 ? 0 : -dropHeight, duration: dropHeight < 0 ? 0 : 500 }}
     out:fade={{ duration: _sob.timer === null ? 0 : 300 }}
 >
-    {#each task.problem as ch, i (i)}
-        <Letter {ch} />
+    {#each task.cipher as i (i)}
+        <Letter ch={task.word[i]} />
     {/each}
 </div>
 

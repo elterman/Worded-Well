@@ -7,13 +7,13 @@ export const _sob = $state({
     game_on: false,
     over: false,
     input: [],
+    input_solved: false,
     letter_box_size: 0,
     task_pool: [],
     task: null,
     ticks: 0,
     timer: null,
     max_travel_ms: 14000,
-    solved: false
 });
 
 export const _prompt = $state({
@@ -62,8 +62,8 @@ export const onOver = () => {
     clearInput();
 
     _sob.over = true;
-    _sob.task = null;
     _sob.ticks = 0;
+    _sob.task = null;
 
     setTimeout(() => {
         _prompt.id = PROMPT_PLAY_AGAIN;
@@ -71,12 +71,16 @@ export const onOver = () => {
     }, 500);
 };
 
+export const addToStack = () => {
+    _stack.tasks.unshift(_sob.task);
+};
+
 export const startTimer = () => {
     _sob.timer = setInterval(() => {
         _sob.ticks += 1;
 
         const onHitBottom = () => {
-            _stack.tasks.unshift(_sob.task);
+            addToStack();
 
             if (_stack.tasks.length < STACK_CAPACITY) {
                 nextTask();
@@ -94,21 +98,24 @@ export const killTimer = () => {
     _sob.timer = null;
 };
 
-export const nextTask = () => {
+export const nextTask = ({ delay = 0 } = {}) => {
     killTimer();
 
     _sob.ticks = 0;
     _sob.task = _sob.task_pool.pop();
 
-    startTimer();
+    setTimeout(() => {
+        startTimer();
+        _sob.game_on = true;
+    }, delay);
 };
 
 const clearInput = () => {
-    _sob.solved = true;
+    _sob.input_solved = true;
 
     setTimeout(() => {
         _sob.input = [];
-        setTimeout(() => _sob.solved = false, 300);
+        setTimeout(() => _sob.input_solved = false, 300);
     }, 300);
 };
 
@@ -145,7 +152,7 @@ export const onKeyInput = (ch) => {
         return;
     }
 
-    if (_sob.solved) {
+    if (_sob.input_solved) {
         _sob.input = [];
     }
 
@@ -156,11 +163,11 @@ export const onKeyInput = (ch) => {
     _sob.input.push(ch);
     const word = _sob.input.join('');
 
-    if (_sob.task?.solution === word) {
+    if (_sob.task.word === word) {
         killTimer();
         _sob.task.solved = true;
         clearInput();
-    } else if (_stack.top()?.solution === word) {
+    } else if (_stack.top()?.word === word) {
         clearInput();
         _stack.tasks.shift();
     }
