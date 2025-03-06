@@ -1,6 +1,6 @@
 <script>
     import { dict } from '$lib/dict';
-    import { shuffle } from 'lodash-es';
+    import { forIn, shuffle } from 'lodash-es';
     import { Motion } from 'svelte-motion';
     import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
     import PromptPanel from './Prompt Panel.svelte';
@@ -12,12 +12,14 @@
         _sob.over = false;
 
         const encode = (word) => {
+            const decode = (cipher) => cipher.map(i => word[i]).join('');
+
             const solution = [...word].map((_, i) => i);
             let cipher;
 
             do {
                 cipher = shuffle(solution);
-            } while (cipher.join('') === solution.join(''));
+            } while (decode(cipher) === word);
 
             return cipher;
         };

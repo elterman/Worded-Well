@@ -3,7 +3,7 @@
     import { _sob } from './shared.svelte';
 
     const { ch, off = 0, input } = $props();
-    const sz = input ? 30 : _sob.letter_box_size;
+    const sz = input ? 30 : _sob.tile_sz;
     const transform = $derived(`translateX(${(_sob.over ? off : 0) * sz}px)`);
     const fsz = Math.min(20, 0.65 * sz);
 </script>

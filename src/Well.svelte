@@ -9,7 +9,7 @@
     $effect(() =>
         setTimeout(() => {
             height = clientRect('.well').height;
-            _sob.letter_box_size = height / STACK_CAPACITY;
+            _sob.tile_sz = height / STACK_CAPACITY;
         }),
     );
 

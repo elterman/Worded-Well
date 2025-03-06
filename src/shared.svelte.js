@@ -22,32 +22,32 @@ export const _stack = $state({
 export const calcDrop = (props = {}) => {
     const { surrendering, onHitBottom } = props;
 
-    if (!_sob.letter_box_size) {
+    if (!_sob.tile_sz) {
         return 0;
     }
-    const height = clientRect('.well').height;
+    const wellHi = clientRect('.well').height;
 
-    const rowPx = _sob.letter_box_size;
-    const stackPx = _stack.tasks.length * rowPx;
-    const travelPx = height - stackPx;
+    const rowHi = _sob.tile_sz;
+    const stackHi = _stack.tasks.length * rowHi;
+    const travelHi = wellHi - stackHi;
 
-    if (travelPx <= 0) {
+    if (travelHi <= 0) {
         return 0;
     }
 
     if (surrendering) {
-        return travelPx - rowPx;
+        return travelHi - rowHi;
     }
 
-    const travelMs = _sob.max_travel_ms * (travelPx / height);
-    const deltaPx = (travelPx / travelMs) * TICK_MS;
-    const px = _sob.ticks * deltaPx - rowPx;
+    const travelMs = _sob.max_travel_ms * (travelHi / wellHi);
+    const deltaPx = (travelHi / travelMs) * TICK_MS;
+    const hi = _sob.ticks * deltaPx;
 
-    if (onHitBottom && px + rowPx >= travelPx) {
+    if (onHitBottom && hi >= travelHi) {
         onHitBottom();
     }
 
-    return px;
+    return hi - rowHi;
 };
 
 export const onOver = () => {
