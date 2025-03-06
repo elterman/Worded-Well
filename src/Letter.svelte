@@ -2,17 +2,17 @@
     import { fade, fly } from 'svelte/transition';
     import { _sob } from './shared.svelte';
 
-    const { ch, input } = $props();
-
+    const { ch, off = 0, input } = $props();
     const sz = _sob.letter_box_size;
+    const transform = $derived(`translateX(${(_sob.over ? off : 0) * sz}px)`);
     const fsz = Math.min(20, 0.65 * sz);
 </script>
 
 <div
     class={['button-base letter', { input }]}
-    style="width: {sz}px; height: {sz}px; font-size: {fsz}px; border-width: {0.1 * fsz}px;"
+    style="width: {sz}px; height: {sz}px; font-size: {fsz}px; border-width: {0.1 * fsz}px; transform: {transform}"
     in:fly={{ y: input ? 30 : 0, duration: input ? 100 : 0 }}
-    out:fade={{ duration: input ? (_sob.input_solved ? 300 : 100) : 0 }}
+    out:fade={{ duration: input ? (_sob.solved ? 300 : 100) : 0 }}
 >
     {ch}
 </div>
@@ -26,6 +26,7 @@
         font-weight: bold;
         cursor: initial;
         pointer-events: none;
+        transition: transform 1s;
     }
 
     .input {

@@ -38,10 +38,11 @@
     id={task.word}
     style="z-index: {index || 0}; opacity: {task?.solved ? 0 : 1}"
     in:drop={{ y: dropHeight < 0 ? 0 : -dropHeight, duration: dropHeight < 0 ? 0 : 500 }}
-    out:fade={{ duration: _sob.timer === null ? 0 : 300 }}
+    out:fade={{ duration: _sob.surrender_drop ? 0 : 300 }}
+    onintroend={() => (_sob.surrender_drop = 0)}
 >
-    {#each task.cipher as i (i)}
-        <Letter ch={task.word[i]} />
+    {#each task.cipher as index, i (index)}
+        <Letter ch={task.word[index]} off={index - i} />
     {/each}
 </div>
 

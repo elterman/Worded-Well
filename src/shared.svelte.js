@@ -61,14 +61,17 @@ export const onOver = () => {
     killTimer();
     clearInput();
 
-    _sob.over = true;
     _sob.ticks = 0;
     _sob.task = null;
 
     setTimeout(() => {
-        _prompt.id = PROMPT_PLAY_AGAIN;
-        _prompt.opacity = 1;
-    }, 500);
+        _sob.over = true;
+
+        setTimeout(() => {
+            _prompt.id = PROMPT_PLAY_AGAIN;
+            _prompt.opacity = 1;
+        }, 1000);
+    }, 1000);
 };
 
 export const addToStack = () => {
@@ -136,7 +139,7 @@ export const onKeyInput = (ch) => {
         return;
     }
 
-    if (_sob.over || !_sob.game_on) {
+    if (_sob.ticks === 0) {
         return;
     }
 
