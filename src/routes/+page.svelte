@@ -21,6 +21,8 @@
 
         window.addEventListener('resize', onResize);
 
+        onResize();
+
         const onKeyDown = (e) => {
             if (_sob.page !== GAME_PAGE) {
                 return;

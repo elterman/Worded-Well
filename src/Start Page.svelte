@@ -28,6 +28,7 @@
 <div class="start-page" in:fade={{ duration: 100 }} out:fade={{ duration: 200 }}>
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
+    0.1
     <ImageButton src={Play} width={60} onClick={() => (_sob.page = GAME_PAGE)} {style} />
 </div>
 
