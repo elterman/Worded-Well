@@ -6,9 +6,16 @@
     import StartPage from '../Start Page.svelte';
     import { isAlpha } from '../utils';
 
+    let hi = $state();
+
     $effect(() => {
         const disable = (e) => e.preventDefault();
         window.addEventListener('contextmenu', disable);
+
+        const onResize = () => (hi = window.innerHeight);
+        window.addEventListener('resize', onResize);
+
+        onResize();
 
         const onKeyDown = (e) => {
             if (_sob.page !== GAME_PAGE) {
@@ -38,6 +45,7 @@
 
         return () => {
             window.removeEventListener('contextmenu', disable);
+            window.removeEventListener('resize', onResize);
             window.removeEventListener('keydown', onKeyDown);
         };
     });
@@ -46,7 +54,7 @@
     setTimeout(() => (splash = false), 2000);
 </script>
 
-<div class="app" tabIndex={-1}>
+<div class="app" tabIndex={-1} style="height: {hi}px">
     <div class="vignette"></div>
     <GamePage />
 
@@ -96,6 +104,19 @@
         }
     }
 
+    .app {
+        display: grid;
+        height: 100vh;
+        background-image: url('$lib/images/Stone Wall.webp');
+        background-size: 250px;
+        user-select: none;
+    }
+
+    .vignette {
+        grid-area: 1/1;
+        background-image: radial-gradient(transparent, black 150%);
+    }
+
     @font-face {
         font-family: Amnestia;
         src: url('$lib/fonts/Amnestia.ttf');
@@ -109,18 +130,5 @@
     @font-face {
         font-family: Roboto;
         src: url('$lib/fonts/Roboto-Regular.ttf');
-    }
-
-    .app {
-        display: grid;
-        height: 100vh;
-        background-image: url('$lib/images/Stone Wall.webp');
-        background-size: 250px;
-        user-select: none;
-    }
-
-    .vignette {
-        grid-area: 1/1;
-        background-image: radial-gradient(transparent, black 150%);
     }
 </style>
