@@ -81,32 +81,6 @@
             overflow: hidden;
         }
 
-        .body,
-        .wrapper {
-            /* Break the flow */
-            position: absolute;
-            top: 0px;
-
-            /* Give them all the available space */
-            width: 100%;
-            height: 100%;
-
-            /* Remove the margins if any */
-            margin: 0;
-
-            overflow: hidden;
-        }
-
-        .body {
-            /* Sending body at the bottom of the stack */
-            z-index: 1;
-        }
-
-        .wrapper {
-            /* Making the wrapper stack above the body */
-            z-index: 2;
-        }
-
         .button-base {
             background: #ffffffe8;
             border: 2px solid;
@@ -126,8 +100,7 @@
 
     .app {
         display: grid;
-        /* height: 100vh; */
-        height: 100%;
+        height: 100dvh;
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         user-select: none;
