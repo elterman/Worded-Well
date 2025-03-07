@@ -10,15 +10,6 @@
         const disable = (e) => e.preventDefault();
         window.addEventListener('contextmenu', disable);
 
-        function resetHeight() {
-            // reset the body height to that of the inner browser
-            document.body.style.height = window.innerHeight + 'px';
-        }
-        // reset the height whenever the window's resized
-        window.addEventListener('resize', resetHeight);
-        // called to initially set the height.
-        resetHeight();
-
         const onKeyDown = (e) => {
             if (_sob.page !== GAME_PAGE) {
                 return;
@@ -87,7 +78,7 @@
             margin: 0;
             overflow: hidden;
             display: grid;
-            max-height: fit-content;
+            height: 100dvh;
         }
 
         .button-base {
@@ -109,7 +100,7 @@
 
     .app {
         display: grid;
-        height: 100%;
+        height: 100dvh;
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         user-select: none;
