@@ -83,10 +83,11 @@
     }
 
     :global {
-        body {
+        html, body {
             margin: 0;
             overflow: hidden;
             display: grid;
+            max-height: fit-content;
         }
 
         .button-base {
@@ -108,7 +109,7 @@
 
     .app {
         display: grid;
-        /* height: 100dvh; */
+        height: 100%;
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         user-select: none;
