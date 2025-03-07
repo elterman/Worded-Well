@@ -91,6 +91,7 @@
         body {
             margin: 0;
             overflow: hidden;
+            height: 100dvh;
         }
 
         .button-base {
@@ -112,8 +113,7 @@
 
     .app {
         display: grid;
-        /* height: 100dvh; */
-        height: calc(var(--vh, 1vh) * 100);
+        height: 100%;
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         user-select: none;
