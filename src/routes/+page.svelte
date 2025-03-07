@@ -77,6 +77,9 @@
         body {
             margin: 0;
             overflow: hidden;
+            position: fixed;
+            height: 100%;
+            width: 100%;
         }
 
         .button-base {
@@ -98,8 +101,7 @@
 
     .app {
         display: grid;
-        height: 100dvh;
-        /* min-height: -webkit-fill-available; */
+        height: 100%;
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         user-select: none;
