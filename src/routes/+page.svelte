@@ -10,6 +10,17 @@
         const disable = (e) => e.preventDefault();
         window.addEventListener('contextmenu', disable);
 
+        const onResize = () => {
+            () => {
+                // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+                let vh = window.innerHeight * 0.01;
+                // Then we set the value in the --vh custom property to the root of the document
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            };
+        };
+
+        window.addEventListener('resize', onResize);
+
         const onKeyDown = (e) => {
             if (_sob.page !== GAME_PAGE) {
                 return;
@@ -38,6 +49,7 @@
 
         return () => {
             window.removeEventListener('contextmenu', disable);
+            window.removeEventListener('resize', onResize);
             window.removeEventListener('keydown', onKeyDown);
         };
     });
@@ -77,9 +89,6 @@
         body {
             margin: 0;
             overflow: hidden;
-            position: fixed;
-            height: 100%;
-            width: 100%;
         }
 
         .button-base {
@@ -101,7 +110,8 @@
 
     .app {
         display: grid;
-        height: 100%;
+        /* height: 100dvh; */
+        height: calc(var(--vh, 1vh) * 100);
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         user-select: none;
