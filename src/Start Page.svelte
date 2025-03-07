@@ -55,5 +55,6 @@
         color: white;
         padding: 5px 10px;
         border-radius: 50vh;
+        font-family: Amnestia;
     }
 </style>
