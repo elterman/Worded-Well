@@ -74,11 +74,9 @@
     }
 
     :global {
-        html, body {
+        body {
             margin: 0;
             overflow: hidden;
-            display: grid;
-            height: 100dvh;
         }
 
         .button-base {

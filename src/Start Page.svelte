@@ -26,7 +26,7 @@
 </script>
 
 <div class="start-page" in:fade={{ duration: 100 }} out:fade={{ duration: 200 }}>
-    <div class='version'>9</div>
+    <div class='version'>10</div>
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
     <ImageButton src={Play} width={60} onClick={() => (_sob.page = GAME_PAGE)} {style} />
