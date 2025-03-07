@@ -26,9 +26,9 @@
 </script>
 
 <div class="start-page" in:fade={{ duration: 100 }} out:fade={{ duration: 200 }}>
+    <div class='version'>1</div>
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
-    0.1
     <ImageButton src={Play} width={60} onClick={() => (_sob.page = GAME_PAGE)} {style} />
 </div>
 
@@ -45,5 +45,15 @@
 
     .shadow {
         filter: drop-shadow(0 0 5px #000);
+    }
+
+    .version {
+        place-self: center;
+        position: absolute;
+        top: 10px;
+        background: black;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 50vh;
     }
 </style>
