@@ -6,8 +6,9 @@
     import ImageButton from './Image Button.svelte';
     import { GAME_PAGE } from './const';
     import { _sob } from './shared.svelte';
-    import { windowSize } from './utils';
+    import { focusOnApp, windowSize } from './utils';
 
+    const version = 2;
     let width = $state(0);
 
     $effect(() => {
@@ -17,6 +18,7 @@
         };
 
         onResize();
+        focusOnApp();
 
         window.addEventListener('resize', onResize);
         return () => window.removeEventListener('resize', onResize);
@@ -26,7 +28,7 @@
 </script>
 
 <div class="start-page" in:fade={{ duration: 100 }} out:fade={{ duration: 200 }}>
-    <div class='version'>10</div>
+    <div class='version'>{version}</div>
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
     <ImageButton src={Play} width={60} onClick={() => (_sob.page = GAME_PAGE)} {style} />
@@ -48,7 +50,7 @@
     }
 
     .version {
-        display: none;
+        /* display: none; */
         place-self: center;
         position: absolute;
         top: 10px;

@@ -6,9 +6,11 @@
 
     const { ch } = $props();
 
+    let button;
+
     const bs = ch === BACKSPACE;
     const space = ch === SPACE;
-    const classes = $derived(`button-base button ${bs ? 'backspace' : ''} ${keyDisabled(ch) ? 'disabled' : ''}`);
+    const disabled = $derived(keyDisabled(ch));
     const fsz = space ? 10 : 18;
 
     let width = $state(bs ? 50 : space ? 50 : 0);
@@ -21,9 +23,21 @@
             width = (wx - margins) / 11;
         }
     });
+
+    const onPointerDown = () => {
+        onKeyInput(ch);
+    };
 </script>
 
-<button class={classes} tabindex={-1} style="width: {width}px" onpointerdown={() => onKeyInput(ch)}>
+<button
+    bind:this={button}
+    class={['button-base button', { bs }, { disabled }]}
+    style="width: {width}px"
+    onpointerdown={onPointerDown}
+    onpointerup={() => {
+        button.blur();
+    }}
+>
     <span class="content" style="font-size: {fsz}px;">
         {#if bs}
             <img src={Erase} alt="erase" width={27} />
@@ -37,10 +51,6 @@
 </button>
 
 <style>
-    .container {
-        display: grid;
-    }
-
     .button {
         place-items: center;
         height: 44px;
@@ -60,10 +70,6 @@
         place-items: center;
     }
 
-    .button:hover {
-        color: firebrick;
-    }
-
     .disabled {
         border: none;
         box-shadow: none;
@@ -71,7 +77,7 @@
         background: #808080e8;
     }
 
-    .backspace {
+    .bs {
         width: 60px;
     }
 </style>

@@ -21,8 +21,8 @@
     });
 </script>
 
-<button id={src} class="button" tabindex={-1} onpointerdown={() => (scale = 0.7)} style="transform: scale({scale})">
-    <img {src} alt="" {width} {style} />
+<button id={src} class="button" tabindex={-1} onpointerdown={() => (scale = 0.7)} style='{style}; transform: scale({scale})'>
+    <img {src} alt="" {width} />
 </button>
 
 <style>
@@ -30,7 +30,6 @@
         background: none;
         border: none;
         display: grid;
-        place-content: center;
         cursor: pointer;
         transition: transform 0.1s;
         box-sizing: border-box;

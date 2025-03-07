@@ -2,7 +2,7 @@
     import { dict } from '$lib/dict';
     import { shuffle } from 'lodash-es';
     import { Motion } from 'svelte-motion';
-    import { PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
+    import { PROMPT_START, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, X } from './const';
     import PromptPanel from './Prompt Panel.svelte';
     import { _prompt, _sob, _stack, addToStack, calcDrop, nextTask, onOver } from './shared.svelte';
 
@@ -47,7 +47,7 @@
         let id = null;
 
         if (!_sob.game_on) {
-            id = PROMPT_PLAY;
+            id = PROMPT_START;
         } else if (_sob.over) {
             id = PROMPT_PLAY_AGAIN;
         }
@@ -66,8 +66,8 @@
         let:motion
     >
         <div class="prompt {_sob.game_on ? '' : 'area'}" use:motion>
-            {#if id === PROMPT_PLAY}
-                <PromptPanel ops={[{ label: PROMPT_PLAY, onClick: onPlay }]} />
+            {#if id === PROMPT_START}
+                <PromptPanel ops={[{ label: PROMPT_START, onClick: onPlay }]} />
             {:else if id === PROMPT_PLAY_AGAIN}
                 <PromptPanel ops={[{ label: PROMPT_PLAY_AGAIN, onClick: onPlay }]} />
             {:else if id === PROMPT_SURRENDER}

@@ -1,4 +1,4 @@
-import { BACKSPACE, ESC, PROMPT_PLAY, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
+import { BACKSPACE, ESC, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
 import { clientRect } from './utils';
 
 export const _sob = $state({
@@ -10,7 +10,7 @@ export const _sob = $state({
 });
 
 export const _prompt = $state({
-    id: PROMPT_PLAY,
+    id: PROMPT_START,
     opacity: 1
 });
 
@@ -190,4 +190,6 @@ export const onKeyInput = (ch) => {
         clearInput();
         _stack.tasks.shift();
     }
+
+    document.querySelector('.game-page')?.focus();
 };
