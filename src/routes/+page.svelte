@@ -93,6 +93,7 @@
 
         .button-base:hover {
             background: #fffffff8;
+            color: firebrick;
         }
     }
 

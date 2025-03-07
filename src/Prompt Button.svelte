@@ -49,6 +49,7 @@
     .button:hover {
         background: radial-gradient(#ff8c00, #4c2c06 100%);
         filter: drop-shadow(0 0 3px black);
+        color: white;
     }
 
     .x {

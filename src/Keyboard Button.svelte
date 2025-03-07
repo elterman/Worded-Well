@@ -6,8 +6,6 @@
 
     const { ch } = $props();
 
-    let button;
-
     const bs = ch === BACKSPACE;
     const space = ch === SPACE;
     const disabled = $derived(keyDisabled(ch));
@@ -17,27 +15,15 @@
 
     $effect(() => {
         if (width === 0) {
-            const wx = clientRect('.game-page').width;
-            const margins = 12;
-
-            width = (wx - margins) / 11;
+            width = clientRect('.game-page').width;
+            width = (width - 12) / 11;
         }
     });
 
-    const onPointerDown = () => {
-        onKeyInput(ch);
-    };
+    const onPointerDown = () => onKeyInput(ch);
 </script>
 
-<button
-    bind:this={button}
-    class={['button-base button', { bs }, { disabled }]}
-    style="width: {width}px"
-    onpointerdown={onPointerDown}
-    onpointerup={() => {
-        button.blur();
-    }}
->
+<button class={['button-base button', { bs }, { disabled }]} style="width: {width}px" onpointerdown={onPointerDown}>
     <span class="content" style="font-size: {fsz}px;">
         {#if bs}
             <img src={Erase} alt="erase" width={27} />
