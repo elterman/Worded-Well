@@ -120,6 +120,10 @@ export const keyDisabled = (ch) => {
         return true;
     }
 
+    if (ch === SPACE || ch === BACKSPACE) {
+        return false;
+    }
+
     const chars = [..._sob.task.word];
 
     if (_stack.tasks.length) {
