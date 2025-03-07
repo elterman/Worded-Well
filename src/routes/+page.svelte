@@ -6,8 +6,6 @@
     import StartPage from '../Start Page.svelte';
     import { isAlpha } from '../utils';
 
-    let hi = $state();
-
     $effect(() => {
         const disable = (e) => e.preventDefault();
         window.addEventListener('contextmenu', disable);
@@ -48,7 +46,7 @@
     setTimeout(() => (splash = false), 2000);
 </script>
 
-<div class="app" tabIndex={-1} style="height: {hi}px">
+<div class="app" tabIndex={-1}>
     <div class="vignette"></div>
     <GamePage />
 
@@ -101,6 +99,7 @@
     .app {
         display: grid;
         height: 100dvh;
+        /* min-height: -webkit-fill-available; */
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         user-select: none;
