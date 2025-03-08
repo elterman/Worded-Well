@@ -29,7 +29,7 @@
                 ch = RETURN;
             }
 
-            if (isAlpha(ch) || ch === SPACE || ch === BACKSPACE || ch === ESC) {
+            if (isAlpha(ch) || ch === SPACE || ch === BACKSPACE || ch === RETURN || ch === ESC) {
                 onKeyInput(ch);
             }
         };

@@ -1,5 +1,7 @@
+import { shuffle } from 'lodash-es';
 import { BACKSPACE, ESC, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
 import { clientRect } from './utils';
+import { dict } from '$lib/dict';
 
 export const _sob = $state({
     sounds: true,
@@ -50,7 +52,7 @@ export const calcDrop = (props = {}) => {
     return hi - rowHi;
 };
 
-export const onOver = () => {
+const onOver = () => {
     killTimer();
     clearInput();
 
@@ -67,11 +69,11 @@ export const onOver = () => {
     }, 1000);
 };
 
-export const addToStack = () => {
+const addToStack = () => {
     _stack.tasks.unshift(_sob.task);
 };
 
-export const startTimer = () => {
+const startTimer = () => {
     _sob.timer = setInterval(() => {
         _sob.ticks += 1;
 
@@ -138,22 +140,36 @@ export const keyDisabled = (ch) => {
 
 export const onKeyInput = (ch) => {
     const unprompt = () => {
-        if (_prompt.id === PROMPT_SURRENDER || _prompt.id === PROMPT_RESET_STATS) {
+        const id = _prompt.id;
+
+        if (id === PROMPT_START || id === PROMPT_PLAY_AGAIN || id === PROMPT_SURRENDER || id === PROMPT_RESET_STATS) {
             _prompt.opacity = 0;
         }
     };
 
+    unprompt();
+
     if (ch === ESC) {
-        unprompt();
         return;
     }
 
     if (ch === RETURN) {
-        // TODO
+        switch (_prompt.id) {
+            case PROMPT_START:
+            case PROMPT_PLAY_AGAIN:
+                onStart();
+                break;
+            case PROMPT_SURRENDER:
+                onSurrender();
+                break;
+            case PROMPT_RESET_STATS:
+                onResetStats();
+                break;
+            default: break;
+        }
+
         return;
     }
-
-    unprompt();
 
     if (ch === SPACE) {
         _sob.input = [];
@@ -190,6 +206,34 @@ export const onKeyInput = (ch) => {
         clearInput();
         _stack.tasks.shift();
     }
-
-    document.querySelector('.game-page')?.focus();
 };
+
+export const onStart = () => {
+    _sob.over = false;
+
+    const encode = (word) => {
+        const decode = (cipher) => cipher.map(i => word[i]).join('');
+
+        const solution = [...word].map((_, i) => i);
+        let cipher;
+
+        do {
+            cipher = shuffle(solution);
+        } while (decode(cipher) === word);
+
+        return cipher;
+    };
+
+    _sob.task_pool = shuffle(dict.map((word) => ({ word, cipher: encode(word) })));
+    _stack.tasks = [];
+
+    nextTask({ delay: 300 });
+};
+
+export const onSurrender = () => {
+    _sob.surrender_drop = calcDrop({ surrendering: true }) - calcDrop();
+    addToStack();
+    onOver();
+};
+
+export const onResetStats = () => { };
