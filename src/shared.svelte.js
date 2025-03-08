@@ -2,9 +2,9 @@ import { shuffle } from 'lodash-es';
 import { BACKSPACE, ESC, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
 import { clientRect } from './utils';
 import { dict } from '$lib/dict';
+import { playSound } from './sound.svelte';
 
 export const _sob = $state({
-    sounds: true,
     page: START_PAGE,
     input: [],
     task_pool: [],
@@ -209,6 +209,8 @@ export const onKeyInput = (ch) => {
 };
 
 export const onStart = () => {
+    playSound('dice');
+
     _sob.over = false;
 
     const encode = (word) => {

@@ -2,6 +2,7 @@
     import Erase from '$lib/images/Erase.webp';
     import { BACKSPACE, SPACE } from './const';
     import { keyDisabled, onKeyInput } from './shared.svelte';
+    import { playSound } from './sound.svelte';
     import { clientRect, isMobile } from './utils';
 
     const { ch } = $props();
@@ -23,6 +24,7 @@
     });
 
     const onPointerDown = () => {
+        playSound('tap');
         onKeyInput(ch);
 
         if (bs) {
