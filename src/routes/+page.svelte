@@ -11,15 +11,17 @@
         window.addEventListener('contextmenu', disable);
 
         const onKeyDown = (e) => {
-            if (_sob.page !== GAME_PAGE) {
-                return;
-            }
-
             if (e.altKey || e.shiftKey || e.ctrlKey) {
                 return;
             }
 
             let ch = e.key.toUpperCase();
+
+            if (_sob.page === START_PAGE) {
+                if (ch === 'ENTER')
+                _sob.page = GAME_PAGE;
+                return;
+            }
 
             if (ch === 'BACKSPACE') {
                 ch = BACKSPACE;
