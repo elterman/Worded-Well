@@ -18,8 +18,7 @@
             let ch = e.key.toUpperCase();
 
             if (_sob.page === START_PAGE) {
-                if (ch === 'ENTER')
-                _sob.page = GAME_PAGE;
+                if (ch === 'ENTER') _sob.page = GAME_PAGE;
                 return;
             }
 

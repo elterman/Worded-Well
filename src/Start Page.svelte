@@ -8,7 +8,6 @@
     import { _sob } from './shared.svelte';
     import { focusOnApp, windowSize } from './utils';
 
-    const version = 2;
     let width = $state(0);
 
     $effect(() => {
@@ -28,13 +27,25 @@
 </script>
 
 <div class="start-page" in:fade={{ duration: 100 }} out:fade={{ duration: 200 }}>
-    <div class='version'>{version}</div>
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
     <ImageButton src={Play} width={60} onClick={() => (_sob.page = GAME_PAGE)} {style} />
+    <div class="version">3</div>
 </div>
 
 <style>
+    .version {
+        /* display: none; */
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background: #000000b0;
+        color: white;
+        padding: 4px 15px 3px;
+        border-radius: 50vh;
+        font-family: Amnestia;
+    }
+
     .start-page {
         grid-area: 1/1;
         display: grid;
@@ -47,17 +58,5 @@
 
     .shadow {
         filter: drop-shadow(0 0 5px #000);
-    }
-
-    .version {
-        /* display: none; */
-        place-self: center;
-        position: absolute;
-        top: 10px;
-        background: black;
-        color: white;
-        padding: 5px 10px;
-        border-radius: 50vh;
-        font-family: Amnestia;
     }
 </style>

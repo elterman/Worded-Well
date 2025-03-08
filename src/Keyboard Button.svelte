@@ -6,6 +6,8 @@
 
     const { ch } = $props();
 
+    let timer = $state(null);
+
     const bs = ch === BACKSPACE;
     const space = ch === SPACE;
     const disabled = $derived(keyDisabled(ch));
@@ -20,10 +22,28 @@
         }
     });
 
-    const onPointerDown = () => onKeyInput(ch);
+    const onPointerDown = () => {
+        onKeyInput(ch);
+
+        if (bs) {
+            timer = setTimeout(() => onKeyInput(SPACE), 700);
+        }
+    };
+
+    const onPointerUp = () => {
+        if (bs) {
+            clearTimeout(timer);
+            timer = null;
+        }
+    };
 </script>
 
-<button class={['button-base button', { bs }, { disabled }]} style="width: {width}px" onpointerdown={onPointerDown}>
+<button
+    class={['button-base button', { bs }, { disabled }]}
+    style="width: {width}px"
+    onpointerdown={onPointerDown}
+    onpointerup={onPointerUp}
+>
     <span class="content" style="font-size: {fsz}px;">
         {#if bs}
             <img src={Erase} alt="erase" width={27} />
