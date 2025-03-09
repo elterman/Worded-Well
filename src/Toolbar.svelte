@@ -39,7 +39,7 @@
         _sound.on = !_sound.on;
 
         if (_sound.on) {
-            playSound('sound_on');
+            playSound('won', { rate: 4 });
         }
     };
 </script>

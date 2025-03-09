@@ -41,8 +41,8 @@
         pointer-events: none;
     }
 
-    .button:focus-visible {
-        outline: none;
+    .button:focus {
+        outline: none !important;
     }
 
     .img-disabled {

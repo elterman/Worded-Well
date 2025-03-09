@@ -30,7 +30,7 @@
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
     <ImageButton src={Play} width={60} onClick={() => (_sob.page = GAME_PAGE)} {style} />
-    <div class="version">3</div>
+    <div class="version">hi</div>
 </div>
 
 <style>
@@ -41,7 +41,7 @@
         top: 10px;
         background: #000000b0;
         color: white;
-        padding: 4px 15px 3px;
+        padding: 6px 15px 3px;
         border-radius: 50vh;
         font-family: Amnestia;
     }

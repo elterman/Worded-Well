@@ -3,6 +3,7 @@
     import Letter from './Letter.svelte';
     import { _sob, nextTask } from './shared.svelte';
     import { quadIn } from 'svelte/easing';
+    import { playSound } from './sound.svelte';
 
     let { task, index = null } = $props();
 
@@ -31,6 +32,16 @@
             },
         };
     };
+
+    const onDropStart = () => {
+        if (_sob.surrender_drop) {
+            setTimeout(() => playSound('drop', { rate: 1 }), 400);
+        }
+    };
+
+    const onDropEnd = () => {
+        _sob.surrender_drop = 0;
+    };
 </script>
 
 <div
@@ -39,7 +50,8 @@
     style="z-index: {index || 0}; opacity: {task?.solved ? 0 : 1}"
     in:drop={{ y: dropHeight < 0 ? 0 : -dropHeight, duration: dropHeight < 0 ? 0 : 500 }}
     out:fade={{ duration: _sob.surrender_drop ? 0 : 300 }}
-    onintroend={() => (_sob.surrender_drop = 0)}
+    onintrostart={onDropStart}
+    onintroend={onDropEnd}
 >
     {#each task.cipher as index, i (index)}
         <Letter ch={task.word[index]} off={index - i} />

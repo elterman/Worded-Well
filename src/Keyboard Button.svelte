@@ -9,6 +9,7 @@
 
     let timer = $state(null);
 
+    const mobile = isMobile();
     const bs = ch === BACKSPACE;
     const space = ch === SPACE;
     const disabled = $derived(keyDisabled(ch));
@@ -41,7 +42,7 @@
 </script>
 
 <button
-    class={['button-base button', { bs }, { disabled }]}
+    class={['button-base', { mobile }, { button: !mobile }, { bs }, { disabled }]}
     style="width: {width}px"
     onpointerdown={onPointerDown}
     onpointerup={onPointerUp}
@@ -59,7 +60,8 @@
 </button>
 
 <style>
-    .button {
+    .button,
+    .mobile {
         place-items: center;
         height: 44px;
         font-family: Roboto;
@@ -69,9 +71,18 @@
         transition: 0.3s;
     }
 
-    .button:focus-visible {
-        outline: none;
+    .button:hover {
+        color: firebrick;
     }
+
+    .mobile:hover {
+        background: #ffffffe8;
+        color: var(--button-text-color);
+    }
+
+    /* .button:focus-visible {
+        outline: none;
+    } */
 
     .content {
         display: grid;
@@ -83,6 +94,13 @@
         box-shadow: none;
         pointer-events: none;
         background: #808080e8;
+    }
+
+    .disabled:hover {
+        border: none;
+        box-shadow: none;
+        background: #808080e8;
+        color: var(--button-text-color);
     }
 
     .bs {

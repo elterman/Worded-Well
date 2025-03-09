@@ -21,7 +21,13 @@
     });
 </script>
 
-<button id={src} class="button" tabindex={-1} onpointerdown={() => (scale = 0.7)} style='{style}; transform: scale({scale})'>
+<button
+    id={src}
+    class="button-base button"
+    tabindex={-1}
+    onpointerdown={() => (scale = 0.7)}
+    style="{style}; transform: scale({scale})"
+>
     <img {src} alt="" {width} />
 </button>
 
@@ -29,13 +35,10 @@
     .button {
         background: none;
         border: none;
-        display: grid;
-        cursor: pointer;
-        transition: transform 0.1s;
-        box-sizing: border-box;
+        border-color: none;
     }
 
-    .button:focus-visible {
-        outline: none;
+    .button-base:hover {
+        background: none;
     }
 </style>

@@ -191,7 +191,8 @@ export const onKeyInput = (ch) => {
 
     const count = Math.max(_sob.task.word.length, (_stack.tasks.at(0)?.word.length || 0));
 
-    if (_sob.input.length === count) {
+    if (_sob.input.length >= count) {
+        playSound('lost', { rate: 4 });
         return;
     }
 
@@ -199,10 +200,12 @@ export const onKeyInput = (ch) => {
     const word = _sob.input.join('');
 
     if (_sob.task.word === word) {
+        playSound('coin1');
         killTimer();
         _sob.task.solved = true;
         clearInput();
     } else if (_stack.top()?.word === word) {
+        playSound('link1');
         clearInput();
         _stack.tasks.shift();
     }

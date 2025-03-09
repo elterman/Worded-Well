@@ -62,6 +62,7 @@
 
 <style>
     :root {
+        --button-text-color: #522d18;
         --background-gradient: linear-gradient(
             to right,
             #000000b8,
@@ -89,12 +90,22 @@
             display: grid;
             place-content: center;
             transition: transform 0.1s;
-            color: #522d18;
+            color: var(--button-text-color);
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .button-base:hover {
             background: #fffffff8;
-            color: firebrick;
+        }
+
+        .button-base:focus {
+            outline: none !important;
         }
     }
 
