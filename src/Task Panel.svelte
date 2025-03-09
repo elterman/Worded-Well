@@ -4,6 +4,7 @@
     import { _sob, nextTask } from './shared.svelte';
     import { quadIn } from 'svelte/easing';
     import { playSound } from './sound.svelte';
+    import { later } from './utils';
 
     let { task, index = null } = $props();
 
@@ -35,7 +36,7 @@
 
     const onDropStart = () => {
         if (_sob.surrender_drop) {
-            setTimeout(() => playSound('drop', { rate: 1 }), 400);
+            later(() => playSound('drop', { rate: 1 }), 400);
         }
     };
 

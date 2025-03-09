@@ -2,12 +2,12 @@
     import { STACK_CAPACITY, TICK_MS } from './const';
     import { _sob, _stack, calcDrop } from './shared.svelte';
     import TaskPanel from './Task Panel.svelte';
-    import { clientRect } from './utils';
+    import { clientRect, later } from './utils';
 
     let height = 0;
 
     $effect(() =>
-        setTimeout(() => {
+    later(() => {
             height = clientRect('.well').height;
             _sob.tile_sz = height / STACK_CAPACITY;
         }),

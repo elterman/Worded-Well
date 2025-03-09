@@ -1,6 +1,7 @@
 <script>
     import { X } from './const';
     import { _prompt } from './shared.svelte';
+    import { later } from './utils';
 
     const { op } = $props();
 
@@ -17,7 +18,7 @@
             if (scale < 1) {
                 scale = 1;
             } else {
-                setTimeout(op.onClick);
+                later(op.onClick);
                 _prompt.opacity = 0;
             }
         };

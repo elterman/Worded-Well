@@ -1,4 +1,6 @@
 <script>
+    import { later } from "./utils";
+
     const { src, width = 40, disabled, onClick } = $props();
 
     let scale = $state(1);
@@ -14,7 +16,7 @@
             if (scale < 1) {
                 scale = 1;
             } else {
-                setTimeout(onClick);
+                later(onClick);
             }
         };
 

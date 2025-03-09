@@ -1,6 +1,6 @@
 import { shuffle } from 'lodash-es';
 import { BACKSPACE, ESC, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
-import { clientRect } from './utils';
+import { clientRect, later } from './utils';
 import { dict } from '$lib/dict';
 import { playSound } from './sound.svelte';
 
@@ -59,10 +59,10 @@ const onOver = () => {
     _sob.ticks = 0;
     _sob.task = null;
 
-    setTimeout(() => {
+    later(() => {
         _sob.over = true;
 
-        setTimeout(() => {
+        later(() => {
             _prompt.id = PROMPT_PLAY_AGAIN;
             _prompt.opacity = 1;
         }, 1000);
@@ -102,7 +102,7 @@ export const nextTask = ({ delay = 0 } = {}) => {
     _sob.ticks = 0;
     _sob.task = _sob.task_pool.pop();
 
-    setTimeout(() => {
+    later(() => {
         startTimer();
         _sob.game_on = true;
     }, delay);
@@ -111,9 +111,9 @@ export const nextTask = ({ delay = 0 } = {}) => {
 const clearInput = () => {
     _sob.input_solved = true;
 
-    setTimeout(() => {
+    later(() => {
         _sob.input = [];
-        setTimeout(() => _sob.input_solved = false, 300);
+        later(() => _sob.input_solved = false, 300);
     }, 300);
 };
 

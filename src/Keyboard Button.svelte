@@ -1,9 +1,10 @@
 <script>
     import Erase from '$lib/images/Erase.webp';
+    import { range } from 'lodash-es';
     import { BACKSPACE, SPACE } from './const';
-    import { keyDisabled, onKeyInput } from './shared.svelte';
+    import { _sob, keyDisabled, onKeyInput } from './shared.svelte';
     import { playSound } from './sound.svelte';
-    import { clientRect, isMobile } from './utils';
+    import { clientRect, isMobile, later } from './utils';
 
     const { ch } = $props();
 
@@ -29,7 +30,13 @@
         onKeyInput(ch);
 
         if (bs) {
-            timer = setTimeout(() => onKeyInput(SPACE), 700);
+            timer = later(() => {
+                for (const i in range(_sob.input.length)) {
+                    later(() => playSound('tap'), i * 35);
+                }
+
+                later(() => onKeyInput(SPACE), 100);
+            }, 600);
         }
     };
 

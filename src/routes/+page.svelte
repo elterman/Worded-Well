@@ -4,7 +4,7 @@
     import { _sob, onKeyInput } from '../shared.svelte';
     import Splash from '../Splash.svelte';
     import StartPage from '../Start Page.svelte';
-    import { isAlpha } from '../utils';
+    import { isAlpha, later } from '../utils';
 
     $effect(() => {
         const disable = (e) => e.preventDefault();
@@ -44,7 +44,7 @@
     });
 
     let splash = $state(true);
-    setTimeout(() => (splash = false), 2000);
+    later(() => (splash = false), 2000);
 </script>
 
 <div class="app" tabIndex={-1}>
@@ -54,7 +54,7 @@
     {#if _sob.page === START_PAGE}
         <StartPage />
     {/if}
-    
+
     {#if splash}
         <Splash />
     {/if}
