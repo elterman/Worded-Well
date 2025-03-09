@@ -1,5 +1,5 @@
 <script>
-    import { later } from "./utils";
+    import { later } from './utils';
 
     const { src, width, onClick, style } = $props();
 

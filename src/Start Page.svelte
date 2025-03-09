@@ -7,6 +7,7 @@
     import { GAME_PAGE } from './const';
     import { _sob } from './shared.svelte';
     import { focusOnApp, windowSize } from './utils';
+    import { playSound } from './sound.svelte';
 
     let width = $state(0);
 
@@ -23,13 +24,18 @@
         return () => window.removeEventListener('resize', onResize);
     });
 
+    const onPlay = () => {
+        playSound('plop');
+        _sob.page = GAME_PAGE;
+    };
+
     const style = 'place-self: center; filter: drop-shadow(0 0 5px #000)';
 </script>
 
 <div class="start-page" in:fade={{ duration: 100 }} out:fade={{ duration: 200 }}>
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
-    <ImageButton src={Play} width={60} onClick={() => (_sob.page = GAME_PAGE)} {style} />
+    <ImageButton src={Play} width={60} onClick={onPlay} {style} />
     <div class="version">hi</div>
 </div>
 

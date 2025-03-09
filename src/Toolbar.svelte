@@ -17,7 +17,7 @@
             return;
         }
 
-        playSound('oops');
+        playSound('plop');
 
         _prompt.id = PROMPT_SURRENDER;
         _prompt.opacity = 1;
@@ -29,7 +29,7 @@
             return;
         }
 
-        playSound('oops');
+        playSound('plop');
 
         _prompt.id = PROMPT_RESET_STATS;
         _prompt.opacity = 1;

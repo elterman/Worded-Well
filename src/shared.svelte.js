@@ -60,6 +60,7 @@ const onOver = () => {
     _sob.task = null;
 
     later(() => {
+        playSound('won');
         _sob.over = true;
 
         later(() => {
