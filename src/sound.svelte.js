@@ -1,4 +1,4 @@
-import sounds from '$lib/sounds/sounds.mp3';
+import sounds from '$lib/sounds/sfx.mp3';
 import { Howl } from 'howler/dist/howler.core.min';
 
 const sprite = {
@@ -29,10 +29,11 @@ export const _sound = $state({
 const howl = new Howl({ src: [sounds], sprite });
 
 export const playSound = (id, options = {}) => {
-    const { rate = 1 } = options;
+    const { rate = 1, volume = 1 } = options;
 
     if (_sound.on) {
         howl.play(id);
         howl.rate(rate);
+        howl.volume(volume);
     }
 };

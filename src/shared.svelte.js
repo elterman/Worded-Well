@@ -1,8 +1,9 @@
+import { dict4 } from '$lib/dicts/dict4';
+import { dict5 } from '$lib/dicts/dict5';
 import { shuffle } from 'lodash-es';
 import { BACKSPACE, ESC, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
-import { clientRect, later } from './utils';
-import { dict } from '$lib/dict';
 import { playSound } from './sound.svelte';
+import { clientRect, later } from './utils';
 
 export const _sob = $state({
     page: START_PAGE,
@@ -79,6 +80,7 @@ const startTimer = () => {
         _sob.ticks += 1;
 
         const onHitBottom = () => {
+            playSound('drop', { rate: 3 });
             addToStack();
 
             if (_stack.tasks.length < STACK_CAPACITY) {
@@ -212,10 +214,9 @@ export const onKeyInput = (ch) => {
     }
 };
 
-export const onStart = () => {
-    playSound('dice');
-
-    _sob.over = false;
+export const makePool = () => {
+    const d5 = _sob.easy ? dict5.slice(0, 1000) : dict5;
+    const d = [...dict4, ...d5];
 
     const encode = (word) => {
         const decode = (cipher) => cipher.map(i => word[i]).join('');
@@ -230,9 +231,16 @@ export const onStart = () => {
         return cipher;
     };
 
-    _sob.task_pool = shuffle(dict.map((word) => ({ word, cipher: encode(word) })));
+    _sob.task_pool = shuffle(d.map((word) => ({ word, cipher: encode(word) })));
+};
+
+export const onStart = () => {
+    playSound('dice');
+
+    _sob.over = false;
     _stack.tasks = [];
 
+    makePool();
     nextTask({ delay: 300 });
 };
 
