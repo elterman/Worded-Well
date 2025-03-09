@@ -123,7 +123,7 @@ export const keyDisabled = (ch) => {
     }
 
     if (ch === SPACE || ch === BACKSPACE) {
-        return false;
+        return _sob.input.length === 0;
     }
 
     const chars = [..._sob.task.word];

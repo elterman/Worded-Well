@@ -54,7 +54,7 @@
     {#if _sob.page === START_PAGE}
         <StartPage />
     {/if}
-
+    
     {#if splash}
         <Splash />
     {/if}
