@@ -9,7 +9,7 @@
 </script>
 
 {#if _sob.over && _sob.lookup_prompt}
-    <button class="prompt" transition:fade onpointerdown={onPointerDown}>
+    <button class="prompt" tabindex={-1} transition:fade onpointerdown={onPointerDown}>
         <span>{`${tapOrClick()} on a word to`}</span>
         <span>look up its definition</span>
     </button>

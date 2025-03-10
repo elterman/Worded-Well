@@ -1,9 +1,13 @@
 <script>
-    const sample = 'plays  0    best  0    ave  0';
 </script>
 
 <div class="stats-bar">
-    {sample}
+    <span class='label'>PLAYS</span>
+    <span class='value'>123</span>
+    <span class='label'>BEST</span>
+    <span class='value'>9876</span>
+    <span class='label'>AVE</span>
+    <span class='value'>9876</span>
 </div>
 
 <style>
@@ -14,11 +18,19 @@
         grid-auto-flow: column;
         padding: 8px 0 5px;
         font-family: Amnestia;
-        font-size: 11px;
+        font-size: 10px;
+        gap: 7px;
         place-content: center;
-        color: #000000c0;
         width: 200px;
         background: var(--orange-gradient);
         filter: drop-shadow(0 2px 2px black);
+    }
+
+    .label {
+        color: #000000a0;
+    }
+
+    .value {
+        color: #FFE4AD;
     }
 </style>

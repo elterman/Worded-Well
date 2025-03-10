@@ -42,7 +42,7 @@
         padding: 4px 15px 0px;
         border-width: 1px;
         filter: drop-shadow(0 0 1px black);
-        color: white;
+        color: #FFE4AD;
         text-shadow: 1px 1px black;
         background: radial-gradient(#ff8c00c0, #4c2c06 100%);
     }
@@ -50,7 +50,6 @@
     .button:hover {
         background: radial-gradient(#ff8c00, #4c2c06 100%);
         filter: drop-shadow(0 0 3px black);
-        color: white;
     }
 
     .x {
