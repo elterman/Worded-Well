@@ -18,7 +18,7 @@
         grid-auto-flow: column;
         padding: 8px 0 5px;
         font-family: Amnestia;
-        font-size: 10px;
+        font-size: 10.5px;
         gap: 7px;
         place-content: center;
         width: 200px;

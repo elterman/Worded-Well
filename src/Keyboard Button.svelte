@@ -83,7 +83,7 @@
 
     .mobile:hover {
         background: #ffffffe8;
-        color: #522d18;
+        color: var(--button-text-color);
     }
 
     .content {
@@ -102,7 +102,7 @@
         border: none;
         box-shadow: none;
         background: #808080e8;
-        color: #522d18;
+        color: var(--button-text-color);
     }
 
     .bs {

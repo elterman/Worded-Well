@@ -23,6 +23,6 @@
         background-image: radial-gradient(transparent, black 100%);
         place-content: center;
         color: white;
-        z-index: 3;
+        z-index: 300;
     }
 </style>

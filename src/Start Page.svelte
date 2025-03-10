@@ -59,7 +59,7 @@
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         place-content: center;
-        z-index: 1000;
+        z-index: 100;
     }
 
     .shadow {

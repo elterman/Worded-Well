@@ -29,7 +29,9 @@
 </script>
 
 <button id={op.label} class={['button-base button', { x }]} {style} tabindex={-1} onpointerdown={() => (scale = 0.8)}>
-    {op.label}
+    <span class="label">
+        {op.label}
+    </span>
 </button>
 
 <style>
@@ -40,16 +42,22 @@
         height: 36px;
         border-radius: 50vh;
         padding: 4px 15px 0px;
-        border-width: 1px;
         filter: drop-shadow(0 0 1px black);
-        color: #ffe4ad;
-        text-shadow: 1px 1px black;
         background: radial-gradient(#ff8c00c0, #4c2c06 100%);
+        border-width: 1px;
+        border-color: #f3d97b #df7842 #df7842 #f3d97b;
     }
 
     .button:hover {
         background: radial-gradient(#ff8c00, #4c2c06 100%);
-        filter: drop-shadow(0 0 3px black);
+    }
+
+    .label {
+        background: -webkit-linear-gradient(#f3d97b, #df7842 125%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(1px 1px 1px black);
     }
 
     .x {

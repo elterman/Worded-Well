@@ -44,6 +44,10 @@
     const onDropEnd = () => {
         _sob.surrender_drop = 0;
     };
+
+    export const onLookup = () => {
+        _sob.lookup_prompt = false;
+    };
 </script>
 
 <div class="container">
@@ -61,7 +65,8 @@
     </div>
     {#if index !== null && _sob.over}
         <!-- svelte-ignore a11y_consider_explicit_label -->
-        <a class="url" href={url} target="_blank" rel="noopener noreferrer" tabIndex={-1}></a>
+        <a class="url" href={url} target="_blank" rel="noopener noreferrer" tabIndex={-1}
+        onpointerdown={onLookup}></a>
     {/if}
 </div>
 

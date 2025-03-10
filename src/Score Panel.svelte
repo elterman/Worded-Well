@@ -1,11 +1,12 @@
 <script>
+    import { _score } from './score.svelte';
 </script>
 
 <div class="score-panel">
     <span class="label">SOLVED</span>
-    <span class="value">123</span>
+    <span class="value">{_score.solved}</span>
     <span class="label">SCORE</span>
-    <span class="value">9876</span>
+    <span class="value">{_score.points}</span>
 </div>
 
 <style>
