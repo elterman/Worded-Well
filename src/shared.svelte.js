@@ -9,7 +9,7 @@ export const _sob = $state({
     page: START_PAGE,
     input: [],
     task_pool: [],
-    max_travel_ms: 15000,
+    max_travel_ms: 14500,
     lookup_prompt: true,
 });
 

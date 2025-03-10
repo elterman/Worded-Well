@@ -3,13 +3,13 @@
     import { _sob } from './shared.svelte';
     import { tapOrClick } from './utils';
 
-    export const onPointerDown = () => {
+    export const onClick = () => {
         _sob.lookup_prompt = false;
     };
 </script>
 
-{#if _sob.over && _sob.lookup_prompt}
-    <button class="prompt" tabindex={-1} transition:fade onpointerdown={onPointerDown}>
+{#if _sob.over  && _sob.lookup_prompt}
+    <button class="prompt" tabindex={-1} transition:fade onclick={onClick}>
         <span>{`${tapOrClick()} on a word to`}</span>
         <span>look up its definition</span>
     </button>
@@ -37,5 +37,6 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        line-height: 1.5em;
     }
 </style>
