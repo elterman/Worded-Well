@@ -30,8 +30,7 @@
         animate={{ opacity: _prompt.opacity, transform: `scale(${_prompt.opacity})` }}
         transition={{ type: 'spring', damping: 15 }}
         {onAnimationComplete}
-        let:motion
-    >
+        let:motion>
         <div class="prompt {_sob.game_on ? '' : 'area'}" use:motion>
             {#if id === PROMPT_START}
                 <PromptPanel ops={[{ label: PROMPT_START, onClick: onStart }]} />

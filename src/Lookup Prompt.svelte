@@ -20,7 +20,7 @@
         place-self: center;
         grid-area: 3/1;
         display: grid;
-        color: orange;
+        color: #ffe4ad;
         border: none;
         background: #000000c0;
         font-family: Amnestia;

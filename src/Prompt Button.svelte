@@ -42,7 +42,7 @@
         padding: 4px 15px 0px;
         border-width: 1px;
         filter: drop-shadow(0 0 1px black);
-        color: #FFE4AD;
+        color: #ffe4ad;
         text-shadow: 1px 1px black;
         background: radial-gradient(#ff8c00c0, #4c2c06 100%);
     }

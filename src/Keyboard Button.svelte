@@ -52,8 +52,7 @@
     class={['button-base', { mobile }, { button: !mobile }, { bs }, { disabled }]}
     style="width: {width}px"
     onpointerdown={onPointerDown}
-    onpointerup={onPointerUp}
->
+    onpointerup={onPointerUp}>
     <span class="content" style="font-size: {fsz}px;">
         {#if bs}
             <img src={Erase} alt="erase" width={27} />
@@ -84,12 +83,8 @@
 
     .mobile:hover {
         background: #ffffffe8;
-        color: var(--button-text-color);
+        color: #522d18;
     }
-
-    /* .button:focus-visible {
-        outline: none;
-    } */
 
     .content {
         display: grid;
@@ -107,7 +102,7 @@
         border: none;
         box-shadow: none;
         background: #808080e8;
-        color: var(--button-text-color);
+        color: #522d18;
     }
 
     .bs {

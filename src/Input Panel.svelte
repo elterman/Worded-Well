@@ -3,9 +3,9 @@
     import { _prompt, _sob } from './shared.svelte';
 </script>
 
-<div class="input-panel  {_prompt.opacity ? 'hidden' : ''}">
+<div class="input-panel {_prompt.opacity ? 'hidden' : ''}">
     {#each _sob.input as ch, i (i)}
-        <Letter {ch} input/>
+        <Letter {ch} input />
     {/each}
 </div>
 

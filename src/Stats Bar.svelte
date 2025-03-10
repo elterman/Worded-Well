@@ -2,12 +2,12 @@
 </script>
 
 <div class="stats-bar">
-    <span class='label'>PLAYS</span>
-    <span class='value'>123</span>
-    <span class='label'>BEST</span>
-    <span class='value'>9876</span>
-    <span class='label'>AVE</span>
-    <span class='value'>9876</span>
+    <span class="label">PLAYS</span>
+    <span class="value">123</span>
+    <span class="label">BEST</span>
+    <span class="value">9876</span>
+    <span class="label">AVE</span>
+    <span class="value">9876</span>
 </div>
 
 <style>
@@ -31,6 +31,6 @@
     }
 
     .value {
-        color: #FFE4AD;
+        color: #ffe4ad;
     }
 </style>

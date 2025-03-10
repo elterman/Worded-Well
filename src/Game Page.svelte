@@ -13,7 +13,7 @@
     <StatsBar />
     <ScorePanel />
     <Well />
-    <LookupPrompt/>
+    <LookupPrompt />
     <Prompt />
     <InputPanel />
     <Keyboard />

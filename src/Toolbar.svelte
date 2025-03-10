@@ -50,7 +50,7 @@
 
         if (_sob.easy) {
             playSound('draw', { rate: 4 });
-        } else{
+        } else {
             playSound('lost', { rate: 3, volume: 0.5 });
         }
 

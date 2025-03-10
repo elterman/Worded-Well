@@ -62,7 +62,8 @@
 
 <style>
     :root {
-        --button-text-color: #522d18;
+        --gold: #ffe4ad;
+        --orange-gradient: linear-gradient(to right, #4c2c06 -70%, #4c2c06c0, #ff8c00b0, #4c2c06c0, #4c2c06 170%);
         --background-gradient: linear-gradient(
             to right,
             #000000b8,
@@ -72,7 +73,6 @@
             #00000098 75%,
             #000000b8
         );
-        --orange-gradient: linear-gradient(to right, #4c2c06 -70%, #4c2c06c0, #ff8c00b0, #4c2c06c0, #4c2c06 170%);
     }
 
     :global {

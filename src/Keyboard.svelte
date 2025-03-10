@@ -9,22 +9,22 @@
         const wx = clientRect('.game-page').width;
         const margins = 12;
 
-        gap = (wx - margins) / 11 * 0.1;
+        gap = ((wx - margins) / 11) * 0.1;
     });
 </script>
 
 <div class="keyboard">
-    <div class="kb-row" style='gap: {gap}px'>
+    <div class="kb-row" style="gap: {gap}px">
         {#each 'QWERTYUIOP' as ch (ch)}
             <KeyboardButton {ch} />
         {/each}
     </div>
-    <div class="kb-row" style='gap: {gap}px'>
+    <div class="kb-row" style="gap: {gap}px">
         {#each 'ASDFGHJKL' as ch (ch)}
             <KeyboardButton {ch} />
         {/each}
     </div>
-    <div class="kb-row" style='gap: {gap}px'>
+    <div class="kb-row" style="gap: {gap}px">
         {#each `${SPACE}ZXCVBNM${BACKSPACE}` as ch (ch)}
             <KeyboardButton {ch} />
         {/each}

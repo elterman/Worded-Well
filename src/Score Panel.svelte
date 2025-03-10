@@ -2,10 +2,10 @@
 </script>
 
 <div class="score-panel">
-    <span class='label'>SOLVED</span>
-    <span class='value'>123</span>
-    <span class='label'>SCORE</span>
-    <span class='value'>9876</span>
+    <span class="label">SOLVED</span>
+    <span class="value">123</span>
+    <span class="label">SCORE</span>
+    <span class="value">9876</span>
 </div>
 
 <style>
@@ -29,6 +29,6 @@
     }
 
     .value {
-        color: #FFE4AD;
+        color: #ffe4ad;
     }
 </style>

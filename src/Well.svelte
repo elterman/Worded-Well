@@ -7,7 +7,7 @@
     let height = 0;
 
     $effect(() =>
-    later(() => {
+        later(() => {
             height = clientRect('.well').height;
             _sob.tile_sz = height / STACK_CAPACITY;
         }),

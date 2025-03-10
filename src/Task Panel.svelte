@@ -54,8 +54,7 @@
         in:drop={{ y: dropHeight < 0 ? 0 : -dropHeight, duration: dropHeight < 0 ? 0 : 500 }}
         out:fade={{ duration: _sob.surrender_drop ? 0 : 300 }}
         onintrostart={onDropStart}
-        onintroend={onDropEnd}
-    >
+        onintroend={onDropEnd}>
         {#each task.cipher as index, i (index)}
             <Letter ch={task.word[index]} off={index - i} />
         {/each}
