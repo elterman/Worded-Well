@@ -9,6 +9,7 @@
     let { task, index = null } = $props();
 
     const dropHeight = $derived.by(() => (index === 0 && !_sob.timer ? _sob.surrender_drop : -1));
+    const url = `https://www.google.com/search?q=define+${task.word}`;
 
     $effect(() => {
         const onTransitionEnd = (e) => {
@@ -45,25 +46,42 @@
     };
 </script>
 
-<div
-    class="task-panel"
-    id={task.word}
-    style="z-index: {index || 0}; opacity: {task?.solved ? 0 : 1}"
-    in:drop={{ y: dropHeight < 0 ? 0 : -dropHeight, duration: dropHeight < 0 ? 0 : 500 }}
-    out:fade={{ duration: _sob.surrender_drop ? 0 : 300 }}
-    onintrostart={onDropStart}
-    onintroend={onDropEnd}
->
-    {#each task.cipher as index, i (index)}
-        <Letter ch={task.word[index]} off={index - i} />
-    {/each}
+<div class="container">
+    <div
+        class="task-panel"
+        id={task.word}
+        style="z-index: {index || 0}; opacity: {task?.solved ? 0 : 1}"
+        in:drop={{ y: dropHeight < 0 ? 0 : -dropHeight, duration: dropHeight < 0 ? 0 : 500 }}
+        out:fade={{ duration: _sob.surrender_drop ? 0 : 300 }}
+        onintrostart={onDropStart}
+        onintroend={onDropEnd}
+    >
+        {#each task.cipher as index, i (index)}
+            <Letter ch={task.word[index]} off={index - i} />
+        {/each}
+    </div>
+    {#if index !== null && _sob.over}
+        <!-- svelte-ignore a11y_consider_explicit_label -->
+        <a class="url" href={url} target="_blank" rel="noopener noreferrer" tabIndex={-1}></a>
+    {/if}
 </div>
 
 <style>
+    .container {
+        display: grid;
+    }
+
     .task-panel {
+        grid-area: 1/1;
         display: grid;
         place-content: center;
         grid-auto-flow: column;
         transition: opacity 500ms;
+    }
+
+    .url {
+        grid-area: 1/1;
+        cursor: pointer;
+        z-index: 100;
     }
 </style>

@@ -36,7 +36,7 @@
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
     <ImageButton src={Play} width={60} onClick={onPlay} {style} />
-    <div class="version">hi</div>
+    <div class="version">LOOKUP</div>
 </div>
 
 <style>
@@ -59,7 +59,7 @@
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         place-content: center;
-        z-index: 2;
+        z-index: 1000;
     }
 
     .shadow {

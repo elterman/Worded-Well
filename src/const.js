@@ -3,6 +3,7 @@ export const GAME_PAGE = 'GAME PAGE';
 export const RETURN = '\u21B5';
 export const BACKSPACE = '\u232B';
 export const ESC = '\u001B';
+export const DIG = '\u20E3';
 export const SPACE = ' ';
 export const X = '✖';
 export const PROMPT_START = 'START';

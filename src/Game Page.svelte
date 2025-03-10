@@ -1,6 +1,7 @@
 <script>
     import InputPanel from './Input Panel.svelte';
     import Keyboard from './Keyboard.svelte';
+    import LookupPrompt from './Lookup Prompt.svelte';
     import Prompt from './Prompt.svelte';
     import ScorePanel from './Score Panel.svelte';
     import StatsBar from './Stats Bar.svelte';
@@ -12,6 +13,7 @@
     <StatsBar />
     <ScorePanel />
     <Well />
+    <LookupPrompt/>
     <Prompt />
     <InputPanel />
     <Keyboard />
