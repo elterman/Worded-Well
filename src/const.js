@@ -12,3 +12,5 @@ export const PROMPT_RESET_STATS = 'RESET STATS?';
 export const PROMPT_SURRENDER = 'START OVER?';
 export const STACK_CAPACITY = 14;
 export const TICK_MS = 20;
+export const MIN_POINTS = 10;
+export const MAX_POINTS = 100;

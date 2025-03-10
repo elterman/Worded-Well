@@ -1,9 +1,10 @@
 import { dict4 } from '$lib/dicts/dict4';
 import { dict5 } from '$lib/dicts/dict5';
 import { shuffle } from 'lodash-es';
-import { BACKSPACE, ESC, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
+import { BACKSPACE, ESC, MAX_POINTS, MIN_POINTS, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
 import { playSound } from './sound.svelte';
 import { clientRect, later } from './utils';
+import { _score } from './state.svelte';
 
 export const _sob = $state({
     page: START_PAGE,
@@ -57,6 +58,9 @@ export const calcDrop = (props = {}) => {
 const onOver = () => {
     killTimer();
     clearInput();
+
+    _score.plays += 1;
+    // TODO
 
     _sob.ticks = 0;
     _sob.task = null;
@@ -203,15 +207,35 @@ export const onKeyInput = (ch) => {
     _sob.input.push(ch);
     const word = _sob.input.join('');
 
+    const onSolved = (word) => {
+        clearInput();
+
+        const calcPoints = (ticks) => {
+            let points = MIN_POINTS;
+
+            if (ticks !== null) {
+                const max_ticks = _sob.max_travel_ms / TICK_MS;
+                const fr = Math.max(0, 1 - ticks / max_ticks);
+                points = Math.round(MAX_POINTS * fr);
+                points = Math.max(points, MIN_POINTS);
+            }
+
+            return points * (word.length === 4 ? 1 : 3);
+        };
+
+        _score.solved += 1;
+        _score.points += calcPoints(_sob.task.solved ? _sob.ticks : null);
+    };
+
     if (_sob.task.word === word) {
         playSound('coin1');
         killTimer();
         _sob.task.solved = true;
-        clearInput();
+        onSolved(word);
     } else if (_stack.top()?.word === word) {
         playSound('link1');
-        clearInput();
         _stack.tasks.shift();
+        onSolved(word);
     }
 };
 
@@ -240,6 +264,8 @@ export const onStart = () => {
 
     _sob.over = false;
     _stack.tasks = [];
+    _score.solved = 0;
+    _score.points = 0;
 
     makePool();
     nextTask({ delay: 300 });

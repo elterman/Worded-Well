@@ -1,5 +1,6 @@
 <script>
-    import { _score } from './score.svelte';
+    import { _score } from './state.svelte';
+
 </script>
 
 <div class="score-panel">

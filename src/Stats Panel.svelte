@@ -1,13 +1,14 @@
 <script>
+    import { _score } from './state.svelte';
 </script>
 
 <div class="stats-bar">
     <span class="label">PLAYS</span>
-    <span class="value">123</span>
+    <span class="value">{_score.plays}</span>
     <span class="label">BEST</span>
-    <span class="value">9876</span>
+    <span class="value">{_score.best}</span>
     <span class="label">AVE</span>
-    <span class="value">9876</span>
+    <span class="value">{_score.ave}</span>
 </div>
 
 <style>

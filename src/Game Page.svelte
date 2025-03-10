@@ -4,7 +4,7 @@
     import LookupPrompt from './Lookup Prompt.svelte';
     import Prompt from './Prompt.svelte';
     import ScorePanel from './Score Panel.svelte';
-    import StatsBar from './Stats Bar.svelte';
+    import StatsBar from './Stats Panel.svelte';
     import Toolbar from './Toolbar.svelte';
     import Well from './Well.svelte';
 </script>
