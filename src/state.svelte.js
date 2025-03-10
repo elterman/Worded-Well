@@ -21,6 +21,7 @@ export const _stack = $state({
 export const _score = $state({
     solved: 0,
     points: 0,
+    total_points: 0,
     plays: 0,
     best: 0,
     ave: 0,

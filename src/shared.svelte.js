@@ -59,9 +59,6 @@ const onOver = () => {
     killTimer();
     clearInput();
 
-    _score.plays += 1;
-    // TODO
-
     _sob.ticks = 0;
     _sob.task = null;
 
@@ -224,7 +221,14 @@ export const onKeyInput = (ch) => {
         };
 
         _score.solved += 1;
-        _score.points += calcPoints(_sob.task.solved ? _sob.ticks : null);
+        const points = calcPoints(_sob.task.solved ? _sob.ticks : null);
+        _score.points += points;
+        _score.total_points += points;
+        _score.ave = Math.round(_score.total_points / _score.plays);
+
+        if (_score.points > _score.best) {
+            _score.best = _score.points;
+        }
     };
 
     if (_sob.task.word === word) {
@@ -266,6 +270,7 @@ export const onStart = () => {
     _stack.tasks = [];
     _score.solved = 0;
     _score.points = 0;
+    _score.plays += 1;
 
     makePool();
     nextTask({ delay: 300 });
