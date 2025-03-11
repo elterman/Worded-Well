@@ -47,14 +47,8 @@
     };
 
     const onMode = () => {
+        playSound('draw', { rate: 4 });
         _sob.easy = !_sob.easy;
-
-        if (_sob.easy) {
-            playSound('draw', { rate: 4 });
-        } else {
-            playSound('lost', { rate: 3, volume: 0.5 });
-        }
-
         makePool();
     };
 </script>
