@@ -3,7 +3,7 @@ import { PROMPT_START, START_PAGE } from './const';
 export const _sob = $state({
     page: START_PAGE,
     input: [],
-    task_pool: [],
+    pool: [],
     max_travel_ms: 14500,
     lookup_prompt: true,
 });

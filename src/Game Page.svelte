@@ -1,4 +1,5 @@
 <script>
+    import Gain from './Gain.svelte';
     import InputPanel from './Input Panel.svelte';
     import Keyboard from './Keyboard.svelte';
     import LookupPrompt from './Lookup Prompt.svelte';
@@ -16,6 +17,7 @@
     <LookupPrompt />
     <Prompt />
     <InputPanel />
+    <Gain />
     <Keyboard />
     <Toolbar />
 </div>

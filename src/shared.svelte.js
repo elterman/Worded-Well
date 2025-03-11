@@ -7,7 +7,7 @@ import { _prompt, _score, _sob, _stack } from './state.svelte';
 import { clientRect, later } from './utils';
 
 export const calcDrop = (props = {}) => {
-    const { surrendering, onHitBottom } = props;
+    const { toBottom, onHitBottom } = props;
 
     if (!_sob.tile_sz) {
         return 0;
@@ -22,7 +22,7 @@ export const calcDrop = (props = {}) => {
         return 0;
     }
 
-    if (surrendering) {
+    if (toBottom) {
         return travelHi - rowHi;
     }
 
@@ -87,7 +87,8 @@ export const nextTask = ({ delay = 0 } = {}) => {
     killTimer();
 
     _sob.ticks = 0;
-    _sob.task = _sob.task_pool.pop();
+    _sob.task = _sob.pool.pop();
+    _sob.task.dob = Date.now();
 
     later(() => {
         startTimer();
@@ -169,6 +170,7 @@ export const onKeyInput = (ch) => {
     }
 
     if (keyDisabled(ch)) {
+        playSound('lost', { rate: 4 });
         return;
     }
 
@@ -183,44 +185,46 @@ export const onKeyInput = (ch) => {
         return;
     }
 
-    _sob.input.push(ch);
-    const word = _sob.input.join('');
-
-    const onSolved = (word) => {
+    const onSolved = (task, drop) => {
         clearInput();
 
-        const calcPoints = (ticks) => {
-            let points = MIN_POINTS;
+        const calcGain = () => {
+            const span = Date.now() - task.dob;
+            let fr = 1 - (span / _sob.max_travel_ms);
+            fr = Math.max(0, fr);
+            let gain = Math.round(MAX_POINTS * fr);
+            gain = Math.max(gain, MIN_POINTS);
+            gain *= task.word.length === 4 ? 1 : 3;
 
-            if (ticks !== null) {
-                const max_ticks = _sob.max_travel_ms / TICK_MS;
-                const fr = Math.max(0, 1 - ticks / max_ticks);
-                points = Math.round(MAX_POINTS * fr);
-                points = Math.max(points, MIN_POINTS);
-            }
-
-            return points * (word.length === 4 ? 1 : 3);
+            return gain;
         };
 
         _score.solved += 1;
-        const points = calcPoints(_sob.task.solved ? _sob.ticks : null);
+
+        const points = calcGain();
+        _score.gain = { points, drop };
         _score.points += points;
         _score.total_points += points;
 
         if (_score.points > _score.best) {
             _score.best = _score.points;
         }
+
+        later(() => _score.gain = null, 1000);
     };
+
+    _sob.input.push(ch);
+    const word = _sob.input.join('');
 
     if (_sob.task.word === word) {
         playSound('coin1');
         killTimer();
         _sob.task.solved = true;
-        onSolved(word);
+        onSolved(_sob.task, calcDrop());
     } else if (_stack.top()?.word === word) {
-        playSound('link1');
+        playSound('coin1');
+        onSolved(_stack.top(), calcDrop({ toBottom: true }) + _sob.tile_sz / 3);
         _stack.tasks.shift();
-        onSolved(word);
     }
 };
 
@@ -241,7 +245,7 @@ export const makePool = () => {
         return cipher;
     };
 
-    _sob.task_pool = shuffle(d.map((word) => ({ word, cipher: encode(word) })));
+    _sob.pool = shuffle(d.map((word) => ({ word, cipher: encode(word) })));
 };
 
 export const onStart = () => {
@@ -258,7 +262,7 @@ export const onStart = () => {
 };
 
 export const onSurrender = () => {
-    _sob.surrender_drop = calcDrop({ surrendering: true }) - calcDrop();
+    _sob.surrender_drop = calcDrop({ toBottom: true }) - calcDrop();
     addToStack();
     onOver();
 };
@@ -266,5 +270,5 @@ export const onSurrender = () => {
 export const onResetStats = () => {
     const gameOn = _sob.game_on && !_sob.over;
     _score.plays = gameOn ? 1 : 0;
-    _score.best = _score.total_points = gameOn ? _score.points : 0;
+    _score.best = _score.total_points = gameOn ? _score.gain.points : 0;
 };
