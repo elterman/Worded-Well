@@ -1,4 +1,4 @@
-import { PROMPT_START, START_PAGE, TICK_MS } from './const';
+import { PROMPT_START, START_PAGE } from './const';
 
 export const _sob = $state({
     page: START_PAGE,
@@ -21,8 +21,8 @@ export const _stack = $state({
 export const _score = $state({
     solved: 0,
     points: 0,
-    total_points: 0,
     plays: 0,
+    total_points: 0,
     best: 0,
-    ave: 0,
+    // ave: () => _score.plays ? Math.round(_score.total_points / _score.plays) : 0
 });

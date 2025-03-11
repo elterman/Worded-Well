@@ -1,28 +1,10 @@
 import { dict4 } from '$lib/dicts/dict4';
 import { dict5 } from '$lib/dicts/dict5';
 import { shuffle } from 'lodash-es';
-import { BACKSPACE, ESC, MAX_POINTS, MIN_POINTS, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, START_PAGE, TICK_MS } from './const';
+import { BACKSPACE, ESC, MAX_POINTS, MIN_POINTS, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, TICK_MS } from './const';
 import { playSound } from './sound.svelte';
+import { _prompt, _score, _sob, _stack } from './state.svelte';
 import { clientRect, later } from './utils';
-import { _score } from './state.svelte';
-
-export const _sob = $state({
-    page: START_PAGE,
-    input: [],
-    task_pool: [],
-    max_travel_ms: 14500,
-    lookup_prompt: true,
-});
-
-export const _prompt = $state({
-    id: PROMPT_START,
-    opacity: 1
-});
-
-export const _stack = $state({
-    tasks: [],
-    top: () => _stack.tasks.at(0),
-});
 
 export const calcDrop = (props = {}) => {
     const { surrendering, onHitBottom } = props;
@@ -224,7 +206,6 @@ export const onKeyInput = (ch) => {
         const points = calcPoints(_sob.task.solved ? _sob.ticks : null);
         _score.points += points;
         _score.total_points += points;
-        _score.ave = Math.round(_score.total_points / _score.plays);
 
         if (_score.points > _score.best) {
             _score.best = _score.points;
@@ -282,4 +263,8 @@ export const onSurrender = () => {
     onOver();
 };
 
-export const onResetStats = () => { };
+export const onResetStats = () => {
+    const gameOn = _sob.game_on && !_sob.over;
+    _score.plays = gameOn ? 1 : 0;
+    _score.best = _score.total_points = gameOn ? _score.points : 0;
+};
