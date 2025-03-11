@@ -223,7 +223,7 @@ export const onKeyInput = (ch) => {
         onSolved(_sob.task, calcDrop());
     } else if (_stack.top()?.word === word) {
         playSound('coin1');
-        onSolved(_stack.top(), calcDrop({ toBottom: true }) + _sob.tile_sz / 3);
+        onSolved(_stack.top(), calcDrop({ toBottom: true }) + _sob.tile_sz / 2);
         _stack.tasks.shift();
     }
 };
