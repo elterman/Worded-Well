@@ -1,7 +1,8 @@
 <script>
     import { fade } from 'svelte/transition';
     import Letter from './Letter.svelte';
-    import { _sob, nextTask } from './shared.svelte';
+    import { nextTask } from './shared.svelte';
+    import { _sob } from './state.svelte';
     import { quadIn } from 'svelte/easing';
     import { playSound } from './sound.svelte';
     import { later } from './utils';

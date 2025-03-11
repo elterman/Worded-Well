@@ -8,7 +8,8 @@
     import SoundOn from '$lib/images/Sound On.webp';
     import ToolButton from './Tool Button.svelte';
     import { PROMPT_RESET_STATS, PROMPT_SURRENDER, START_PAGE } from './const';
-    import { _prompt, _sob, makePool } from './shared.svelte';
+    import { makePool } from './shared.svelte';
+    import { _prompt, _sob } from './state.svelte';
     import { _sound, playSound } from './sound.svelte';
 
     const onBack = () => (_sob.page = START_PAGE);

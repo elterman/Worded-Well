@@ -2,7 +2,8 @@
     import { Motion } from 'svelte-motion';
     import { PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, X } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { _prompt, _sob, onResetStats, onStart, onSurrender } from './shared.svelte';
+    import { onResetStats, onStart, onSurrender } from './shared.svelte';
+    import { _prompt, _sob } from './state.svelte';
 
     const id = $derived(_prompt.id);
 

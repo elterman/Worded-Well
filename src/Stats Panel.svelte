@@ -8,7 +8,7 @@
     <span class="label">BEST</span>
     <span class="value">{_score.best}</span>
     <span class="label">AVE</span>
-    <!-- <span class="value">{_score.ave()}</span> -->
+    <span class="value">{_score.ave()}</span>
 </div>
 
 <style>

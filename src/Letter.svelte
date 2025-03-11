@@ -1,6 +1,6 @@
 <script>
     import { fade, fly } from 'svelte/transition';
-    import { _sob } from './shared.svelte';
+    import { _sob } from './state.svelte';
 
     const { ch, off = 0, input } = $props();
     const sz = input ? 30 : _sob.tile_sz;

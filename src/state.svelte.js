@@ -24,5 +24,5 @@ export const _score = $state({
     plays: 0,
     total_points: 0,
     best: 0,
-    // ave: () => _score.plays ? Math.round(_score.total_points / _score.plays) : 0
+    ave: () => _score.plays ? Math.round(_score.total_points / _score.plays) : 0
 });

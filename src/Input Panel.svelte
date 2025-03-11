@@ -1,6 +1,6 @@
 <script>
     import Letter from './Letter.svelte';
-    import { _prompt, _sob } from './shared.svelte';
+    import { _prompt, _sob } from './state.svelte';
 </script>
 
 <div class="input-panel {_prompt.opacity ? 'hidden' : ''}">

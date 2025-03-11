@@ -1,6 +1,6 @@
 <script>
     import { X } from './const';
-    import { _prompt } from './shared.svelte';
+    import { _prompt } from './state.svelte';
     import { later } from './utils';
 
     const { op } = $props();

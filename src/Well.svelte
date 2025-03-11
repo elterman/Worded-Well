@@ -1,6 +1,7 @@
 <script>
     import { STACK_CAPACITY, TICK_MS } from './const';
-    import { _sob, _stack, calcDrop } from './shared.svelte';
+    import { calcDrop } from './shared.svelte';
+    import { _sob, _stack } from './state.svelte';
     import TaskPanel from './Task Panel.svelte';
     import { clientRect, later } from './utils';
 

@@ -5,7 +5,7 @@
     import { fade } from 'svelte/transition';
     import ImageButton from './Image Button.svelte';
     import { GAME_PAGE } from './const';
-    import { _sob } from './shared.svelte';
+    import { _sob } from './state.svelte';
     import { focusOnApp, windowSize } from './utils';
     import { playSound } from './sound.svelte';
 

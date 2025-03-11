@@ -2,8 +2,9 @@
     import Erase from '$lib/images/Erase.webp';
     import { range } from 'lodash-es';
     import { BACKSPACE, SPACE } from './const';
-    import { _sob, keyDisabled, onKeyInput } from './shared.svelte';
+    import { keyDisabled, onKeyInput } from './shared.svelte';
     import { playSound } from './sound.svelte';
+    import { _sob } from './state.svelte';
     import { clientRect, isMobile, later } from './utils';
 
     const { ch } = $props();

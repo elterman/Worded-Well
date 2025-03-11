@@ -1,9 +1,10 @@
 <script>
     import { BACKSPACE, ESC, GAME_PAGE, RETURN, SPACE, START_PAGE } from '../const';
     import GamePage from '../Game Page.svelte';
-    import { _sob, onKeyInput } from '../shared.svelte';
+    import { onKeyInput } from '../shared.svelte';
     import Splash from '../Splash.svelte';
     import StartPage from '../Start Page.svelte';
+    import { _sob } from '../state.svelte';
     import { isAlpha, later } from '../utils';
 
     $effect(() => {

@@ -1,6 +1,6 @@
 <script>
     import { fade } from 'svelte/transition';
-    import { _sob } from './shared.svelte';
+    import { _sob } from './state.svelte';
     import { tapOrClick } from './utils';
 
     export const onClick = () => {
