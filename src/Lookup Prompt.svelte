@@ -30,4 +30,8 @@
         justify-items: center;
         cursor: pointer;
     }
+
+    span {
+        line-height: 1.5em;
+    }
 </style>

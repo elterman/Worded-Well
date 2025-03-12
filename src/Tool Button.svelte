@@ -94,6 +94,6 @@
         font-size: 12px;
         padding: 8px 12px 5px;
         border-radius: 50vh;
-        transform: translateY(-140%);
+        transform: translateY(-190%);
     }
 </style>
