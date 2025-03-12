@@ -8,6 +8,7 @@
     let tip = $state(false);
     let timer1 = $state(null);
     let timer2 = $state(null);
+    let timer3 = $state(false);
 
     const classes = $derived(['button-base button', { disabled }]);
     const style = $derived(`width: ${width}px; height: ${width}px; transform: scale(${scale})`);
@@ -44,14 +45,20 @@
     });
 
     const onPointerDown = () => {
+        if (timer3) {
+            return;
+        }
+
         scale = 0.7;
+
+        timer3 = later(() => (timer3 = null), 500);
     };
 </script>
 
 <button id={src} class={classes} tabindex={-1} onpointerdown={onPointerDown} {style}>
     {#if tooltip && tip}
         <div class="tooltip" transition:fade>
-            <span class='gradient-text'>{tooltip}</span>
+            <span class="gradient-text">{tooltip}</span>
         </div>
     {/if}
     <img class={disabled ? 'img-disabled' : 'img'} {src} alt="" {width} />
