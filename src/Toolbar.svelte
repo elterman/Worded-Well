@@ -51,12 +51,14 @@
         _sob.easy = !_sob.easy;
         makePool();
     };
+
+    const tooltip = $derived(`${_sob.easy ? 'less' : 'more'} difficult`)
 </script>
 
 <div class="toolbar">
     <ToolButton src={Back} onClick={onBack} />
     <ToolButton src={Restart} onClick={onSurrender} disabled={_sob.over || !_sob.game_on} />
-    <ToolButton src={_sob.easy ? Easy : Hard} onClick={onMode} />
+    <ToolButton src={_sob.easy ? Easy : Hard} onClick={onMode} tooltip={tooltip} />
     <ToolButton src={ResetStats} onClick={onResetStats} />
     <ToolButton src={_sound.on ? SoundOn : SoundOff} onClick={onSounds} />
 </div>

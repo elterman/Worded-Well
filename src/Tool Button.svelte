@@ -1,9 +1,14 @@
 <script>
+    import { fade } from 'svelte/transition';
     import { later } from './utils';
 
-    const { src, width = 40, disabled, onClick } = $props();
+    const { src, width = 40, disabled, onClick, tooltip } = $props();
 
     let scale = $state(1);
+    let tip = $state(false);
+    let timer1 = $state(null);
+    let timer2 = $state(null);
+
     const classes = $derived(['button-base button', { disabled }]);
     const style = $derived(`width: ${width}px; height: ${width}px; transform: scale(${scale})`);
 
@@ -18,17 +23,38 @@
             } else {
                 later(onClick);
             }
+
+            if (timer1 || timer2) {
+                return;
+            }
+
+            timer1 = later(() => {
+                timer1 = null;
+                tip = true;
+
+                timer2 = later(() => {
+                    timer2 = null;
+                    tip = false;
+                }, 1500);
+            });
         };
 
         window.addEventListener('transitionend', onTransitionEnd);
         return () => window.removeEventListener('transitionend', onTransitionEnd);
     });
 
-    const onPointerDown = () => (scale = 0.7);
+    const onPointerDown = () => {
+        scale = 0.7;
+    };
 </script>
 
 <button id={src} class={classes} tabindex={-1} onpointerdown={onPointerDown} {style}>
-    <img class={disabled ? 'img-disabled' : ''} {src} alt="" {width} />
+    {#if tooltip && tip}
+        <div class="tooltip" transition:fade>
+            <span>{tooltip}</span>
+        </div>
+    {/if}
+    <img class={disabled ? 'img-disabled' : 'img'} {src} alt="" {width} />
 </button>
 
 <style>
@@ -36,6 +62,8 @@
         place-self: center;
         border-radius: 5px;
         box-shadow: 2px 2px 3px black;
+        display: grid;
+        place-items: center;
     }
 
     .disabled {
@@ -47,8 +75,33 @@
         outline: none !important;
     }
 
+    .img,
+    .img-disabled {
+        grid-area: 1/1;
+    }
+
     .img-disabled {
         filter: sepia(1);
         opacity: 0.6;
+    }
+
+    .tooltip {
+        grid-area: 1/1;
+        display: grid;
+        border: none;
+        background: #202020;
+        font-family: Amnestia;
+        font-size: 12px;
+        padding: 8px 12px 5px;
+        border-radius: 50vh;
+        transform: translateY(-140%);
+    }
+
+    span {
+        background: -webkit-linear-gradient(#f3d97b, #df7842 150%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-wrap-mode: nowrap;
     }
 </style>
