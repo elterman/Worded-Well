@@ -1,13 +1,13 @@
 <script>
-    import { _score } from './state.svelte';
+    import { _stats } from './state.svelte';
     import NumberFlow from '@number-flow/svelte';
 </script>
 
 <div class="panel">
     <span class="label">SOLVED</span>
-    <span class="value"><NumberFlow value={_score.solved}/></span>
+    <span class="value"><NumberFlow value={_stats.solved}/></span>
     <span class="label">SCORE</span>
-    <span class="value"><NumberFlow value={_score.points || 0}/></span>
+    <span class="value"><NumberFlow value={_stats.points || 0}/></span>
 </div>
 
 <style>

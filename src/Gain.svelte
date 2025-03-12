@@ -1,11 +1,11 @@
 <script>
     import { fade } from 'svelte/transition';
-    import { _score } from './state.svelte';
+    import { _stats } from './state.svelte';
 </script>
 
-{#if _score.gain}
-    <div class="gain" transition:fade={{ duration: 300 }} style="transform: translateY({_score.gain.drop}px)">
-        {`+${_score.gain.points}`}
+{#if _stats.gain}
+    <div class="gain" transition:fade={{ duration: 300 }} style="transform: translateY({_stats.gain.drop}px)">
+        {`+${_stats.gain.points}`}
     </div>
 {/if}
 

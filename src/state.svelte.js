@@ -18,11 +18,11 @@ export const _stack = $state({
     top: () => _stack.tasks.at(0),
 });
 
-export const _score = $state({
+export const _stats = $state({
     solved: 0,
     points: 0,
     plays: 0,
     total_points: 0,
     best: 0,
-    ave: () => _score.plays ? Math.round(_score.total_points / _score.plays) : 0
+    ave: () => _stats.plays ? Math.round(_stats.total_points / _stats.plays) : 0
 });

@@ -4,10 +4,24 @@
     import Title from '$lib/images/Title.webp';
     import { fade } from 'svelte/transition';
     import ImageButton from './Image Button.svelte';
-    import { GAME_PAGE } from './const';
-    import { _sob } from './state.svelte';
-    import { focusOnApp, windowSize } from './utils';
+    import { APP_STATE, GAME_PAGE } from './const';
+    import { _sob, _stats } from './state.svelte';
+    import { focusOnApp, later, windowSize } from './utils';
     import { playSound } from './sound.svelte';
+    import { onMount } from 'svelte';
+
+    onMount(() => {
+        later(() => {
+            const json = localStorage.getItem(APP_STATE);
+            const job = JSON.parse(json);
+
+            if (job) {
+                _stats.plays = job.plays;
+                _stats.total_points = job.total_points;
+                _stats.best = job.best;
+            }
+        }, 2000);
+    });
 
     let width = $state(0);
 
@@ -36,7 +50,7 @@
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
     <ImageButton src={Play} width={60} onClick={onPlay} {style} />
-    <div class="version">0311</div>
+    <div class="version">2209</div>
 </div>
 
 <style>

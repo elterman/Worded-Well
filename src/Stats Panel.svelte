@@ -1,15 +1,15 @@
 <script>
     import NumberFlow from '@number-flow/svelte';
-    import { _score } from './state.svelte';
+    import { _stats } from './state.svelte';
 </script>
 
 <div class="panel">
     <span class="label">PLAYS</span>
-    <span class="value"><NumberFlow value={_score.plays}/></span>
+    <span class="value"><NumberFlow value={_stats.plays}/></span>
     <span class="label">BEST</span>
-    <span class="value"><NumberFlow value={_score.best}/></span>
+    <span class="value"><NumberFlow value={_stats.best}/></span>
     <span class="label">AVE</span>
-    <span class="value"><NumberFlow value={_score.ave()}/></span>
+    <span class="value"><NumberFlow value={_stats.ave()}/></span>
 </div>
 
 <style>

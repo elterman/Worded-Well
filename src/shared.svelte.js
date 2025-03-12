@@ -1,9 +1,9 @@
 import { dict4 } from '$lib/dicts/dict4';
 import { dict5 } from '$lib/dicts/dict5';
 import { shuffle } from 'lodash-es';
-import { BACKSPACE, ESC, MAX_POINTS, MIN_POINTS, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, TICK_MS } from './const';
+import { APP_STATE, BACKSPACE, ESC, MAX_POINTS, MIN_POINTS, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, TICK_MS } from './const';
 import { playSound } from './sound.svelte';
-import { _prompt, _score, _sob, _stack } from './state.svelte';
+import { _prompt, _stats, _sob, _stack } from './state.svelte';
 import { clientRect, later } from './utils';
 
 export const calcDrop = (props = {}) => {
@@ -199,18 +199,20 @@ export const onKeyInput = (ch) => {
             return gain;
         };
 
-        _score.solved += 1;
+        _stats.solved += 1;
 
         const points = calcGain();
-        _score.gain = { points, drop };
-        _score.points += points;
-        _score.total_points += points;
+        _stats.gain = { points, drop };
+        _stats.points += points;
+        _stats.total_points += points;
 
-        if (_score.points > _score.best) {
-            _score.best = _score.points;
+        if (_stats.points > _stats.best) {
+            _stats.best = _stats.points;
         }
 
-        later(() => _score.gain = null, 1000);
+        persist();
+
+        later(() => _stats.gain = null, 1000);
     };
 
     _sob.input.push(ch);
@@ -253,9 +255,11 @@ export const onStart = () => {
 
     _sob.over = false;
     _stack.tasks = [];
-    _score.solved = 0;
-    _score.points = 0;
-    _score.plays += 1;
+
+    _stats.solved = 0;
+    _stats.points = 0;
+    _stats.plays += 1;
+    persist();
 
     makePool();
     nextTask({ delay: 300 });
@@ -269,6 +273,14 @@ export const onSurrender = () => {
 
 export const onResetStats = () => {
     const gameOn = _sob.game_on && !_sob.over;
-    _score.plays = gameOn ? 1 : 0;
-    _score.best = _score.total_points = gameOn ? _score.gain.points : 0;
+    _stats.plays = gameOn ? 1 : 0;
+    _stats.best = _stats.total_points = gameOn ? _stats.gain.points : 0;
+    persist();
+};
+
+export const persist = () => {
+    const {plays, total_points, best} = _stats;
+    const json = JSON.stringify({plays, total_points, best});
+    localStorage.setItem(APP_STATE, json);
+
 };
