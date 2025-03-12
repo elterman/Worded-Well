@@ -1,21 +1,22 @@
 <script>
     import { _score } from './state.svelte';
-
+    import NumberFlow from '@number-flow/svelte';
 </script>
 
-<div class="score-panel">
+<div class="panel">
     <span class="label">SOLVED</span>
-    <span class="value">{_score.solved}</span>
+    <span class="value"><NumberFlow value={_score.solved}/></span>
     <span class="label">SCORE</span>
-    <span class="value">{_score.points}</span>
+    <span class="value"><NumberFlow value={_score.points || 0}/></span>
 </div>
 
 <style>
-    .score-panel {
+    .panel {
         grid-area: 2/1;
         place-self: center;
         display: grid;
         grid-auto-flow: column;
+        align-items: center;
         padding: 5px 0 2px;
         font-family: Amnestia;
         font-size: 13px;

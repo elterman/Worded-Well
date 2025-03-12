@@ -1,22 +1,24 @@
 <script>
+    import NumberFlow from '@number-flow/svelte';
     import { _score } from './state.svelte';
 </script>
 
-<div class="stats-bar">
+<div class="panel">
     <span class="label">PLAYS</span>
-    <span class="value">{_score.plays}</span>
+    <span class="value"><NumberFlow value={_score.plays}/></span>
     <span class="label">BEST</span>
-    <span class="value">{_score.best}</span>
+    <span class="value"><NumberFlow value={_score.best}/></span>
     <span class="label">AVE</span>
-    <span class="value">{_score.ave()}</span>
+    <span class="value"><NumberFlow value={_score.ave()}/></span>
 </div>
 
 <style>
-    .stats-bar {
+    .panel {
         place-self: center;
         grid-area: 1/1;
         display: grid;
         grid-auto-flow: column;
+        align-items: center;
         padding: 8px 0 5px;
         font-family: Amnestia;
         font-size: 10.5px;
