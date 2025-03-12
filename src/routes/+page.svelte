@@ -109,7 +109,15 @@
         .button-base:focus {
             outline: none !important;
         }
+
+        .gradient-text {
+        background: -webkit-linear-gradient(#f3d97b, #df7842 150%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-wrap-mode: nowrap;
     }
+ }
 
     .app {
         display: grid;

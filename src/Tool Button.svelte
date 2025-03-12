@@ -51,7 +51,7 @@
 <button id={src} class={classes} tabindex={-1} onpointerdown={onPointerDown} {style}>
     {#if tooltip && tip}
         <div class="tooltip" transition:fade>
-            <span>{tooltip}</span>
+            <span class='gradient-text'>{tooltip}</span>
         </div>
     {/if}
     <img class={disabled ? 'img-disabled' : 'img'} {src} alt="" {width} />
@@ -95,13 +95,5 @@
         padding: 8px 12px 5px;
         border-radius: 50vh;
         transform: translateY(-140%);
-    }
-
-    span {
-        background: -webkit-linear-gradient(#f3d97b, #df7842 150%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-wrap-mode: nowrap;
     }
 </style>
