@@ -1,3 +1,4 @@
+export const APP_VERSION = 'WW V1';
 export const START_PAGE = 'START PAGE';
 export const GAME_PAGE = 'GAME PAGE';
 export const RETURN = '\u21B5';
