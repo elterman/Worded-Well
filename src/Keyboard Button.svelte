@@ -1,3 +1,7 @@
+<script module>
+    import Device from 'svelte-device-info';
+</script>
+
 <script>
     import Erase from '$lib/images/Erase.webp';
     import { range } from 'lodash-es';
@@ -5,13 +9,13 @@
     import { keyDisabled, onKeyInput } from './shared.svelte';
     import { playSound } from './sound.svelte';
     import { _sob } from './state.svelte';
-    import { clientRect, isMobile, later } from './utils';
+    import { clientRect, later } from './utils';
 
     const { ch } = $props();
 
     let timer = $state(null);
 
-    const mobile = isMobile();
+    const mobile = Device.isMobile;
     const bs = ch === BACKSPACE;
     const space = ch === SPACE;
     const disabled = $derived(keyDisabled(ch));
@@ -49,7 +53,7 @@
     };
 </script>
 
-<button
+<div
     class={['button-base', { mobile }, { button: !mobile }, { bs }, { disabled }]}
     style="width: {width}px"
     onpointerdown={onPointerDown}
@@ -59,12 +63,12 @@
             <img src={Erase} alt="erase" width={27} />
         {:else if space}
             <div>CLEAR</div>
-            <div>{isMobile() ? 'ALL' : '(SPACE)'}</div>
+            <div>{mobile ? 'ALL' : '(SPACE)'}</div>
         {:else}
             {ch}
         {/if}
     </span>
-</button>
+</div>
 
 <style>
     .button,

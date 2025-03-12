@@ -23,14 +23,9 @@
     });
 </script>
 
-<button
-    id={src}
-    class="button-base button"
-    tabindex={-1}
-    onpointerdown={() => (scale = 0.7)}
-    style="{style}; transform: scale({scale})">
+<div id={src} class="button-base button" onpointerdown={() => (scale = 0.7)} style="{style}; transform: scale({scale})">
     <img {src} alt="" {width} />
-</button>
+</div>
 
 <style>
     .button {

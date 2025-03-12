@@ -24,8 +24,3 @@ export const isAlpha = (char) => /^[a-z]$/i.test(char);
 export const isMobile = () => /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent || navigator.vendor || window.opera);
 
 export const later = (fn, ms) => setTimeout(fn, ms);
-
-export const tapOrClick = (lower = false) => {
-    const verb = isMobile() ? 'Tap' : 'Click';
-    return lower ? verb.toLowerCase() : verb;
-};

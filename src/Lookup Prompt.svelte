@@ -1,7 +1,7 @@
 <script>
     import { fade } from 'svelte/transition';
     import { _sob } from './state.svelte';
-    import { tapOrClick } from './utils';
+    import { tapOrClick } from './shared.svelte';
 
     export const onClick = () => {
         _sob.lookup_prompt = false;
@@ -9,10 +9,10 @@
 </script>
 
 {#if _sob.over  && _sob.lookup_prompt}
-    <button class="prompt" tabindex={-1} transition:fade onclick={onClick}>
+    <div class="prompt" transition:fade onpointerup={onClick}>
         <span class='gradient-text'>{`${tapOrClick()} on a word to`}</span>
         <span class='gradient-text'>look up its definition</span>
-    </button>
+    </div>
 {/if}
 
 <style>

@@ -28,11 +28,11 @@
     });
 </script>
 
-<button id={op.label} class={['button-base button', { x }]} {style} tabindex={-1} onpointerdown={() => (scale = 0.8)}>
+<div id={op.label} class={['button-base button', { x }]} {style} onpointerdown={() => (scale = 0.8)}>
     <span class="label">
         {op.label}
     </span>
-</button>
+</div>
 
 <style>
     .button {

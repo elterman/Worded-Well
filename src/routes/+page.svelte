@@ -128,6 +128,7 @@
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
         user-select: none;
+        overflow: hidden;
     }
 
     .vignette {

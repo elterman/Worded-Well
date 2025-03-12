@@ -55,14 +55,14 @@
     };
 </script>
 
-<button id={src} class={classes} tabindex={-1} onpointerdown={onPointerDown} {style}>
+<div id={src} class={classes} onpointerdown={onPointerDown} {style}>
     {#if tooltip && tip}
         <div class="tooltip" transition:fade>
             <span class="gradient-text">{tooltip}</span>
         </div>
     {/if}
     <img class={disabled ? 'img-disabled' : 'img'} {src} alt="" {width} />
-</button>
+</div>
 
 <style>
     .button {
