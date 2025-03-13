@@ -8,8 +8,12 @@
     import { isAlpha, later } from '../utils';
 
     $effect(() => {
-        const disable = (e) => e.preventDefault();
+        const disable = (e) => {
+            e.preventDefault();
+        };
+
         window.addEventListener('contextmenu', disable);
+        window.addEventListener('dblclick', disable);
 
         const onKeyDown = (e) => {
             if (e.altKey || e.shiftKey || e.ctrlKey) {
@@ -40,6 +44,7 @@
 
         return () => {
             window.removeEventListener('contextmenu', disable);
+            window.removeEventListener('dblclick', disable);
             window.removeEventListener('keydown', onKeyDown);
         };
     });
@@ -129,6 +134,7 @@
         background-size: 250px;
         user-select: none;
         overflow: hidden;
+        touch-action: manipulation;
     }
 
     .vignette {

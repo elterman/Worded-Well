@@ -1,11 +1,10 @@
 import { dict4 } from '$lib/dicts/dict4';
 import { dict5 } from '$lib/dicts/dict5';
 import { shuffle } from 'lodash-es';
-import Device from 'svelte-device-info';
 import { APP_STATE, BACKSPACE, ESC, MAX_POINTS, MIN_POINTS, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, RETURN, SPACE, STACK_CAPACITY, TICK_MS } from './const';
 import { playSound } from './sound.svelte';
 import { _prompt, _sob, _stack, _stats } from './state.svelte';
-import { clientRect, later } from './utils';
+import { clientRect, isTouchDevice, later } from './utils';
 
 export const calcDrop = (props = {}) => {
     const { toBottom, onHitBottom } = props;
@@ -287,6 +286,6 @@ export const persist = () => {
 };
 
 export const tapOrClick = (lower = false) => {
-    const verb = Device.isMobile ? 'Tap' : 'Click';
+    const verb = isTouchDevice() ? 'Tap' : 'Click';
     return lower ? verb.toLowerCase() : verb;
 };

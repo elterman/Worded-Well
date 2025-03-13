@@ -1,7 +1,3 @@
-<script module>
-    import Device from 'svelte-device-info';
-</script>
-
 <script>
     import Erase from '$lib/images/Erase.webp';
     import { range } from 'lodash-es';
@@ -9,13 +5,13 @@
     import { keyDisabled, onKeyInput } from './shared.svelte';
     import { playSound } from './sound.svelte';
     import { _sob } from './state.svelte';
-    import { clientRect, later } from './utils';
+    import { clientRect, isTouchDevice, later } from './utils';
 
     const { ch } = $props();
 
     let timer = $state(null);
 
-    const mobile = Device.isMobile;
+    const touchable = isTouchDevice();
     const bs = ch === BACKSPACE;
     const space = ch === SPACE;
     const disabled = $derived(keyDisabled(ch));
@@ -54,7 +50,7 @@
 </script>
 
 <div
-    class={['button-base', { mobile }, { button: !mobile }, { bs }, { disabled }]}
+    class={['button-base', { touchable }, { button: !touchable }, { bs }, { disabled }]}
     style="width: {width}px"
     onpointerdown={onPointerDown}
     onpointerup={onPointerUp}>
@@ -63,7 +59,7 @@
             <img src={Erase} alt="erase" width={27} />
         {:else if space}
             <div>CLEAR</div>
-            <div>{mobile ? 'ALL' : '(SPACE)'}</div>
+            <div>{touchable ? 'ALL' : '(SPACE)'}</div>
         {:else}
             {ch}
         {/if}
@@ -72,7 +68,7 @@
 
 <style>
     .button,
-    .mobile {
+    .touchable {
         place-items: center;
         height: 44px;
         font-family: Roboto;
@@ -86,7 +82,7 @@
         color: firebrick;
     }
 
-    .mobile:hover {
+    .touchable:hover {
         background: #ffffffe8;
         color: var(--button-text-color);
     }

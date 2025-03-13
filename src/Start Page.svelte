@@ -1,7 +1,3 @@
-<script module>
-    import Device from 'svelte-device-info';
-</script>
-
 <script>
     import Intro from '$lib/images/Intro.webp';
     import Play from '$lib/images/Play.webp';
@@ -12,7 +8,7 @@
     import { APP_STATE, GAME_PAGE } from './const';
     import { playSound } from './sound.svelte';
     import { _sob, _stats } from './state.svelte';
-    import { focusOnApp, later, windowSize } from './utils';
+    import { focusOnApp, isTouchDevice, later, windowSize } from './utils';
 
     onMount(() => {
         later(() => {
@@ -54,12 +50,12 @@
     <img class="shadow" src={Title} alt="" {width} />
     <img src={Intro} alt="" {width} />
     <ImageButton src={Play} width={60} onClick={onPlay} {style} />
-    <div class="version">{Device.isMobile}</div>
+    <div class="version">{isTouchDevice()}</div>
 </div>
 
 <style>
     .version {
-        /* display: none; */
+        display: none;
         position: absolute;
         right: 10px;
         top: 10px;

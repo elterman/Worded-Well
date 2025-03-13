@@ -21,6 +21,6 @@ export const focusOnApp = () => {
 
 export const isAlpha = (char) => /^[a-z]$/i.test(char);
 
-export const isMobile = () => /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent || navigator.vendor || window.opera);
+export const isTouchDevice = () => navigator.maxTouchPoints > 0;
 
 export const later = (fn, ms) => setTimeout(fn, ms);
