@@ -9,7 +9,7 @@
     import ToolButton from './Tool Button.svelte';
     import { PROMPT_RESET_STATS, PROMPT_SURRENDER, START_PAGE } from './const';
     import { makePool } from './shared.svelte';
-    import { _prompt, _sob } from './state.svelte';
+    import { _prompt, _sob, _stats } from './state.svelte';
     import { _sound, playSound } from './sound.svelte';
 
     const onBack = () => (_sob.page = START_PAGE);
@@ -52,14 +52,17 @@
         makePool();
     };
 
-    const tooltip = $derived(`${_sob.easy ? 'less' : 'more'} difficult`)
+    const tooltip = $derived(`${_sob.easy ? 'less' : 'more'} difficult`);
+
+    const canResetStats = $derived(_stats.plays > 1 || (_stats.plays === 1 && (!_sob.game_on || _sob.over)));
+    $inspect(canResetStats);
 </script>
 
 <div class="toolbar">
     <ToolButton src={Back} onClick={onBack} />
     <ToolButton src={Restart} onClick={onSurrender} disabled={_sob.over || !_sob.game_on} />
-    <ToolButton src={_sob.easy ? Easy : Hard} onClick={onMode} tooltip={tooltip} />
-    <ToolButton src={ResetStats} onClick={onResetStats} />
+    <ToolButton src={_sob.easy ? Easy : Hard} onClick={onMode} {tooltip} />
+    <ToolButton src={ResetStats} onClick={onResetStats} disabled={!canResetStats} />
     <ToolButton src={_sound.on ? SoundOn : SoundOff} onClick={onSounds} />
 </div>
 

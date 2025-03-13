@@ -279,8 +279,8 @@ export const onResetStats = () => {
 };
 
 export const persist = () => {
-    const {plays, total_points, best} = _stats;
-    const json = JSON.stringify({plays, total_points, best});
+    const { plays, total_points, best } = _stats;
+    const json = JSON.stringify({ plays, total_points, best });
     localStorage.setItem(APP_STATE, json);
 
 };
