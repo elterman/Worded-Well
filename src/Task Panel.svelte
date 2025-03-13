@@ -1,10 +1,10 @@
 <script>
+    import { quadIn } from 'svelte/easing';
     import { fade } from 'svelte/transition';
     import Letter from './Letter.svelte';
-    import { nextTask } from './shared.svelte';
-    import { _sob } from './state.svelte';
-    import { quadIn } from 'svelte/easing';
+    import { hideLookupPrompt, nextTask } from './shared.svelte';
     import { playSound } from './sound.svelte';
+    import { _sob } from './state.svelte';
     import { later } from './utils';
 
     let { task, index = null } = $props();
@@ -45,10 +45,6 @@
     const onDropEnd = () => {
         _sob.surrender_drop = 0;
     };
-
-    export const onLookup = () => {
-        _sob.lookup_prompt = false;
-    };
 </script>
 
 <div class="container">
@@ -67,7 +63,7 @@
     {#if index !== null && _sob.over}
         <!-- svelte-ignore a11y_consider_explicit_label -->
         <a class="url" href={url} target="_blank" rel="noopener noreferrer" tabIndex={-1}
-        onpointerdown={onLookup}></a>
+        onpointerdown={hideLookupPrompt}></a>
     {/if}
 </div>
 

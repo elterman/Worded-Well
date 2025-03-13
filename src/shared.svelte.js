@@ -278,9 +278,15 @@ export const onResetStats = () => {
     persist();
 };
 
+export const hideLookupPrompt = () => {
+    _sob.lookup_prompt = false;
+    persist();
+};
+
 export const persist = () => {
+    const { lookup_prompt } = _sob;
     const { plays, total_points, best } = _stats;
-    const json = JSON.stringify({ plays, total_points, best });
+    const json = JSON.stringify({ plays, total_points, best, lookup_prompt });
     localStorage.setItem(APP_STATE, json);
 
 };

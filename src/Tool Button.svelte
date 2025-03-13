@@ -102,5 +102,6 @@
         padding: 8px 12px 5px;
         border-radius: 50vh;
         transform: translateY(-190%);
+        text-wrap-mode: nowrap;
     }
 </style>

@@ -19,6 +19,7 @@
                 _stats.plays = job.plays;
                 _stats.total_points = job.total_points;
                 _stats.best = job.best;
+                _sob.lookup_prompt = job.lookup_prompt;
             }
         }, 2000);
     });
