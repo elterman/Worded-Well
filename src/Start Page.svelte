@@ -63,7 +63,7 @@
         <img class="shadow" src={Title} alt="" {width} />
         <img src={Intro} alt="" {width} />
         <ImageButton src={Play} width={60} onClick={onPlay} {style} />
-        <div class="version">0313</div>
+        <div class="version">1306</div>
     </div>
 </div>
 
@@ -88,7 +88,7 @@
     }
 
     .version {
-        display: none;
+        /* display: none; */
         position: absolute;
         right: 10px;
         top: 10px;
