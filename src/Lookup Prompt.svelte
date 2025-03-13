@@ -8,25 +8,22 @@
     };
 </script>
 
-{#if _sob.over  && _sob.lookup_prompt}
-    <div class="prompt" transition:fade onpointerup={onClick}>
-        <span class='gradient-text'>{`${tapOrClick()} on a word to`}</span>
-        <span class='gradient-text'>look up its definition</span>
+{#if _sob.over && _sob.lookup_prompt}
+    <div class="prompt" transition:fade onpointerdown={onClick}>
+        <span class="gradient-text">{`${tapOrClick()} on a word to look up its definition`}</span>
     </div>
 {/if}
 
 <style>
     .prompt {
+        z-index: 1;
         place-self: center;
-        grid-area: 3/1;
-        display: grid;
-        border: none;
+        grid-area: 5/1;
         background: #000000c0;
         font-family: Amnestia;
         font-size: 12px;
-        z-index: 100;
-        width: 200px;
-        padding: 8px 0 5px;
+        padding: 8px 12px 5px;
+        border-radius: 50vh;
         justify-items: center;
         cursor: pointer;
     }

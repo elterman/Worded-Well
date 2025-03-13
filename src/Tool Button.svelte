@@ -96,7 +96,7 @@
         grid-area: 1/1;
         display: grid;
         border: none;
-        background: #202020;
+        background: #000000c0;
         font-family: Amnestia;
         font-size: 12px;
         padding: 8px 12px 5px;
