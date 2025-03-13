@@ -5,13 +5,13 @@
     import { keyDisabled, onKeyInput } from './shared.svelte';
     import { playSound } from './sound.svelte';
     import { _sob } from './state.svelte';
-    import { clientRect, isTouchDevice, later } from './utils';
+    import { clientRect, isTouchable, later } from './utils';
 
     const { ch } = $props();
 
     let timer = $state(null);
 
-    const touchable = isTouchDevice();
+    const touchable = isTouchable();
     const bs = ch === BACKSPACE;
     const space = ch === SPACE;
     const disabled = $derived(keyDisabled(ch));

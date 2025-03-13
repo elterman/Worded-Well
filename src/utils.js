@@ -21,6 +21,6 @@ export const focusOnApp = () => {
 
 export const isAlpha = (char) => /^[a-z]$/i.test(char);
 
-export const isTouchDevice = () => navigator.maxTouchPoints > 0;
+export const isTouchable = () => navigator.maxTouchPoints > 0;
 
 export const later = (fn, ms) => setTimeout(fn, ms);
