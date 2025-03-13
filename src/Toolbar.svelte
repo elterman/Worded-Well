@@ -55,7 +55,6 @@
     const tooltip = $derived(`${_sob.easy ? 'less' : 'more'} difficult`);
 
     const canResetStats = $derived(_stats.plays > 1 || (_stats.plays === 1 && (!_sob.game_on || _sob.over)));
-    $inspect(canResetStats);
 </script>
 
 <div class="toolbar">
