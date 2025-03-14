@@ -135,6 +135,7 @@
         user-select: none;
         overflow: hidden;
         touch-action: manipulation;
+        outline: none !important;
     }
 
     .vignette {
