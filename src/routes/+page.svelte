@@ -2,6 +2,7 @@
     import { BACKSPACE, ESC, GAME_PAGE, RETURN, SPACE, START_PAGE } from '../const';
     import GamePage from '../Game Page.svelte';
     import { onKeyInput } from '../shared.svelte';
+    import { playSound } from '../sound.svelte';
     import Splash from '../Splash.svelte';
     import StartPage from '../Start Page.svelte';
     import { _sob } from '../state.svelte';
@@ -33,6 +34,8 @@
                 ch = ESC;
             } else if (ch === 'ENTER') {
                 ch = RETURN;
+            } else if (ch === SPACE) {
+                playSound('link2');
             }
 
             if (isAlpha(ch) || ch === SPACE || ch === BACKSPACE || ch === RETURN || ch === ESC) {

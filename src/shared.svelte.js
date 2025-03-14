@@ -160,7 +160,6 @@ export const onKeyInput = (ch) => {
     }
 
     if (ch === SPACE) {
-        playSound('link2');
         _sob.input = [];
         return;
     }

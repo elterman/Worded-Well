@@ -30,7 +30,9 @@
         playSound('tap');
         onKeyInput(ch);
 
-        if (bs) {
+        if (space) {
+            playSound('link2');
+        } else if (bs) {
             timer = later(() => {
                 for (const i in range(_sob.input.length)) {
                     later(() => playSound('tap'), i * 35);
