@@ -63,8 +63,8 @@
         <img class="shadow" src={Title} alt="" {width} />
         <img src={Intro} alt="" {width} />
         <ImageButton src={Play} width={60} onClick={onPlay} {style} />
-        <div class="version">1306</div>
     </div>
+    <div class="version">2215</div>
 </div>
 
 <style>
@@ -90,10 +90,9 @@
     .version {
         /* display: none; */
         position: absolute;
+        bottom: 10px;
         right: 10px;
-        top: 10px;
-        background: #000000b0;
-        color: white;
+        color: var(--gold);
         padding: 6px 15px 3px;
         border-radius: 50vh;
         font-family: Amnestia;
