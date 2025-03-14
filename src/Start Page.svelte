@@ -88,7 +88,7 @@
     }
 
     .version {
-        /* display: none; */
+        display: none;
         position: absolute;
         bottom: 10px;
         right: 10px;
