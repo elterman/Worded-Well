@@ -69,7 +69,7 @@
 
 <style>
     .page {
-        height: 100vh;
+        height: 100dvh;
         grid-area: 1/1;
         display: grid;
         background-image: url('$lib/images/Stone Wall.webp');
