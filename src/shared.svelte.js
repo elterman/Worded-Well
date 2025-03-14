@@ -130,7 +130,7 @@ export const onKeyInput = (ch) => {
     const unprompt = () => {
         const id = _prompt.id;
 
-        if (id === PROMPT_START || id === PROMPT_PLAY_AGAIN || id === PROMPT_SURRENDER || id === PROMPT_RESET_STATS) {
+        if (id === PROMPT_START || id === PROMPT_SURRENDER || id === PROMPT_RESET_STATS) {
             _prompt.opacity = 0;
         }
     };
@@ -208,6 +208,10 @@ export const onKeyInput = (ch) => {
 
         if (_stats.points > _stats.best) {
             _stats.best = _stats.points;
+
+            if (_stats.plays > 1) {
+                _stats.hit_ath = true;
+            }
         }
 
         persist();
@@ -256,6 +260,7 @@ export const onStart = () => {
     _sob.over = false;
     _stack.tasks = [];
 
+    _stats.hit_ath = false;
     _stats.solved = 0;
     _stats.points = 0;
     _stats.plays += 1;

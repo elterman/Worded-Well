@@ -1,9 +1,16 @@
 <script>
     import { Motion } from 'svelte-motion';
-    import { PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_START, PROMPT_SURRENDER, X } from './const';
+    import {
+        PROMPT_BEST_SCORE,
+        PROMPT_PLAY_AGAIN,
+        PROMPT_RESET_STATS,
+        PROMPT_START,
+        PROMPT_SURRENDER,
+        X,
+    } from './const';
     import PromptPanel from './Prompt Panel.svelte';
     import { onResetStats, onStart, onSurrender } from './shared.svelte';
-    import { _prompt, _sob } from './state.svelte';
+    import { _prompt, _sob, _stats } from './state.svelte';
 
     const id = $derived(_prompt.id);
 
@@ -36,11 +43,11 @@
             {#if id === PROMPT_START}
                 <PromptPanel ops={[{ label: PROMPT_START, onClick: onStart }]} />
             {:else if id === PROMPT_PLAY_AGAIN}
-                <PromptPanel ops={[{ label: PROMPT_PLAY_AGAIN, onClick: onStart }]} />
+                <PromptPanel ops={[{ label: _stats.hit_ath ? PROMPT_BEST_SCORE : id, onClick: onStart }]} />
             {:else if id === PROMPT_SURRENDER}
-                <PromptPanel ops={[{ label: PROMPT_SURRENDER, onClick: onSurrender }, { label: X }]} />
+                <PromptPanel ops={[{ label: id, onClick: onSurrender }, { label: X }]} />
             {:else if id === PROMPT_RESET_STATS}
-                <PromptPanel ops={[{ label: PROMPT_RESET_STATS, onClick: onResetStats }, { label: X }]} />
+                <PromptPanel ops={[{ label: id, onClick: onResetStats }, { label: X }]} />
             {/if}
         </div>
     </Motion>

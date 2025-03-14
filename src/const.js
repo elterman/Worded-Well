@@ -8,6 +8,7 @@ export const DIG = '\u20E3';
 export const SPACE = ' ';
 export const X = '✖';
 export const PROMPT_START = 'START';
+export const PROMPT_BEST_SCORE = 'BEST SCORE!  PLAY AGAIN?';
 export const PROMPT_PLAY_AGAIN = 'PLAY AGAIN?';
 export const PROMPT_RESET_STATS = 'RESET STATS?';
 export const PROMPT_SURRENDER = 'START OVER?';

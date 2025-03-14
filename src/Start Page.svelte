@@ -64,7 +64,7 @@
         <img src={Intro} alt="" {width} />
         <ImageButton src={Play} width={60} onClick={onPlay} {style} />
     </div>
-    <div class="version">2314</div>
+    <div class="version">1018</div>
 </div>
 
 <style>
