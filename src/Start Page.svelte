@@ -9,6 +9,7 @@
     import { playSound } from './sound.svelte';
     import { _sob, _stats } from './state.svelte';
     import { focusOnApp, later, windowSize } from './utils';
+    import { startTimer } from './shared.svelte';
 
     let width = $state(0);
     let content = $state(null);
@@ -51,8 +52,12 @@
     });
 
     const onPlay = () => {
-        playSound('plop');
+        playSound('score2');
         _sob.page = GAME_PAGE;
+
+        if (_sob.ticks) {
+            startTimer();
+        }
     };
 
     const style = 'place-self: center; filter: drop-shadow(0 0 5px #000)';

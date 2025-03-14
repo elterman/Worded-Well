@@ -1,18 +1,21 @@
 <script>
     import Back from '$lib/images/Back.webp';
-    import Easy from '$lib/images/Mode Easy.webp';
-    import Hard from '$lib/images/Mode Hard.webp';
+    import Easy from '$lib/images/Easy.webp';
+    import Hard from '$lib/images/Hard.webp';
     import ResetStats from '$lib/images/Reset Stats.webp';
     import Restart from '$lib/images/Restart.webp';
     import SoundOff from '$lib/images/Sound Off.webp';
     import SoundOn from '$lib/images/Sound On.webp';
     import ToolButton from './Tool Button.svelte';
     import { PROMPT_RESET_STATS, PROMPT_SURRENDER, START_PAGE } from './const';
-    import { makePool } from './shared.svelte';
+    import { killTimer, makePool } from './shared.svelte';
     import { _prompt, _sob, _stats } from './state.svelte';
     import { _sound, playSound } from './sound.svelte';
 
-    const onBack = () => (_sob.page = START_PAGE);
+    const onBack = () => {
+        _sob.page = START_PAGE;
+        killTimer();
+    };
 
     const onSurrender = () => {
         if (_prompt.id == PROMPT_SURRENDER) {
@@ -46,8 +49,8 @@
         }
     };
 
-    const onMode = () => {
-        playSound('draw', { rate: 4 });
+    const onMode= () => {
+        playSound('plop');
         _sob.easy = !_sob.easy;
         makePool();
     };

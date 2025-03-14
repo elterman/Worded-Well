@@ -59,7 +59,7 @@ const addToStack = () => {
     _stack.tasks.unshift(_sob.task);
 };
 
-const startTimer = () => {
+export const startTimer = () => {
     _sob.timer = setInterval(() => {
         _sob.ticks += 1;
 
@@ -160,6 +160,7 @@ export const onKeyInput = (ch) => {
     }
 
     if (ch === SPACE) {
+        playSound('link2');
         _sob.input = [];
         return;
     }
