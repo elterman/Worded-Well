@@ -79,5 +79,6 @@
     .glow-bottom {
         width: 200px;
         height: 4px;
+        transform: translateY(-2px);
     }
 </style>
