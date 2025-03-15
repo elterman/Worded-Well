@@ -63,9 +63,7 @@
         place-self: end center;
         width: 4px;
         height: 100%;
-        --color: var(--gold);
-        box-shadow: 0 0 10px var(--color);
-        border-color: transparent var(--color) var(--color) var(--color);
+        box-shadow: 0 0 10px var(--gold);
     }
 
     .glow-left {

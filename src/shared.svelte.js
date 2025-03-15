@@ -216,6 +216,8 @@ export const onKeyInput = (ch) => {
 
         persist();
 
+        playSound(points < 100 ? 'coin1' : points < 200 ? 'coin2' : 'coins');
+
         later(() => _stats.gain = null, 1000);
     };
 
@@ -223,12 +225,10 @@ export const onKeyInput = (ch) => {
     const word = _sob.input.join('');
 
     if (_sob.task.word === word) {
-        playSound('coin1');
         killTimer();
         _sob.task.solved = true;
         onSolved(_sob.task, calcDrop());
     } else if (_stack.top()?.word === word) {
-        playSound('coin1');
         onSolved(_stack.top(), calcDrop({ toBottom: true }) + _sob.tile_sz / 2);
         _stack.tasks.shift();
     }

@@ -66,7 +66,7 @@
 <div class="page" in:fade={{ duration: 100 }} out:fade={{ duration: 200 }}>
     <div class="content" bind:this={content} style="transform: scale({scale})">
         <img class="shadow" src={Title} alt="" {width} />
-        <img src={Intro} alt="" {width} />
+        <img class="intro" src={Intro} alt="" {width} />
         <ImageButton src={Play} width={60} onClick={onPlay} {style} />
     </div>
     <div class="version">1713</div>
@@ -90,6 +90,10 @@
 
     .shadow {
         filter: drop-shadow(0 0 5px #000);
+    }
+
+    .intro {
+        box-shadow: 0 0 10px var(--gold);
     }
 
     .version {
