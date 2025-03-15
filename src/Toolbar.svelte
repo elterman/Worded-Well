@@ -3,7 +3,7 @@
     import Easy from '$lib/images/Easy.webp';
     import Hard from '$lib/images/Hard.webp';
     import ResetStats from '$lib/images/Reset Stats.webp';
-    import Restart from '$lib/images/Restart.webp';
+    import Surrender from '$lib/images/Surrender.webp';
     import SoundOff from '$lib/images/Sound Off.webp';
     import SoundOn from '$lib/images/Sound On.webp';
     import ToolButton from './Tool Button.svelte';
@@ -62,7 +62,7 @@
 
 <div class="toolbar">
     <ToolButton src={Back} onClick={onBack} />
-    <ToolButton src={Restart} onClick={onSurrender} disabled={_sob.over || !_sob.game_on} />
+    <ToolButton src={Surrender} onClick={onSurrender} disabled={_sob.over || !_sob.game_on} />
     <ToolButton src={_sob.easy ? Easy : Hard} onClick={onMode} {tooltip} />
     <ToolButton src={ResetStats} onClick={onResetStats} disabled={!canResetStats} />
     <ToolButton src={_sound.on ? SoundOn : SoundOff} onClick={onSounds} />
