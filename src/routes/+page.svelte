@@ -123,10 +123,10 @@
 
         .gradient-text {
             background: -webkit-linear-gradient(#f3d97b, #df7842 150%);
-            background-clip: text;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-wrap-mode: nowrap;
+            /* text-wrap-mode: nowrap; */
         }
     }
 
@@ -135,6 +135,7 @@
         height: 100dvh;
         background-image: url('$lib/images/Stone Wall.webp');
         background-size: 250px;
+        -webkit-user-select: none;
         user-select: none;
         overflow: hidden;
         touch-action: manipulation;

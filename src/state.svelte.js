@@ -4,7 +4,7 @@ export const _sob = $state({
     page: START_PAGE,
     input: [],
     pool: [],
-    max_travel_ms: 14500,
+    max_travel_ms: 500,
     lookup_prompt: true,
 });
 

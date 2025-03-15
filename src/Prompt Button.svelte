@@ -54,8 +54,8 @@
 
     .label {
         background: -webkit-linear-gradient(#f3d97b, #df7842 125%);
-        background-clip: text;
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
         filter: drop-shadow(1px 1px 1px black);
     }

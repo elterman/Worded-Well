@@ -22,6 +22,7 @@ export default [
       semi: ['warn', 'always'],
       'no-multiple-empty-lines': ['warn', { max: 1, maxEOF: 0, }],
       quotes: ['warn', 'single'],
+      'no-irregular-whitespace': 'none',
     }
   }
 ];

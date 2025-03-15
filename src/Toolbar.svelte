@@ -55,7 +55,7 @@
         makePool();
     };
 
-    const tooltip = $derived(`${_sob.easy ? 'less' : 'more'} difficult`);
+    const tooltip = $derived(`${_sob.easy ? 'less' : 'more'} difficult`);
 
     const canResetStats = $derived(_stats.plays > 1 || (_stats.plays === 1 && (!_sob.game_on || _sob.over)));
 </script>
@@ -63,7 +63,7 @@
 <div class="toolbar">
     <ToolButton src={Back} onClick={onBack} />
     <ToolButton src={Surrender} onClick={onSurrender} disabled={_sob.over || !_sob.game_on} />
-    <ToolButton src={_sob.easy ? Easy : Hard} onClick={onMode} {tooltip} />
+    <ToolButton src={_sob.easy ? Easy : Hard} onClick={onMode} tooltip={tooltip}/>
     <ToolButton src={ResetStats} onClick={onResetStats} disabled={!canResetStats} />
     <ToolButton src={_sound.on ? SoundOn : SoundOff} onClick={onSounds} />
 </div>
